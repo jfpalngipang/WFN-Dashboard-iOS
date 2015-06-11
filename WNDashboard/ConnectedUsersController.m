@@ -1,0 +1,115 @@
+//
+//  ConnectedUsersController.m
+//  WNDashboard
+//
+//  Created by Jan Franz Palngipang on 6/11/15.
+//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//
+
+#import "ConnectedUsersController.h"
+#import "SWRevealViewController.h"
+
+@interface ConnectedUsersController () <ChartViewDelegate>
+
+@end
+
+@implementation ConnectedUsersController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if(revealViewController){
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+    }
+    // Do any additional setup after loading the view.
+    
+    _lineChartView.delegate = self;
+    
+    _lineChartView.highlightEnabled = YES;
+    _lineChartView.dragEnabled = NO;
+    _lineChartView.pinchZoomEnabled = YES;
+    _lineChartView.drawGridBackgroundEnabled = YES;
+    
+    ChartYAxis *leftAxis = _lineChartView.leftAxis;
+    leftAxis.customAxisMax = 80;
+    leftAxis.customAxisMin = 0.0;
+    leftAxis.startAtZeroEnabled = YES;
+    leftAxis.gridLineDashLengths = @[@5.f, @5.f];
+    leftAxis.drawLimitLinesBehindDataEnabled = YES;
+    
+    _lineChartView.rightAxis.enabled = NO;
+    _lineChartView.legend.form = ChartLegendFormLine;
+    
+    [_lineChartView animateWithXAxisDuration:3.5 easingOption:ChartEasingOptionEaseInOutQuart];
+    
+    [self setDataCount:10 range:1];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)setDataCount: (int)count range: (double)range{
+    NSMutableArray *xVals = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        [xVals addObject:[@(i) stringValue]];
+    }
+    
+    NSMutableArray *yVals = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        double mult = (range + 1);
+        double val = (double) (arc4random_uniform(mult)) + 3;
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+    }
+    
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"DataSet 1"];
+    
+    set1.lineDashLengths = @[@5.f, @2.5f];
+    [set1 setColor:UIColor.blackColor];
+    [set1 setCircleColor:UIColor.blackColor];
+    set1.lineWidth = 1.0;
+    set1.circleRadius = 3.0;
+    set1.drawCircleHoleEnabled = NO;
+    set1.valueFont = [UIFont systemFontOfSize:9.f];
+    set1.fillAlpha = 65/255.0;
+    set1.fillColor = UIColor.blackColor;
+    
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [dataSets addObject:set1];
+    
+    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
+    
+    _lineChartView.data = data;
+}
+
+- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
+{
+    NSLog(@"chartValueSelected");
+}
+
+- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
+{
+    NSLog(@"chartValueNothingSelected");
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
