@@ -10,6 +10,8 @@
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
 #import "FrequentUsersCell.h"
+#import "OnlineUsersCell.h"
+#import "SurveyCell.h"
 
 @interface FeedsController ()
 
@@ -69,6 +71,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     static NSString *identifier = @"FrequentUsersCell";
     
     FrequentUsersCell *cell = (FrequentUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];

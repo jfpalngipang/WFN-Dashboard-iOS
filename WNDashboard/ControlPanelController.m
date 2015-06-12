@@ -12,7 +12,7 @@
 
 @implementation ControlPanelController
 {
-    NSMutableArray *ap_array;
+    NSMutableArray *ap_list;
     NSMutableArray *dd_array;
     NSMutableDictionary *ap_dict;
 }
@@ -20,21 +20,15 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    ap_array = [[NSMutableArray alloc] init];
+    ap_list = [[NSMutableArray alloc] init];
     ap_dict = [[NSMutableDictionary alloc] init];
     
     [reqUtil GETRequestSender:@"getAPList" completion:^(NSDictionary* responseDict){
         //NSLog(@"AP Settings: %@", responseDict);
         for (id ap in responseDict){
-            //[ap_array addObject:ap];
-            //NSLog(@"AP Array: %@", ap[0]);
-            //NSLog(@"AP Array: %@", ap[1]);
-            
-            [ap_dict setValue:ap[0] forKey:@"id"];
-            [ap_dict setValue:ap[1] forKey:@"ap"];
-            
-            
+            [ap_list addObject:ap[1]];
         }
+        NSLog(@"%@", ap_list);
     }];
     
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -45,7 +39,7 @@
         
     }
     
-    NSLog(@"%@", ap_dict);
+    
 }
 
 @end

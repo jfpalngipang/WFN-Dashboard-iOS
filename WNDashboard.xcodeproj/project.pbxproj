@@ -29,15 +29,14 @@
 		C67D97501B2578F80063FB84 /* FeedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D974F1B2578F80063FB84 /* FeedsController.m */; };
 		C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97541B25A0ED0063FB84 /* requestUtility.m */; };
 		C67D97641B26982B0063FB84 /* ControlPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97631B26982B0063FB84 /* ControlPanelController.m */; };
+		C68181441B2B07AD00A723BF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = C68181431B2B07AD00A723BF /* menu.png */; };
 		C6B4F7281B26AE48007E22EB /* SurveysController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7271B26AE48007E22EB /* SurveysController.m */; };
 		C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F72A1B26AE8E007E22EB /* AnalyticsController.m */; };
-		C6B4F77D1B26B2A4007E22EB /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B4F77C1B26B2A4007E22EB /* libCorePlot-CocoaTouch.a */; };
 		C6B4F77F1B26B51B007E22EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B4F77E1B26B51B007E22EB /* QuartzCore.framework */; };
 		C6B4F7821B26BB2A007E22EB /* Analytics-ConnectedUsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7811B26BB2A007E22EB /* Analytics-ConnectedUsersController.m */; };
 		C6B4F7841B26C8A6007E22EB /* wnlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7831B26C8A6007E22EB /* wnlogo.png */; };
 		C6B4F79E1B27349F007E22EB /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F79D1B27349F007E22EB /* SWRevealViewController.m */; };
 		C6B4F7A71B2738DE007E22EB /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7A61B2738DE007E22EB /* SidebarViewController.m */; };
-		C6B4F7AA1B273EA1007E22EB /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7A91B273EA1007E22EB /* menu.png */; };
 		C6B4F7AC1B2747EF007E22EB /* grey_newsfeed.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7AB1B2747EF007E22EB /* grey_newsfeed.png */; };
 		C6B4F7B21B27481C007E22EB /* grey_analytics.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7AD1B27481C007E22EB /* grey_analytics.png */; };
 		C6B4F7B31B27481C007E22EB /* grey_controlpanel.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7AE1B27481C007E22EB /* grey_controlpanel.png */; };
@@ -136,6 +135,7 @@
 		C67D97541B25A0ED0063FB84 /* requestUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = requestUtility.m; sourceTree = "<group>"; };
 		C67D97621B26982B0063FB84 /* ControlPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPanelController.h; sourceTree = "<group>"; };
 		C67D97631B26982B0063FB84 /* ControlPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlPanelController.m; sourceTree = "<group>"; };
+		C68181431B2B07AD00A723BF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = drawable/menu.png; sourceTree = SOURCE_ROOT; };
 		C6B4F7261B26AE48007E22EB /* SurveysController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveysController.h; sourceTree = "<group>"; };
 		C6B4F7271B26AE48007E22EB /* SurveysController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveysController.m; sourceTree = "<group>"; };
 		C6B4F7291B26AE8E007E22EB /* AnalyticsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsController.h; sourceTree = "<group>"; };
@@ -227,7 +227,6 @@
 		C6B4F79D1B27349F007E22EB /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		C6B4F7A51B2738DE007E22EB /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		C6B4F7A61B2738DE007E22EB /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
-		C6B4F7A91B273EA1007E22EB /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../../Downloads/SidebarDemoTemplate/SidebarDemo/menu.png; sourceTree = "<group>"; };
 		C6B4F7AB1B2747EF007E22EB /* grey_newsfeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_newsfeed.png; path = ../../../../Downloads/drawable/grey_newsfeed.png; sourceTree = "<group>"; };
 		C6B4F7AD1B27481C007E22EB /* grey_analytics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_analytics.png; path = ../../../../Downloads/drawable/grey_analytics.png; sourceTree = "<group>"; };
 		C6B4F7AE1B27481C007E22EB /* grey_controlpanel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_controlpanel.png; path = ../../../../Downloads/drawable/grey_controlpanel.png; sourceTree = "<group>"; };
@@ -261,7 +260,6 @@
 			files = (
 				C6B4F77F1B26B51B007E22EB /* QuartzCore.framework in Frameworks */,
 				C62417771B29570A00F1E623 /* Charts.framework in Frameworks */,
-				C6B4F77D1B26B2A4007E22EB /* libCorePlot-CocoaTouch.a in Frameworks */,
 				FC44BE2854737F2B82DBABDE /* libPods-WNDashboard.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +492,7 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C68181431B2B07AD00A723BF /* menu.png */,
 				C62417981B29ACF900F1E623 /* login_logo.png */,
 				C607D1F61B283DB700467F86 /* analytics1_orange.png */,
 				C607D1F71B283DB700467F86 /* analytics1.png */,
@@ -506,7 +505,6 @@
 				C6B4F7B01B27481C007E22EB /* grey_survey.png */,
 				C6B4F7B11B27481C007E22EB /* grey_userlogs.png */,
 				C6B4F7AB1B2747EF007E22EB /* grey_newsfeed.png */,
-				C6B4F7A91B273EA1007E22EB /* menu.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -662,10 +660,10 @@
 				C6B4F7AC1B2747EF007E22EB /* grey_newsfeed.png in Resources */,
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
 				C607D1F51B2839E300467F86 /* actualize.png in Resources */,
-				C6B4F7AA1B273EA1007E22EB /* menu.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
 				C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */,
+				C68181441B2B07AD00A723BF /* menu.png in Resources */,
 				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
 				C6C249D21B2AD01100981C73 /* SurveyCell.xib in Resources */,
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,

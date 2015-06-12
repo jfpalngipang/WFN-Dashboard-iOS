@@ -9,7 +9,7 @@
 #import "Analytics-ConnectedUsersController.h"
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
-#import "CorePlot-CocoaTouch.h"
+
 
 @implementation Analytics_ConnectedUsersController
 -(void)viewDidLoad {

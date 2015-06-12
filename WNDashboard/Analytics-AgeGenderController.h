@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CorePlot-CocoaTouch.h"
 #import <Charts/Charts.h>
 
 @interface Analytics_AgeGenderController : UIViewController

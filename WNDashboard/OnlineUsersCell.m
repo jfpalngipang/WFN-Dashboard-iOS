@@ -9,6 +9,8 @@
 #import "OnlineUsersCell.h"
 
 @implementation OnlineUsersCell
+@synthesize mainFBImage = _mainFBImage;
+@synthesize countLabel = _countLabel;
 
 - (void)awakeFromNib {
     // Initialization code

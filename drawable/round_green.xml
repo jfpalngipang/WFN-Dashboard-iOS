@@ -1,0 +1,10 @@
+<!-- Rounded button -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+      android:shape="rectangle" android:padding="10dp">
+      <corners
+           android:bottomRightRadius="25sp"
+           android:bottomLeftRadius="25sp"
+           android:topLeftRadius="25sp"
+           android:topRightRadius="25sp"/>
+       <gradient android:startColor="#96AE60" android:centerColor="#96AE60" android:endColor="#96AE60" android:angle="90" />       
+</shape>

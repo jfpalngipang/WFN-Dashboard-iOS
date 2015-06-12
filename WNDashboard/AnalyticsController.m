@@ -7,7 +7,6 @@
 //
 
 #import "AnalyticsController.h"
-#import "CorePlot-CocoaTouch.h"
 #import "requestUtility.h"
 
 @implementation AnalyticsController
