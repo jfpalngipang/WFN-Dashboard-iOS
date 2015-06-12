@@ -17,13 +17,24 @@
 @end
 
 @implementation AgeGenderController
+{
+    NSMutableArray *f;
+    NSMutableArray *m;
+    NSMutableArray *o;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    f = [[NSMutableArray alloc] init];
+    m = [[NSMutableArray alloc] init];
+    o = [[NSMutableArray alloc] init];
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getAnalytics" completion:^(NSDictionary *responseDict){
-        NSLog(@"ANALYTICS: %@", responseDict);
+        //NSLog(@"ANALYTICS: %@", responseDict[@"agegender"]);
+        f = responseDict[@"agegender"][@"f"];
+        m = responseDict[@"agegender"][@"m"];
+        o = responseDict[@"agegender"][@"o"];
     }];
     
     
