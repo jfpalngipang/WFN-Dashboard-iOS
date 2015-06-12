@@ -45,6 +45,8 @@
 		C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7B01B27481C007E22EB /* grey_survey.png */; };
 		C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7B11B27481C007E22EB /* grey_userlogs.png */; };
 		C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7BC1B280D11007E22EB /* UserLogsController.m */; };
+		C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */; };
+		C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */; };
 		C6C72FEE1B2871BA003940DA /* downArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C72FE71B2871BA003940DA /* downArrow.png */; };
 		C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C72FE81B2871BA003940DA /* downArrow@2x.png */; };
 		C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C6C72FE91B2871BA003940DA /* downArrow@3x.png */; };
@@ -230,6 +232,9 @@
 		C6B4F7B11B27481C007E22EB /* grey_userlogs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_userlogs.png; path = ../../../../Downloads/drawable/grey_userlogs.png; sourceTree = "<group>"; };
 		C6B4F7BB1B280D11007E22EB /* UserLogsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLogsController.h; sourceTree = "<group>"; };
 		C6B4F7BC1B280D11007E22EB /* UserLogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLogsController.m; sourceTree = "<group>"; };
+		C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrequentUsersCell.xib; sourceTree = "<group>"; };
+		C6C249C81B2AC90500981C73 /* FrequentUsersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentUsersCell.h; sourceTree = "<group>"; };
+		C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentUsersCell.m; sourceTree = "<group>"; };
 		C6C72FE71B2871BA003940DA /* downArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downArrow.png; sourceTree = "<group>"; };
 		C6C72FE81B2871BA003940DA /* downArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@2x.png"; sourceTree = "<group>"; };
 		C6C72FE91B2871BA003940DA /* downArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downArrow@3x.png"; sourceTree = "<group>"; };
@@ -339,6 +344,9 @@
 				C62417931B29AA3700F1E623 /* SpeedTestController.m */,
 				C62417951B29AA4A00F1E623 /* UptimeController.h */,
 				C62417961B29AA4A00F1E623 /* UptimeController.m */,
+				C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */,
+				C6C249C81B2AC90500981C73 /* FrequentUsersCell.h */,
+				C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -633,6 +641,7 @@
 				C6B4F7AA1B273EA1007E22EB /* menu.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
+				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,
 				C6B4F7B41B27481C007E22EB /* grey_rpm.png in Resources */,
 				C67D97331B25719D0063FB84 /* Images.xcassets in Resources */,
@@ -710,6 +719,7 @@
 				C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */,
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
+				C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */,
 				C62417911B29993E00F1E623 /* ConnectedUsersController.m in Sources */,
 				C62417971B29AA4A00F1E623 /* UptimeController.m in Sources */,
 				C67D97281B25719D0063FB84 /* main.m in Sources */,

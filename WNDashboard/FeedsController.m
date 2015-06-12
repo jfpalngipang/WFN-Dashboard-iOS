@@ -9,6 +9,7 @@
 #import "FeedsController.h"
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
+#import "FrequentUsersCell.h"
 
 @interface FeedsController ()
 
@@ -63,6 +64,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"FrequentUsersCell";
+    
+    FrequentUsersCell *cell = (FrequentUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FrequentUsersCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    
+    return cell;
+}
 /*
 #pragma mark - Navigation
 
