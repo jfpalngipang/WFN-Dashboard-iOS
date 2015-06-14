@@ -8,6 +8,7 @@
 
 #import "AnalyticsController.h"
 #import "requestUtility.h"
+#import "SWRevealViewController.h"
 
 @implementation AnalyticsController
 
@@ -20,6 +21,16 @@
         NSLog(@"ANALYTICS: %@", responseDict);
     }];
     
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if(revealViewController){
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+    }
+    
 }
 
+- (IBAction)segmentChanged:(id)sender {
+}
 @end

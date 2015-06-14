@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AnalyticsController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+- (IBAction)segmentChanged:(id)sender;
 
 @end

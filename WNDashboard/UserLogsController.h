@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DownPicker.h"
 
-@interface UserLogsController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface UserLogsController : UIViewController 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIPickerView *APListPicker;
+
 
 @property (strong, nonatomic) DownPicker *downPicker;
 @property (weak, nonatomic) IBOutlet UITextField *APListTextField;

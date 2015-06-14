@@ -31,16 +31,12 @@
             [_ap_list addObject:ap[1]];
         }
         NSLog(@"Picker Items: %@", _ap_list);
-        [self.APListPicker reloadAllComponents];
-        self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
+            self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
 
     }];
     
     
-    
-    self.APListPicker.dataSource = self;
-    self.APListPicker.delegate = self;
-    
+
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
