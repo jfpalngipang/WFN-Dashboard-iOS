@@ -10,7 +10,8 @@
 #import <Charts/Charts.h>
 
 @interface ConnectedUsersController : UIViewController
-@property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
 
 @end

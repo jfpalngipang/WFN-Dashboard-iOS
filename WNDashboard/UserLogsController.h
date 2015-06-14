@@ -16,6 +16,6 @@
 @property (strong, nonatomic) DownPicker *downPicker;
 @property (weak, nonatomic) IBOutlet UITextField *APListTextField;
 
-- (IBAction)APSelectClicked:(id)sender;
+
 
 @end

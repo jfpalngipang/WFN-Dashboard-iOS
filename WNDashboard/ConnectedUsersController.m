@@ -72,7 +72,7 @@
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"DataSet 1"];
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"Connected Users"];
     
     set1.lineDashLengths = @[@5.f, @2.5f];
     [set1 setColor:UIColor.blackColor];

@@ -495,25 +495,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FCU-Jj-MKG">
-                                <rect key="frame" x="16" y="171" width="116" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQp-bW-yqf">
-                                <rect key="frame" x="194" y="171" width="91" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oLf-9N-g7h">
                                 <rect key="frame" x="93" y="124" width="192" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search user/device" translatesAutoresizingMaskIntoConstraints="NO" id="6Hu-nV-rYe">
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iio-TC-G9w" id="7gS-Sy-sAF"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bMr-R9-YLC">
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -528,7 +525,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="APListTextField" destination="oLf-9N-g7h" id="l1Y-PN-men"/>
-                        <outlet property="searchDisplayController" destination="1kk-dO-8gK" id="aDa-LW-aoF"/>
+                        <outlet property="searchDisplayController" destination="p5g-bd-UFb" id="3kR-DE-CzD"/>
                         <outlet property="sidebarButton" destination="p8T-SR-4Wh" id="zDr-gO-zTh"/>
                     </connections>
                 </viewController>
@@ -549,6 +546,15 @@
                         <outlet property="searchResultsDelegate" destination="iio-TC-G9w" id="5Z1-RI-jMo"/>
                     </connections>
                 </searchDisplayController>
+                <searchDisplayController id="p5g-bd-UFb">
+                    <connections>
+                        <outlet property="delegate" destination="iio-TC-G9w" id="kfy-iR-2dL"/>
+                        <outlet property="searchBar" destination="6Hu-nV-rYe" id="86O-ew-yk5"/>
+                        <outlet property="searchContentsController" destination="iio-TC-G9w" id="MWI-yX-PxZ"/>
+                        <outlet property="searchResultsDataSource" destination="iio-TC-G9w" id="Zhm-6D-TfU"/>
+                        <outlet property="searchResultsDelegate" destination="iio-TC-G9w" id="k8k-yV-zlC"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1172.5" y="28.5"/>
         </scene>
@@ -567,6 +573,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A88-w0-0EO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" id="Kiy-0u-6uD">
+                                    <rect key="frame" x="0.0" y="-2" width="375" height="2"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </progressView>
                                 <connections>
                                     <outlet property="dataSource" destination="4kP-Gt-6f5" id="f7u-Vt-bBb"/>
                                     <outlet property="delegate" destination="4kP-Gt-6f5" id="uvS-im-1Qa"/>
@@ -763,10 +774,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-M9-W3t" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="185" width="375" height="433"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31m-E4-2DT">
                                 <rect key="frame" x="16" y="86" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -784,17 +791,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfK-zS-nyy">
-                                <rect key="frame" x="67" y="80" width="135" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-ZF-yof">
                                 <rect key="frame" x="225" y="93" width="33" height="40"/>
                                 <state key="normal" image="Arrow-50.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfK-zS-nyy">
+                                <rect key="frame" x="67" y="80" width="135" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-M9-W3t" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="185" width="375" height="433"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1007,10 +1018,10 @@
             </objects>
             <point key="canvasLocation" x="63" y="-785"/>
         </scene>
-        <!--Speed Test Controller-->
+        <!--Connected Users Controller-->
         <scene sceneID="9Be-1A-uB5">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mmQ-85-7IS" customClass="SpeedTestController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="mmQ-85-7IS" customClass="ConnectedUsersController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jAn-Sn-UeI"/>
                         <viewControllerLayoutGuide type="bottom" id="fnS-s5-Oy5"/>
@@ -1019,16 +1030,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="335" height="307"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bar Chart" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1r-Ed-VPO">
-                                <rect key="frame" x="130" y="143" width="74" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbw-Wi-u8p" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="8" width="285" height="291"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="lineChartView" destination="sbw-Wi-u8p" id="mM4-9D-vWE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zm-Ne-xWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
