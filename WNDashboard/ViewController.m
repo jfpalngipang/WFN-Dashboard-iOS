@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,6 +30,7 @@
 }
 
 - (IBAction)buttonLogInClicked:(id)sender {
+    username = [NSString stringWithString:[self.textFieldUsername text]];
     loginURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/login_app/"];
     NSLog(@"%@", [self.textFieldPassword text]);
     NSString *boundary = @"WebKitFormBoundary";
