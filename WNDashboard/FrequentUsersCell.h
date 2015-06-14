@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface FrequentUsersCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
 @property (weak, nonatomic) IBOutlet UIImageView *mainFBImage;
-@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeDateLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *usageLabel;
+
 
 @end

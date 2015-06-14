@@ -9,9 +9,12 @@
 #import "FrequentUsersCell.h"
 
 @implementation FrequentUsersCell
-@synthesize nameLabel = _nameLabel;
-@synthesize countLabel = _countLabel;
+
 @synthesize mainFBImage = _mainFBImage;
+@synthesize nameLabel = _nameLabel;
+@synthesize usageLabel = _usageLabel;
+@synthesize timeDateLabel = _timeDateLabel;
+
 
 - (void)awakeFromNib {
     // Initialization code

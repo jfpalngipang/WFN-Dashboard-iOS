@@ -16,14 +16,20 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0xW-eb-bbj">
                         <rect key="frame" x="15" y="7" width="69" height="69"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFH-FG-BBd">
-                        <rect key="frame" x="101" y="8" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mS-4f-d3h">
+                        <rect key="frame" x="211" y="62" width="147" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytu-mz-IT9">
-                        <rect key="frame" x="101" y="26" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-jc-bxl">
+                        <rect key="frame" x="92" y="7" width="188" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="usage" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-Jv-Hec">
+                        <rect key="frame" x="92" y="25" width="205" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -31,9 +37,10 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="countLabel" destination="Ytu-mz-IT9" id="Gkb-Y2-6cJ"/>
                 <outlet property="mainFBImage" destination="0xW-eb-bbj" id="8Lv-ZR-eUD"/>
-                <outlet property="nameLabel" destination="zFH-FG-BBd" id="hpp-PI-FCP"/>
+                <outlet property="nameLabel" destination="Jfx-jc-bxl" id="ezu-4t-Ljg"/>
+                <outlet property="timeDateLabel" destination="5mS-4f-d3h" id="ghm-X3-yz9"/>
+                <outlet property="usageLabel" destination="Blp-Jv-Hec" id="5Od-AD-MZC"/>
             </connections>
             <point key="canvasLocation" x="290" y="156"/>
         </tableViewCell>

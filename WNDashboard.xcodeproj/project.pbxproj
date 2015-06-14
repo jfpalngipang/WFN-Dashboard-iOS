@@ -27,6 +27,7 @@
 		C679062A1B2D6BD700F4F098 /* userlogs2.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906281B2D6BD700F4F098 /* userlogs2.png */; };
 		C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C679062B1B2D700800F4F098 /* Arrow-50.png */; };
 		C679062F1B2D80A700F4F098 /* RPMController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679062E1B2D80A700F4F098 /* RPMController.m */; };
+		C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906311B2DE90B00F4F098 /* NewsFeedController.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -132,6 +133,8 @@
 		C679062B1B2D700800F4F098 /* Arrow-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow-50.png"; path = "assets/Arrow-50.png"; sourceTree = SOURCE_ROOT; };
 		C679062D1B2D80A700F4F098 /* RPMController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPMController.h; sourceTree = "<group>"; };
 		C679062E1B2D80A700F4F098 /* RPMController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPMController.m; sourceTree = "<group>"; };
+		C67906301B2DE90B00F4F098 /* NewsFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedController.h; sourceTree = "<group>"; };
+		C67906311B2DE90B00F4F098 /* NewsFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedController.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -370,6 +373,8 @@
 				C62417961B29AA4A00F1E623 /* UptimeController.m */,
 				C679062D1B2D80A700F4F098 /* RPMController.h */,
 				C679062E1B2D80A700F4F098 /* RPMController.m */,
+				C67906301B2DE90B00F4F098 /* NewsFeedController.h */,
+				C67906311B2DE90B00F4F098 /* NewsFeedController.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				C6B4F79E1B27349F007E22EB /* SWRevealViewController.m in Sources */,
 				C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */,
 				C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */,
+				C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */,
 				C679062F1B2D80A700F4F098 /* RPMController.m in Sources */,
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
