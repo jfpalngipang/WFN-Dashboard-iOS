@@ -203,6 +203,35 @@
             </objects>
             <point key="canvasLocation" x="1172.5" y="771.5"/>
         </scene>
+        <!--Analytics Report-->
+        <scene sceneID="gfo-DE-vN9">
+            <objects>
+                <viewController id="nRP-B7-eiT" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T4a-Ko-yHZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8ti-mT-Ns5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="flr-82-dzz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wMI-bY-RSj">
+                                <rect key="frame" x="20" y="86" width="335" height="29"/>
+                                <segments>
+                                    <segment title="Connected Users"/>
+                                    <segment title="Age / Gender Distribution"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Analytics Report" id="11P-5e-0VO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZD-0l-hQa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2666.5" y="482.5"/>
+        </scene>
         <!--Surveys Controller-->
         <scene sceneID="3Oo-yy-IKn">
             <objects>
@@ -220,7 +249,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="07Y-RN-SYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3418.5" y="396.5"/>
+            <point key="canvasLocation" x="4230.5" y="396.5"/>
         </scene>
         <!--Uptime Controller-->
         <scene sceneID="Xj5-L1-7nZ">
@@ -977,6 +1006,25 @@
             </objects>
             <point key="canvasLocation" x="1832.5" y="1514.5"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OJ9-LH-T50">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vBU-fp-tx4" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k42-ws-g0z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nRP-B7-eiT" kind="relationship" relationship="rootViewController" id="aiL-3a-zYo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UmX-as-eco" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854" y="482"/>
+        </scene>
     </scenes>
     <resources>
         <image name="actualize.png" width="25" height="25"/>
@@ -987,7 +1035,7 @@
         <image name="grey_survey.png" width="35" height="28"/>
         <image name="grey_userlogs.png" width="30" height="28"/>
         <image name="login_logo.png" width="346" height="107"/>
-        <image name="menu.png" width="28" height="20"/>
+        <image name="menu.png" width="51" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uoI-ED-CKP"/>
