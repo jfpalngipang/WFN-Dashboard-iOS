@@ -38,7 +38,7 @@
             [messages addObject:message];
         }
         NSLog(@"%@", messages);
-        self.tableView.rowHeight = 90;
+        self.tableView.rowHeight = 100;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }];
     
