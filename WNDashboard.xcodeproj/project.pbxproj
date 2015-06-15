@@ -28,6 +28,9 @@
 		C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C679062B1B2D700800F4F098 /* Arrow-50.png */; };
 		C679062F1B2D80A700F4F098 /* RPMController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679062E1B2D80A700F4F098 /* RPMController.m */; };
 		C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906311B2DE90B00F4F098 /* NewsFeedController.m */; };
+		C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906341B2E8A9900F4F098 /* UserLogsCell.m */; };
+		C67906371B2EA11300F4F098 /* SurveysViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906361B2EA11300F4F098 /* SurveysViewCell.xib */; };
+		C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906391B2EA21600F4F098 /* SurveysViewCell.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -135,6 +138,11 @@
 		C679062E1B2D80A700F4F098 /* RPMController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPMController.m; sourceTree = "<group>"; };
 		C67906301B2DE90B00F4F098 /* NewsFeedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFeedController.h; sourceTree = "<group>"; };
 		C67906311B2DE90B00F4F098 /* NewsFeedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFeedController.m; sourceTree = "<group>"; };
+		C67906331B2E8A9900F4F098 /* UserLogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLogsCell.h; sourceTree = "<group>"; };
+		C67906341B2E8A9900F4F098 /* UserLogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLogsCell.m; sourceTree = "<group>"; };
+		C67906361B2EA11300F4F098 /* SurveysViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveysViewCell.xib; sourceTree = "<group>"; };
+		C67906381B2EA21600F4F098 /* SurveysViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveysViewCell.h; sourceTree = "<group>"; };
+		C67906391B2EA21600F4F098 /* SurveysViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveysViewCell.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -549,6 +557,11 @@
 				C6C249D31B2AD02400981C73 /* SurveyCell.h */,
 				C6C249D41B2AD02400981C73 /* SurveyCell.m */,
 				C679061D1B2D65F600F4F098 /* UserLogsCell.xib */,
+				C67906331B2E8A9900F4F098 /* UserLogsCell.h */,
+				C67906341B2E8A9900F4F098 /* UserLogsCell.m */,
+				C67906361B2EA11300F4F098 /* SurveysViewCell.xib */,
+				C67906381B2EA21600F4F098 /* SurveysViewCell.h */,
+				C67906391B2EA21600F4F098 /* SurveysViewCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -698,6 +711,7 @@
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,
 				C6B4F7B41B27481C007E22EB /* grey_rpm.png in Resources */,
 				C67D97331B25719D0063FB84 /* Images.xcassets in Resources */,
+				C67906371B2EA11300F4F098 /* SurveysViewCell.xib in Resources */,
 				C607D1FA1B283DB700467F86 /* analytics1_orange.png in Resources */,
 				C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */,
 				C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */,
@@ -768,6 +782,8 @@
 				C6C72FF11B2871BA003940DA /* DownPicker.m in Sources */,
 				C6C72FF21B2871BA003940DA /* UIDownPicker.m in Sources */,
 				C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */,
+				C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */,
+				C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */,
 				C67D972E1B25719D0063FB84 /* ViewController.m in Sources */,
 				C6C249D51B2AD02400981C73 /* SurveyCell.m in Sources */,
 				C6B4F7821B26BB2A007E22EB /* Analytics-ConnectedUsersController.m in Sources */,

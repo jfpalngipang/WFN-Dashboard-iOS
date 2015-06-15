@@ -10,10 +10,13 @@
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
 #import "DownPicker.h"
+#import "UserLogsCell.h"
 
 
 @interface UserLogsController () {
     NSMutableArray *_ap_list;
+    NSMutableArray *logs;
+    NSDate *today;
 }
 
 @end
@@ -22,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    today = [[NSDate alloc] init];
+    logs = [[NSMutableArray alloc] init];
     _ap_list = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
@@ -30,9 +35,19 @@
         for(id ap in responseDict){
             [_ap_list addObject:ap[1]];
         }
-        NSLog(@"Picker Items: %@", _ap_list);
-            self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
+        //NSLog(@"Picker Items: %@", _ap_list);
+        self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
 
+    }];
+    [reqUtil GETRequestSender:@"getUserLogs" withParams: @"06/02/15" completion:^(NSDictionary* logsDict){
+       
+        for (id log in logsDict){
+           [logs addObject:log];
+        }
+        
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"%@", logs);
+        //NSLog(@"%@", today);
     }];
     
     
@@ -52,20 +67,34 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 }
+*/
 
-- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _ap_list.count;
+    return logs.count;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return _ap_list[row];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"Cell";
+    UserLogsCell *cell = (UserLogsCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil){
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserLogsCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
+
+    cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];
+    cell.totalLabel.text = [logs objectAtIndex:indexPath.row][@"total_mins"];
+    return cell;
+    
 }
+
 
 /*
 #pragma mark - Navigation
@@ -77,14 +106,5 @@
 }
 */
 
-- (IBAction)APSelectClicked:(id)sender {
-   /*
-    [ActionSheetStringPicker showPickerWithTitle:@"Access Points" rows:_ap_list initialSelection:0 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue){
-        NSLog(@"%@", selectedValue);
-    } cancelBlock:^(ActionSheetStringPicker *picker) {
-        NSLog(@"Cancelled");
-        
-    } origin:sender];
-     */
-}
+
 @end

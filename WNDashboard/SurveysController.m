@@ -9,18 +9,25 @@
 #import "SurveysController.h"
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
+#import "SurveysViewCell.h"
 
 @implementation SurveysController
 {
-    NSMutableArray *survey_array;
+    NSMutableArray *surveys;
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    surveys = [[NSMutableArray alloc] init];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
     [reqUtil GETRequestSender:@"getSurveys" completion:^(NSDictionary* responseDict){
-        NSLog(@"SURVEYS: %@", responseDict);
+        //NSLog(@"SURVEYS: %@", responseDict);
+        for (id survey in responseDict){
+            [surveys addObject:survey];
+        }
+        NSLog(@"%@", surveys[0]);
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
     }];
     
@@ -32,6 +39,23 @@
         
     }
 
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return surveys.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"Cell";
+    SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil){
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    //cell.questionLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:1];
+    //cell.responseLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:2];
+    //cell.apLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:4];
+    return cell;
 }
 
 

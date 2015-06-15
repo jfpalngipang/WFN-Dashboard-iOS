@@ -12,6 +12,7 @@
 
 - (NSDictionary*) LoginRequestWithUsername: (NSString *)username andPassword: (NSString *)password;
 - (void) GETRequestSender: (NSString *) type completion:(void (^)(NSDictionary *)) completion;
+- (void) GETRequestSender: (NSString *)type withParams: (NSString *)param completion:(void(^)(NSDictionary *))completion;
 
 
 

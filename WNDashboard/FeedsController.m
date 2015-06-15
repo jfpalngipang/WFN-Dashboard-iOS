@@ -68,9 +68,9 @@
 }
 
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
  
-    //for (id newsItem in news_array) {
     static NSString *identifier;
         if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"on_users"]){
             identifier = @"OnlineUsersCell";

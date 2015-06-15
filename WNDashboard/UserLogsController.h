@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "DownPicker.h"
 
-@interface UserLogsController : UIViewController 
+@interface UserLogsController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 
 @property (strong, nonatomic) DownPicker *downPicker;
 @property (weak, nonatomic) IBOutlet UITextField *APListTextField;
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 @end

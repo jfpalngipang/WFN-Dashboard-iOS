@@ -104,6 +104,9 @@
     } else if([type isEqualToString:@"getRPM"]){
         url_str = [NSString stringWithFormat:@"http://dev.wifination.ph:3000/mobile/rpm/?id=%@", param];
         url = [NSURL URLWithString:url_str];
+    } else if([type  isEqual: @"getUserLogs"]){
+        url_str = [NSString stringWithFormat:@"http://dev.wifination.ph:3000/mobile/userlogs/?date=%@", param];
+        url = [NSURL URLWithString:url_str];
     }
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
     request.HTTPMethod = @"GET";

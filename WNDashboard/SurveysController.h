@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SurveysController : UIViewController
+@interface SurveysController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
