@@ -83,6 +83,8 @@
         url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/analytics/"];
     } else if([type isEqual:@"getAPList"]){
         url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/accesspoints/"];
+    } else if([type isEqual:@"getMessages"]){
+        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/testimonials/"];
     }
     
     

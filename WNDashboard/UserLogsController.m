@@ -40,14 +40,14 @@
 
     }];
     [reqUtil GETRequestSender:@"getUserLogs" withParams: @"06/02/15" completion:^(NSDictionary* logsDict){
-       
+        [self.activityIndicator startAnimating];
         for (id log in logsDict){
            [logs addObject:log];
         }
         
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        
         NSLog(@"%@", logs);
-        //NSLog(@"%@", today);
     }];
     
     
@@ -80,6 +80,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.activityIndicator stopAnimating];
     static NSString *identifier = @"Cell";
     UserLogsCell *cell = (UserLogsCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil){
@@ -91,6 +92,7 @@
 
     cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];
     cell.totalLabel.text = [logs objectAtIndex:indexPath.row][@"total_mins"];
+    
     return cell;
     
 }

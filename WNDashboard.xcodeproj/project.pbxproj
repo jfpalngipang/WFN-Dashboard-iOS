@@ -32,6 +32,9 @@
 		C67906371B2EA11300F4F098 /* SurveysViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906361B2EA11300F4F098 /* SurveysViewCell.xib */; };
 		C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906391B2EA21600F4F098 /* SurveysViewCell.m */; };
 		C679063C1B2EADC400F4F098 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C679063B1B2EADC400F4F098 /* next.png */; };
+		C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679063E1B2EB53A00F4F098 /* TestimonialsController.m */; };
+		C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906401B2EB60D00F4F098 /* MessageCell.xib */; };
+		C67906441B2EB63300F4F098 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906431B2EB63300F4F098 /* MessageCell.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -145,6 +148,11 @@
 		C67906381B2EA21600F4F098 /* SurveysViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveysViewCell.h; sourceTree = "<group>"; };
 		C67906391B2EA21600F4F098 /* SurveysViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveysViewCell.m; sourceTree = "<group>"; };
 		C679063B1B2EADC400F4F098 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = assets/next.png; sourceTree = SOURCE_ROOT; };
+		C679063D1B2EB53A00F4F098 /* TestimonialsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestimonialsController.h; sourceTree = "<group>"; };
+		C679063E1B2EB53A00F4F098 /* TestimonialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestimonialsController.m; sourceTree = "<group>"; };
+		C67906401B2EB60D00F4F098 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		C67906421B2EB63300F4F098 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		C67906431B2EB63300F4F098 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -385,6 +393,8 @@
 				C679062E1B2D80A700F4F098 /* RPMController.m */,
 				C67906301B2DE90B00F4F098 /* NewsFeedController.h */,
 				C67906311B2DE90B00F4F098 /* NewsFeedController.m */,
+				C679063D1B2EB53A00F4F098 /* TestimonialsController.h */,
+				C679063E1B2EB53A00F4F098 /* TestimonialsController.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -565,6 +575,9 @@
 				C67906361B2EA11300F4F098 /* SurveysViewCell.xib */,
 				C67906381B2EA21600F4F098 /* SurveysViewCell.h */,
 				C67906391B2EA21600F4F098 /* SurveysViewCell.m */,
+				C67906401B2EB60D00F4F098 /* MessageCell.xib */,
+				C67906421B2EB63300F4F098 /* MessageCell.h */,
+				C67906431B2EB63300F4F098 /* MessageCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -705,6 +718,7 @@
 				C67906291B2D6BD700F4F098 /* news.png in Resources */,
 				C67906251B2D69DD00F4F098 /* menu.png in Resources */,
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
+				C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */,
 				C607D1F51B2839E300467F86 /* actualize.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
@@ -784,6 +798,7 @@
 				C6B4F7A71B2738DE007E22EB /* SidebarViewController.m in Sources */,
 				C67D97641B26982B0063FB84 /* ControlPanelController.m in Sources */,
 				C6C72FF11B2871BA003940DA /* DownPicker.m in Sources */,
+				C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */,
 				C6C72FF21B2871BA003940DA /* UIDownPicker.m in Sources */,
 				C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */,
 				C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */,
@@ -795,6 +810,7 @@
 				C62417941B29AA3700F1E623 /* SpeedTestController.m in Sources */,
 				C6B4F79E1B27349F007E22EB /* SWRevealViewController.m in Sources */,
 				C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */,
+				C67906441B2EB63300F4F098 /* MessageCell.m in Sources */,
 				C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */,
 				C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */,
 				C679062F1B2D80A700F4F098 /* RPMController.m in Sources */,

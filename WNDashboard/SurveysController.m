@@ -27,7 +27,7 @@
             [surveys addObject:survey];
         }
         NSLog(@"%@", surveys[0][1]);
-        self.tableView.rowHeight = 120;
+        self.tableView.rowHeight = 150;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
     }];
