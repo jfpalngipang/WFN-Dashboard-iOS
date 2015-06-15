@@ -34,7 +34,7 @@
         
     }
     //NSLog(@"fetching feeds");
-    NSDictionary *result;
+  
     news_array = [[NSMutableArray alloc] init];
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
@@ -45,6 +45,7 @@
             [news_array addObject:entry];
         }
         NSLog(@"%@", news_array);
+        self.tableView.rowHeight = 100;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
     }];
@@ -66,12 +67,14 @@
     return news_array.count;
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
  
     //for (id newsItem in news_array) {
     static NSString *identifier;
         if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"on_users"]){
             identifier = @"OnlineUsersCell";
+            NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             OnlineUsersCell *cell = (OnlineUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
@@ -79,7 +82,7 @@
                 cell = [nib objectAtIndex:0];
             }
             
-            cell.countLabel.text = [news_array objectAtIndex:indexPath.row][@"count"];
+            cell.countLabel.text = [NSString stringWithFormat:@"%@ online users", count];
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"frequent_users"]) {
             identifier = @"FrequentUsersCell";
@@ -97,12 +100,17 @@
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]) {
             identifier = @"SurveyUsersCell";
+            NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
+            NSString *answer = [news_array objectAtIndex:indexPath.row][@"answer"];
+            NSString *question = [news_array objectAtIndex:indexPath.row][@"question"];
             SurveyCell *cell = (SurveyCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            cell.surveyResultsLabel.text = [NSString stringWithFormat:@"%@ answered %@ to your question: %@", count, answer, question];
+            cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
         } else {
             identifier = @"SurveyUsersCell";
