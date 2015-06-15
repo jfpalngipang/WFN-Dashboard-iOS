@@ -11,8 +11,9 @@
 @interface SurveysViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *responseLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *apLabel;
+@property (weak, nonatomic) IBOutlet UILabel *respLabel;
 
 
 @end

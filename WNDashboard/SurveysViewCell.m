@@ -10,7 +10,7 @@
 
 @implementation SurveysViewCell
 @synthesize questionLabel = _questionLabel;
-@synthesize responseLabel = _responseLabel;
+@synthesize respLabel = _respLabel;
 @synthesize apLabel = _apLabel;
 
 - (void)awakeFromNib {

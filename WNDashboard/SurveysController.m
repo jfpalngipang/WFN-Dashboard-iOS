@@ -26,7 +26,8 @@
         for (id survey in responseDict){
             [surveys addObject:survey];
         }
-        NSLog(@"%@", surveys[0]);
+        NSLog(@"%@", surveys[0][1]);
+        self.tableView.rowHeight = 120;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     
     }];
@@ -46,15 +47,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveys objectAtIndex:indexPath.row] objectAtIndex:2]];
     static NSString *identifier = @"Cell";
     SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil){
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    //cell.questionLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:1];
-    //cell.responseLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:2];
-    //cell.apLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:4];
+    cell.questionLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:1];
+    cell.respLabel.text = responseCount;
+    cell.apLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:4];
     return cell;
 }
 
