@@ -16,12 +16,19 @@
 
 
 @implementation SurveyDetailsViewController
+{
+    NSMutableArray *valuesForChart;
+    NSString *surveyId;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    //[reqUtil GETRequestSender:@"getSurveyDetails" withParams:<#(NSString *)#> completion:^(NSDictionary *responseDict)];
+    [reqUtil GETRequestSender:@"getSurveyDetails" withParams:surveyId completion:^(NSDictionary *responseDict){
+        NSLog(@"%@", responseDict);
+    }];
+    
     
     _pieChartView.delegate = self;
     

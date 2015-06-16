@@ -87,7 +87,6 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserLogsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
     cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
 
     cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];

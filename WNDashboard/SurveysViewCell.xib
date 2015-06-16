@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKY-Dj-GNJ">
-                        <rect key="frame" x="277" y="31" width="30" height="30"/>
+                        <rect key="frame" x="284" y="54" width="30" height="30"/>
                         <state key="normal" image="next.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>

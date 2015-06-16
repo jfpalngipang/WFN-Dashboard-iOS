@@ -38,6 +38,7 @@
 		C67906481B2FE3F600F4F098 /* SearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906471B2FE3F600F4F098 /* SearchResultsTableViewController.m */; };
 		C679064C1B2FE70B00F4F098 /* SurveyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064B1B2FE70B00F4F098 /* SurveyDetailsViewController.m */; };
 		C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064F1B2FF94C00F4F098 /* SurveyDetailsController.m */; };
+		C67906521B301D8B00F4F098 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906511B301D8B00F4F098 /* calendar.png */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -162,6 +163,7 @@
 		C679064B1B2FE70B00F4F098 /* SurveyDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyDetailsViewController.m; sourceTree = "<group>"; };
 		C679064E1B2FF94C00F4F098 /* SurveyDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyDetailsController.h; sourceTree = "<group>"; };
 		C679064F1B2FF94C00F4F098 /* SurveyDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyDetailsController.m; sourceTree = "<group>"; };
+		C67906511B301D8B00F4F098 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = assets/calendar.png; sourceTree = SOURCE_ROOT; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C67906511B301D8B00F4F098 /* calendar.png */,
 				C679063B1B2EADC400F4F098 /* next.png */,
 				C679062B1B2D700800F4F098 /* Arrow-50.png */,
 				C67906271B2D6BD700F4F098 /* news.png */,
@@ -754,6 +757,7 @@
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
 				C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */,
+				C67906521B301D8B00F4F098 /* calendar.png in Resources */,
 				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
 				C6C249D21B2AD01100981C73 /* SurveyCell.xib in Resources */,
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,
