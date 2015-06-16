@@ -759,15 +759,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search question/access point" translatesAutoresizingMaskIntoConstraints="NO" id="unV-d1-HyV">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="iio-TC-G9w" id="FdN-GL-vhM"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="D3N-nU-Lte">
-                                <rect key="frame" x="0.0" y="108" width="320" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="WJR-cx-s29" id="nDR-wi-Jla"/>
@@ -784,7 +777,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="yvM-Qq-1MY" id="eM0-sx-MqI"/>
+                        <outlet property="searchDisplayController" destination="Xvx-Hi-qwJ" id="0KJ-wW-XjA"/>
                         <outlet property="sidebarButton" destination="7en-I5-9AQ" id="X7s-Qh-fCK"/>
                         <outlet property="tableView" destination="D3N-nU-Lte" id="gaR-nu-hhm"/>
                     </connections>
@@ -798,8 +791,44 @@
                         <outlet property="searchResultsDelegate" destination="WJR-cx-s29" id="QCs-tK-yHA"/>
                     </connections>
                 </searchDisplayController>
+                <searchDisplayController id="Xvx-Hi-qwJ">
+                    <connections>
+                        <outlet property="delegate" destination="WJR-cx-s29" id="wXe-t3-9SW"/>
+                        <outlet property="searchContentsController" destination="WJR-cx-s29" id="ILW-y6-sXX"/>
+                        <outlet property="searchResultsDataSource" destination="WJR-cx-s29" id="9ra-kW-mFC"/>
+                        <outlet property="searchResultsDelegate" destination="WJR-cx-s29" id="Tdt-hY-ZJ2"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1161.5" y="1514.5"/>
+        </scene>
+        <!--Search Results Table View Controller-->
+        <scene sceneID="klf-nB-ef3">
+            <objects>
+                <tableViewController storyboardIdentifier="SearchResultsTableViewController" id="Y2q-3A-eFo" customClass="SearchResultsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7jO-ea-QB3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jom-yR-2gg">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jom-yR-2gg" id="RDU-KS-XmX">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Y2q-3A-eFo" id="Mbm-z5-sXY"/>
+                            <outlet property="delegate" destination="Y2q-3A-eFo" id="TQK-zF-a2x"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GP9-jH-7Bh"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uYn-Nd-lcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2875.5" y="1445.5"/>
         </scene>
         <!--Messages-->
         <scene sceneID="EyL-Up-NRt">
@@ -842,21 +871,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTN-zP-jNe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1161.5" y="2239.5"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="lii-1b-hVF">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="qYm-pt-lJL" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="htT-GM-nyb">
-                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="wAT-kx-9mw">
-                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nb0-As-EDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2313.5" y="1514.5"/>
         </scene>
         <!--Connected Users-->
         <scene sceneID="2Uo-iO-Pzx">
@@ -1058,25 +1072,6 @@
             <point key="canvasLocation" x="-95.5" y="2328.5"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="D25-eJ-uAn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MLw-wa-8Jf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9pu-Qb-Gf5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="qYm-pt-lJL" kind="relationship" relationship="rootViewController" id="jdJ-8X-uNM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vdZ-1f-oYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1832.5" y="1514.5"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="OJ9-LH-T50">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vBU-fp-tx4" sceneMemberID="viewController">
@@ -1204,6 +1199,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpE-RF-8hm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="711.5" y="2239.5"/>
+        </scene>
+        <!--Survey Details View Controller-->
+        <scene sceneID="0SE-yb-Wy8">
+            <objects>
+                <viewController id="j8j-3f-nFR" customClass="SurveyDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hxe-k6-6ca"/>
+                        <viewControllerLayoutGuide type="bottom" id="VHf-fi-Hbo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Paf-5H-8u0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WbT-bh-JLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1704.5" y="1514.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FCE-uQ-5vh">
+            <objects>
+                <navigationController storyboardIdentifier="SurveysSearchResultsNavController" automaticallyAdjustsScrollViewInsets="NO" id="Ipo-4c-J79" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BNZ-P9-q3A">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y2q-3A-eFo" kind="relationship" relationship="rootViewController" id="X4D-fv-I22"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTg-S3-Htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2329.5" y="1445.5"/>
         </scene>
     </scenes>
     <resources>
