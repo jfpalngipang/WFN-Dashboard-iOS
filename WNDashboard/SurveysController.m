@@ -19,24 +19,41 @@
 @implementation SurveysController
 {
     NSMutableArray *surveys;
+    NSMutableArray *surveyPage;
     NSMutableArray *searchResults;
+    NSInteger currentPage;
+    NSInteger pageContentCount;
+    NSInteger totalPages;
+    
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    totalPages = 0;
+    pageContentCount = 50;
+    currentPage = 1;
+    surveyPage = [[NSMutableArray alloc] init];
     requestUtility *reqUtil = [[requestUtility alloc] init];
+    
     
     [reqUtil GETRequestSender:@"getSurveys" completion:^(NSDictionary* responseDict){
         //NSLog(@"SURVEYS: %@", responseDict);
         for (id survey in responseDict){
             [surveys addObject:survey];
         }
-        NSLog(@"%@", surveys[0][1]);
-        self.tableView.rowHeight = 150;
-        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        totalPages = (surveys.count / pageContentCount);
+        
+        
+        
+        [self setPageTableContent:1];
+        
+        //NSLog(@"%@", [NSString stringWithFormat:@"%ld", (long)totalPages]);
+        
         
     }];
+    self.totalPageLabel.text = @"14";
     
+    self.currentPageLabel.text = @"1";
     /********************Search Controller Code*********************/
     UINavigationController *searchResultsController = [[self storyboard] instantiateViewControllerWithIdentifier:@"SurveysSearchResultsNavController"];
     self.searchController = [[UISearchController alloc] initWithSearchResultsController: searchResultsController];
@@ -71,26 +88,51 @@
 
 }
 
+- (void)setPageTableContent:(NSInteger)page{
+    [surveyPage removeAllObjects];
+    
+    //NSLog(@"%@", surveys);
+    if(page == 1){
+        
+        for (NSInteger i = 0; i < pageContentCount; i++){
+            [surveyPage addObject:surveys[i]];
+        }
+        //NSLog(@"%@", surveyPage);
+    } else {
+        
+        for(NSInteger i = (page-1) * pageContentCount; i < (page * pageContentCount); i++) {
+            [surveyPage addObject:surveys[i]];
+        }
+    }
+    
+    
+    self.tableView.rowHeight = 150;
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return surveys.count;
+    return surveyPage.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveys objectAtIndex:indexPath.row] objectAtIndex:2]];
+    NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:2]];
     static NSString *identifier = @"Cell";
     SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil){
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.questionLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:1];
+    cell.questionLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1];
     cell.respLabel.text = responseCount;
-    cell.apLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:4];
+    cell.apLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:4];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *clickedSurveyId;
     
+    clickedSurveyId = [NSString stringWithFormat:@"%@", surveys[indexPath.row][0]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -127,6 +169,7 @@
                     [searchResults addObject:product];
                 }
             }
+            
             self.searchResults = searchResults;
         }
         return;
@@ -150,4 +193,16 @@
 */
 
 
+- (IBAction)nextClicked:(id)sender {
+    currentPage++;
+    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", currentPage];
+ 
+    [self setPageTableContent:currentPage];
+}
+
+- (IBAction)prevClicked:(id)sender {
+    currentPage--;
+    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", currentPage];
+    [self setPageTableContent:currentPage];
+}
 @end

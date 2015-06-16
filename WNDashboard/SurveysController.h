@@ -12,5 +12,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UILabel *currentPageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalPageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *prevButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
+- (IBAction)nextClicked:(id)sender;
+- (IBAction)prevClicked:(id)sender;
 
 @end
