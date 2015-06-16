@@ -24,6 +24,8 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
+    self.speedtestContainer.hidden = false;
+    self.uptimeContainer.hidden = true;
 
 }
 
@@ -42,4 +44,23 @@
 }
 */
 
+
+- (IBAction)indexChanged:(id)sender {
+    
+    switch (self.segmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            self.speedtestContainer.hidden = false;
+            self.uptimeContainer.hidden = true;
+            break;
+        case 1:
+            self.speedtestContainer.hidden = true;
+            self.uptimeContainer.hidden = false;
+            break;
+        default:
+            break;
+            
+    }
+    
+}
 @end

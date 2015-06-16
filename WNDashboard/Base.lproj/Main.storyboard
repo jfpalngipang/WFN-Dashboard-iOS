@@ -658,11 +658,20 @@
                                     <segment title="Uptime"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="indexChanged:" destination="pca-qT-YJg" eventType="valueChanged" id="BHV-o7-zhj"/>
+                                </connections>
                             </segmentedControl>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-XA-Cfj">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-XA-Cfj" userLabel="uptime">
                                 <rect key="frame" x="20" y="224" width="270" height="270"/>
                                 <connections>
                                     <segue destination="y3j-lN-1Mo" kind="embed" id="vq7-Ud-7o0"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SdK-5j-ku9" userLabel="speedtest">
+                                <rect key="frame" x="20" y="224" width="270" height="270"/>
+                                <connections>
+                                    <segue destination="sbL-1n-AnD" kind="embed" id="Epx-Na-O7r"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -678,9 +687,10 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="RPMContainer" destination="GuV-XA-Cfj" id="tf8-ok-mcG"/>
                         <outlet property="segmentedControl" destination="0Ip-IN-hnb" id="ENj-ql-cV4"/>
                         <outlet property="sidebarButton" destination="kq8-ai-Sc9" id="hIB-Lo-ejn"/>
+                        <outlet property="speedtestContainer" destination="GuV-XA-Cfj" id="IyC-xC-1mj"/>
+                        <outlet property="uptimeContainer" destination="SdK-5j-ku9" id="9x7-Px-seD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgD-q2-c7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1305,7 +1315,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CvA-70-W5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="947" y="-984"/>
+            <point key="canvasLocation" x="947" y="-977"/>
+        </scene>
+        <!--Uptime Controller-->
+        <scene sceneID="dla-WX-jgH">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="sbL-1n-AnD" customClass="UptimeController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YlN-aC-IgU"/>
+                        <viewControllerLayoutGuide type="bottom" id="mjY-kR-sUl"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7XT-OC-KkR">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2kw-80-g2E" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bdz-Ky-KZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="-1319"/>
         </scene>
     </scenes>
     <resources>

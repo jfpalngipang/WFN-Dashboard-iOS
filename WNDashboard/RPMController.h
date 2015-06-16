@@ -12,6 +12,13 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-@property (weak, nonatomic) IBOutlet UIView *RPMContainer;
+
+@property (weak, nonatomic) IBOutlet UIView *uptimeContainer;
+
+@property (weak, nonatomic) IBOutlet UIView *speedtestContainer;
+
+- (IBAction)indexChanged:(id)sender;
+
+
 
 @end
