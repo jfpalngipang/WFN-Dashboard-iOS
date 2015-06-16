@@ -618,7 +618,7 @@
         <!--Detailed Survey Results-->
         <scene sceneID="tnE-Iv-oUH">
             <objects>
-                <viewController id="Qi4-ba-OQn" sceneMemberID="viewController">
+                <viewController id="Qi4-ba-OQn" customClass="SurveyDetailsController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="myW-3Q-lSO"/>
                         <viewControllerLayoutGuide type="bottom" id="fVR-y2-8kS"/>
@@ -648,6 +648,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="pieChartContainer" destination="9Ov-Po-0zf" id="TuA-ao-So7"/>
+                        <outlet property="surveyLabel" destination="BeH-3n-Vcg" id="OOo-MW-jRs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOV-vX-emO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
