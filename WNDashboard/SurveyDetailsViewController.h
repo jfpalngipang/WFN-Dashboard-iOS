@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Charts/Charts.h>
 
 @interface SurveyDetailsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet PieChartView *pieChartView;
 
 @end

@@ -651,7 +651,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AOV-vX-emO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255.5" y="-709.5"/>
+            <point key="canvasLocation" x="2113.5" y="1514.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WFo-6r-SjV">
@@ -828,7 +828,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uYn-Nd-lcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2875.5" y="1445.5"/>
+            <point key="canvasLocation" x="4085.5" y="1439.5"/>
         </scene>
         <!--Messages-->
         <scene sceneID="EyL-Up-NRt">
@@ -1137,10 +1137,10 @@
             </objects>
             <point key="canvasLocation" x="3103.5" y="234.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Survey Details View Controller-->
         <scene sceneID="2IJ-mO-zoz">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="voS-ms-ZqG" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="voS-ms-ZqG" customClass="SurveyDetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="122-CB-5sO"/>
                         <viewControllerLayoutGuide type="bottom" id="cg7-ep-ddh"/>
@@ -1157,10 +1157,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="pieChartView" destination="6U7-ME-imx" id="hEN-JV-bZ5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omW-3m-awP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3743.5" y="-710"/>
+            <point key="canvasLocation" x="2569.5" y="1515"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WTG-51-H9O">
@@ -1179,7 +1182,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Knt-M7-xZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2443" y="-710"/>
+            <point key="canvasLocation" x="1642.5" y="1514.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MeS-xR-rx8">
@@ -1200,25 +1203,6 @@
             </objects>
             <point key="canvasLocation" x="711.5" y="2239.5"/>
         </scene>
-        <!--Survey Details View Controller-->
-        <scene sceneID="0SE-yb-Wy8">
-            <objects>
-                <viewController id="j8j-3f-nFR" customClass="SurveyDetailsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hxe-k6-6ca"/>
-                        <viewControllerLayoutGuide type="bottom" id="VHf-fi-Hbo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Paf-5H-8u0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WbT-bh-JLA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1704.5" y="1514.5"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="FCE-uQ-5vh">
             <objects>
@@ -1236,7 +1220,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTg-S3-Htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2329.5" y="1445.5"/>
+            <point key="canvasLocation" x="3539.5" y="1439.5"/>
         </scene>
     </scenes>
     <resources>
