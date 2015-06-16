@@ -229,7 +229,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g34-mu-v73">
-                                <rect key="frame" x="20" y="191" width="335" height="307"/>
+                                <rect key="frame" x="20" y="191" width="270" height="270"/>
                                 <connections>
                                     <segue destination="mmQ-85-7IS" kind="embed" id="fjJ-FG-7rI"/>
                                 </connections>
@@ -657,10 +657,10 @@
             </objects>
             <point key="canvasLocation" x="2113.5" y="1514.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Controller-->
         <scene sceneID="WFo-6r-SjV">
             <objects>
-                <viewController id="pca-qT-YJg" sceneMemberID="viewController">
+                <viewController id="pca-qT-YJg" customClass="RPMController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYS-Et-RtJ"/>
                         <viewControllerLayoutGuide type="bottom" id="pC0-ax-Wf2"/>
@@ -670,13 +670,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ip-IN-hnb">
-                                <rect key="frame" x="105" y="93" width="165" height="29"/>
+                                <rect key="frame" x="73" y="96" width="165" height="29"/>
                                 <segments>
                                     <segment title="Speed Test"/>
                                     <segment title="Uptime"/>
                                 </segments>
                                 <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GuV-XA-Cfj">
+                                <rect key="frame" x="25" y="185" width="270" height="270"/>
+                                <connections>
+                                    <segue destination="y3j-lN-1Mo" kind="embed" id="vq7-Ud-7o0"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -689,6 +695,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="RPMContainer" destination="GuV-XA-Cfj" id="tf8-ok-mcG"/>
+                        <outlet property="segmentedControl" destination="0Ip-IN-hnb" id="ENj-ql-cV4"/>
+                        <outlet property="sidebarButton" destination="kq8-ai-Sc9" id="hIB-Lo-ejn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jgD-q2-c7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1122,11 +1133,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fnS-s5-Oy5"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="p9v-40-VTs">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="307"/>
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbw-Wi-u8p" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="8" width="285" height="291"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1139,7 +1150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zm-Ne-xWG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103.5" y="234.5"/>
+            <point key="canvasLocation" x="3103" y="234"/>
         </scene>
         <!--Survey Details View Controller-->
         <scene sceneID="2IJ-mO-zoz">
@@ -1225,6 +1236,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTg-S3-Htm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3539.5" y="1439.5"/>
+        </scene>
+        <!--Speed Test Controller-->
+        <scene sceneID="tIi-pu-ZiX">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="y3j-lN-1Mo" customClass="SpeedTestController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WeI-Cs-mbt"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Pq-y7-h7x"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iAr-P7-SXb">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIv-8a-rA2" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="lineChartView" destination="hIv-8a-rA2" id="980-ox-KkB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CvA-70-W5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="-984"/>
         </scene>
     </scenes>
     <resources>

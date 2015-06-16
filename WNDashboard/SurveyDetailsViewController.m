@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    //[reqUtil GETRequestSender:@"getSurveyDetails" withParams:<#(NSString *)#> completion:^(NSDictionary *responseDict)];
     
     _pieChartView.delegate = self;
     

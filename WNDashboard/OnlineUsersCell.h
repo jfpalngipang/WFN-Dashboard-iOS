@@ -11,5 +11,6 @@
 @interface OnlineUsersCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *mainFBImage;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 
 @end

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Charts/Charts.h>
 
 @interface SpeedTestController : UIViewController
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
+@property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
 
 @end

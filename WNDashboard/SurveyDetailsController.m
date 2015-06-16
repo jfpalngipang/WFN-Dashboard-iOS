@@ -7,6 +7,7 @@
 //
 
 #import "SurveyDetailsController.h"
+#import "requestUtility.h"
 
 @interface SurveyDetailsController ()
 
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.surveyLabel.text = @"Sample Survey Question";
+    
 }
 
 - (void)didReceiveMemoryWarning {

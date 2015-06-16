@@ -7,9 +7,10 @@
 //
 
 #import "SpeedTestController.h"
+#import "WNDashboard-Bridging-Header.h"
 
 
-@interface SpeedTestController ()
+@interface SpeedTestController () <ChartViewDelegate>
 
 @end
 
@@ -17,7 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _lineChartView.delegate = self;
+    
+    _lineChartView.descriptionText = @"";
+    _lineChartView.noDataTextDescription = @"You need to provide data for the chart.";
+    
+    _lineChartView.highlightEnabled = YES;
+    _lineChartView.dragEnabled = YES;
+    [_lineChartView setScaleEnabled:YES];
+    _lineChartView.pinchZoomEnabled = NO;
+    _lineChartView.drawGridBackgroundEnabled = NO;
+    
+    _lineChartView.xAxis.enabled = NO;
+    _lineChartView.leftAxis.enabled = NO;
+    _lineChartView.rightAxis.enabled = NO;
+    _lineChartView.legend.enabled = NO;
+    
+    [_lineChartView animateWithXAxisDuration:2.0 yAxisDuration:2.0];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,18 +7,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnlineUsersCell" rowHeight="84" id="O9H-HQ-3HU" customClass="OnlineUsersCell">
-            <rect key="frame" x="0.0" y="0.0" width="312" height="84"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnlineUsersCell" rowHeight="100" id="O9H-HQ-3HU" customClass="OnlineUsersCell">
+            <rect key="frame" x="0.0" y="0.0" width="312" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O9H-HQ-3HU" id="tS3-iM-rkW">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="079-7K-E1v">
-                        <rect key="frame" x="15" y="7" width="69" height="69"/>
+                        <rect key="frame" x="8" y="15" width="69" height="69"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfa-To-T2V">
-                        <rect key="frame" x="101" y="24" width="42" height="21"/>
+                        <rect key="frame" x="96" y="18" width="30" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tak-n0-wjU">
+                        <rect key="frame" x="214" y="70" width="92" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="online users" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnO-jZ-5Fq">
+                        <rect key="frame" x="129" y="18" width="68" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -27,8 +39,9 @@
             <connections>
                 <outlet property="countLabel" destination="rfa-To-T2V" id="Oxd-sM-7L1"/>
                 <outlet property="mainFBImage" destination="079-7K-E1v" id="LTD-gW-vHF"/>
+                <outlet property="timeLabel" destination="Tak-n0-wjU" id="5k6-6k-v0i"/>
             </connections>
-            <point key="canvasLocation" x="290" y="156"/>
+            <point key="canvasLocation" x="290" y="164"/>
         </tableViewCell>
     </objects>
 </document>

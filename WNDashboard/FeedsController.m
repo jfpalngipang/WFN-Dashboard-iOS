@@ -12,6 +12,7 @@
 #import "FrequentUsersCell.h"
 #import "OnlineUsersCell.h"
 #import "SurveyCell.h"
+#import "MessageCell.h"
 
 @interface FeedsController ()
 
@@ -82,7 +83,8 @@
                 cell = [nib objectAtIndex:0];
             }
             
-            cell.countLabel.text = [NSString stringWithFormat:@"%@ online users", count];
+            cell.countLabel.text = [NSString stringWithFormat:@"%@", count];
+            cell.timeLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"frequent_users"]) {
             identifier = @"FrequentUsersCell";
@@ -113,13 +115,20 @@
             cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
         } else {
-            identifier = @"SurveyUsersCell";
-            SurveyCell *cell = (SurveyCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+            identifier = @"MessageCell";
+            NSString *name = [news_array objectAtIndex:indexPath.row][@"user"];
+            NSString *message = [news_array objectAtIndex:indexPath.row][@"msg"];
+            NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
+            MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
-                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            cell.nameLabel.text = name;
+            cell.testimonialLabel.text = message;
+            cell.timeLabel.text = time;
+            cell.estabLabel.text = @"";
             return cell;
         }
     //}
