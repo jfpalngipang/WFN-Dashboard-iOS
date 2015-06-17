@@ -10,8 +10,10 @@
 
 @interface AnalyticsController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 - (IBAction)segmentChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *connectedusersContainer;
+@property (weak, nonatomic) IBOutlet UIView *agegenderContainer;
 
 @end

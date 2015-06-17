@@ -11,5 +11,6 @@
 @interface SurveyCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *surveyResultsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeDateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *surveyImage;
 
 @end

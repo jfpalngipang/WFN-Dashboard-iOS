@@ -234,6 +234,12 @@
                                     <segue destination="mmQ-85-7IS" kind="embed" id="fjJ-FG-7rI"/>
                                 </connections>
                             </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-Sh-luA">
+                                <rect key="frame" x="20" y="191" width="270" height="270"/>
+                                <connections>
+                                    <segue destination="9kc-Ko-YdF" kind="embed" id="E3x-7Z-1Vi"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -247,7 +253,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="contentView" destination="g34-mu-v73" id="If6-c1-EDe"/>
+                        <outlet property="agegenderContainer" destination="hqB-Sh-luA" id="VJN-S3-0wJ"/>
+                        <outlet property="connectedusersContainer" destination="g34-mu-v73" id="fVS-zJ-PFy"/>
                         <outlet property="segmentControl" destination="wMI-bY-RSj" id="xhM-R8-YHC"/>
                         <outlet property="sidebarButton" destination="04v-MV-6dd" id="QCy-T3-njB"/>
                     </connections>
@@ -1341,6 +1348,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdz-Ky-KZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="947" y="-1319"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lGh-1E-waR">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9kc-Ko-YdF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="P98-KA-mp4"/>
+                        <viewControllerLayoutGuide type="bottom" id="79Z-Ar-PBh"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Zo-Cq-Lmp">
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8W6-ed-964" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

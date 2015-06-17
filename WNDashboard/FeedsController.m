@@ -13,6 +13,7 @@
 #import "OnlineUsersCell.h"
 #import "SurveyCell.h"
 #import "MessageCell.h"
+#import "fbGraphUtility.h"
 
 @interface FeedsController ()
 
@@ -22,6 +23,7 @@
 {
     
     NSMutableArray *news_array;
+    fbGraphUtility *fbUtil;
     
 }
 
@@ -37,6 +39,7 @@
     //NSLog(@"fetching feeds");
   
     news_array = [[NSMutableArray alloc] init];
+    fbUtil = [[fbGraphUtility alloc] init];
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
@@ -82,7 +85,9 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"OnlineUsersCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+
             
+            cell.onlineImage.image = [UIImage imageNamed:@"icon_user"];
             cell.countLabel.text = [NSString stringWithFormat:@"%@", count];
             cell.timeLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
@@ -111,6 +116,7 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            cell.surveyImage.image = [UIImage imageNamed:@"icon_survey"];
             cell.surveyResultsLabel.text = [NSString stringWithFormat:@"%@ answered %@ to your question: %@", count, answer, question];
             cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
@@ -119,12 +125,20 @@
             NSString *name = [news_array objectAtIndex:indexPath.row][@"user"];
             NSString *message = [news_array objectAtIndex:indexPath.row][@"msg"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
+            NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            /**************/
+            [fbUtil getFBPhoto:fbId completion:^(NSData *imageData){
+                //NSLog(@"RESP: %@", imageData);
+                cell.userImage.image = [UIImage imageWithData:imageData];
+            }];
+            
+            /**************/
             cell.nameLabel.text = name;
             cell.testimonialLabel.text = message;
             cell.timeLabel.text = time;

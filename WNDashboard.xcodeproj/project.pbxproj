@@ -39,6 +39,9 @@
 		C679064C1B2FE70B00F4F098 /* SurveyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064B1B2FE70B00F4F098 /* SurveyDetailsViewController.m */; };
 		C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064F1B2FF94C00F4F098 /* SurveyDetailsController.m */; };
 		C67906521B301D8B00F4F098 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906511B301D8B00F4F098 /* calendar.png */; };
+		C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906541B31193500F4F098 /* fbGraphUtility.m */; };
+		C67906571B31351600F4F098 /* icon_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906561B31351600F4F098 /* icon_survey.png */; };
+		C67906591B31378400F4F098 /* icon_user.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906581B31378400F4F098 /* icon_user.png */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -164,6 +167,10 @@
 		C679064E1B2FF94C00F4F098 /* SurveyDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyDetailsController.h; sourceTree = "<group>"; };
 		C679064F1B2FF94C00F4F098 /* SurveyDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyDetailsController.m; sourceTree = "<group>"; };
 		C67906511B301D8B00F4F098 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = assets/calendar.png; sourceTree = SOURCE_ROOT; };
+		C67906531B31193500F4F098 /* fbGraphUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fbGraphUtility.h; sourceTree = "<group>"; };
+		C67906541B31193500F4F098 /* fbGraphUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fbGraphUtility.m; sourceTree = "<group>"; };
+		C67906561B31351600F4F098 /* icon_survey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_survey.png; path = assets/icon_survey.png; sourceTree = SOURCE_ROOT; };
+		C67906581B31378400F4F098 /* icon_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_user.png; path = assets/icon_user.png; sourceTree = SOURCE_ROOT; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -428,6 +435,8 @@
 				C67906311B2DE90B00F4F098 /* NewsFeedController.m */,
 				C679063D1B2EB53A00F4F098 /* TestimonialsController.h */,
 				C679063E1B2EB53A00F4F098 /* TestimonialsController.m */,
+				C67906531B31193500F4F098 /* fbGraphUtility.h */,
+				C67906541B31193500F4F098 /* fbGraphUtility.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -567,6 +576,8 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C67906581B31378400F4F098 /* icon_user.png */,
+				C67906561B31351600F4F098 /* icon_survey.png */,
 				C67906511B301D8B00F4F098 /* calendar.png */,
 				C679063B1B2EADC400F4F098 /* next.png */,
 				C679062B1B2D700800F4F098 /* Arrow-50.png */,
@@ -769,12 +780,14 @@
 				C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */,
 				C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */,
 				C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */,
+				C67906571B31351600F4F098 /* icon_survey.png in Resources */,
 				C67906261B2D69DD00F4F098 /* refresh.png in Resources */,
 				C6C72FEE1B2871BA003940DA /* downArrow.png in Resources */,
 				C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */,
 				C607D1FD1B283DB700467F86 /* analytics2.png in Resources */,
 				C67906241B2D69DD00F4F098 /* exit.png in Resources */,
 				C607D1FB1B283DB700467F86 /* analytics1.png in Resources */,
+				C67906591B31378400F4F098 /* icon_user.png in Resources */,
 				C6B4F7B21B27481C007E22EB /* grey_analytics.png in Resources */,
 				C679061E1B2D65F600F4F098 /* UserLogsCell.xib in Resources */,
 				C6B4F7841B26C8A6007E22EB /* wnlogo.png in Resources */,
@@ -852,6 +865,7 @@
 				C679062F1B2D80A700F4F098 /* RPMController.m in Sources */,
 				C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */,
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
+				C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
 				C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */,
 				C62417911B29993E00F1E623 /* ConnectedUsersController.m in Sources */,

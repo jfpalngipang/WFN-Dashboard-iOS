@@ -9,7 +9,7 @@
 #import "OnlineUsersCell.h"
 
 @implementation OnlineUsersCell
-@synthesize mainFBImage = _mainFBImage;
+@synthesize onlineImage = _onlineImage;
 @synthesize countLabel = _countLabel;
 
 - (void)awakeFromNib {

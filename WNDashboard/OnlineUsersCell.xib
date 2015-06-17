@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="079-7K-E1v">
-                        <rect key="frame" x="8" y="15" width="69" height="69"/>
+                        <rect key="frame" x="8" y="15" width="70" height="70"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rfa-To-T2V">
                         <rect key="frame" x="96" y="18" width="30" height="21"/>
@@ -38,7 +38,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="countLabel" destination="rfa-To-T2V" id="Oxd-sM-7L1"/>
-                <outlet property="mainFBImage" destination="079-7K-E1v" id="LTD-gW-vHF"/>
+                <outlet property="onlineImage" destination="079-7K-E1v" id="B5z-IU-uYP"/>
                 <outlet property="timeLabel" destination="Tak-n0-wjU" id="5k6-6k-v0i"/>
             </connections>
             <point key="canvasLocation" x="290" y="164"/>

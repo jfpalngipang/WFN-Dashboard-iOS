@@ -21,6 +21,9 @@
         NSLog(@"ANALYTICS: %@", responseDict);
     }];
     
+    self.connectedusersContainer.hidden = false;
+    self.agegenderContainer.hidden = true;
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
@@ -32,5 +35,17 @@
 }
 
 - (IBAction)segmentChanged:(id)sender {
+    switch (self.segmentControl.selectedSegmentIndex){
+        case 0:
+            self.connectedusersContainer.hidden = false;
+            self.agegenderContainer.hidden = true;
+            break;
+        case 1:
+            self.connectedusersContainer.hidden = true;
+            self.agegenderContainer.hidden = false;
+            break;
+        default:
+            break;
+    }
 }
 @end
