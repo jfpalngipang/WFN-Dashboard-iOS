@@ -11,5 +11,7 @@
 @interface SurveyDetailsController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *surveyLabel;
 @property (weak, nonatomic) IBOutlet UIView *pieChartContainer;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+- (IBAction)indexChanged:(id)sender;
 
 @end
