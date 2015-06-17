@@ -10,7 +10,8 @@
 #import <Charts/Charts.h>
 
 @interface AgeGenderController : UIViewController
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
+
 @property (weak, nonatomic) IBOutlet HorizontalBarChartView *barChartView;
 
 

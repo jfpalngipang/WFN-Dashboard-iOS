@@ -1349,10 +1349,10 @@
             </objects>
             <point key="canvasLocation" x="947" y="-1319"/>
         </scene>
-        <!--View Controller-->
+        <!--Age Gender Controller-->
         <scene sceneID="lGh-1E-waR">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9kc-Ko-YdF" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9kc-Ko-YdF" customClass="AgeGenderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P98-KA-mp4"/>
                         <viewControllerLayoutGuide type="bottom" id="79Z-Ar-PBh"/>
@@ -1360,12 +1360,22 @@
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0Zo-Cq-Lmp">
                         <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idX-RI-cfi" customClass="HorizontalBarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="270"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="barChartView" destination="idX-RI-cfi" id="5MD-uk-pg2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W6-ed-964" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="3103" y="691"/>
         </scene>
     </scenes>
     <resources>

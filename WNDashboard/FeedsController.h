@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FeedsController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface FeedsController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDataDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+-(void)fetchFeedUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 
 @end

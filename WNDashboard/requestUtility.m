@@ -19,7 +19,7 @@
 - (void) requestSender: (NSMutableURLRequest *) request withType: (NSString *) type withOption: (NSString *) option completion:(void (^)(NSDictionary *)) completion{
     __block NSDictionary *result;
     
-    NSURL *url;
+  
     
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     

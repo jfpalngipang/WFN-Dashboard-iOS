@@ -8,6 +8,7 @@
 
 #import "SpeedTestController.h"
 #import "WNDashboard-Bridging-Header.h"
+#import "requestUtility.h"
 
 
 @interface SpeedTestController () <ChartViewDelegate>
@@ -18,6 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    
+    
     _lineChartView.delegate = self;
     
     _lineChartView.descriptionText = @"";

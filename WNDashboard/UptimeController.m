@@ -8,6 +8,7 @@
 
 #import "UptimeController.h"
 #import "SWRevealViewController.h"
+#import "requestUtility.h"
 
 @interface UptimeController ()
 
@@ -17,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
 
     
 }

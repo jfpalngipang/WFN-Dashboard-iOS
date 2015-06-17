@@ -24,6 +24,7 @@
     
     NSMutableArray *news_array;
     fbGraphUtility *fbUtil;
+
     
 }
 
@@ -36,8 +37,8 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
-    //NSLog(@"fetching feeds");
-  
+    
+    
     news_array = [[NSMutableArray alloc] init];
     fbUtil = [[fbGraphUtility alloc] init];
     
@@ -53,9 +54,6 @@
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
     }];
-    //result = reqUtil.result;
-    //result_array = [result allValues];
-    //NSLog(@"FEEDS: %@", result);
 
     
     
@@ -170,7 +168,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(void)fetchFeedUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler{
+    NSURL *notifURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/?feed="];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
+    NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    
+    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        NSMutableArray *notifs;
+        for(id items in result){
+            [notifs addObject:items];
+        }
 
+        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+        localNotif.alertBody = @"Notif!";
+    }];
+    
+    [dataTask resume];
+}
 
 
 @end

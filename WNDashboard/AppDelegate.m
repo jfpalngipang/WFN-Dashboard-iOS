@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Analytics-AgeGenderController.h"
+#import "FeedsController.h"
 
 
 
@@ -20,6 +21,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
     // Override point for customization after application launch.
     return YES;
@@ -45,6 +47,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    FeedsController *feedsController = (FeedsController *)self.window.rootViewController;
+    
+    [feedsController fetchFeedUpdateWithCompletionHandler:^(UIBackgroundFetchResult result) {
+        completionHandler(result);
+    }];
 }
 
 @end
