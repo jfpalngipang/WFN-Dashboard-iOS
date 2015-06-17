@@ -22,6 +22,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
+    
+    // Override point for customization after application launch.
+    
+    // None of the code should even be compiled unless the Base SDK is iOS 8.0 or later
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    // The following line must only run under iOS 8. This runtime check prevents
+    // it from running if it doesn't exist (such as running under iOS 7 or earlier).
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
+#endif
 
     // Override point for customization after application launch.
     return YES;
@@ -49,11 +61,34 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-    FeedsController *feedsController = (FeedsController *)self.window.rootViewController;
-    
+    completionHandler(UIBackgroundFetchResultNewData);
+    NSLog(@"BG!");
+    FeedsController *feedsController = [[FeedsController alloc] init];
     [feedsController fetchFeedUpdateWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
     }];
+    
+    //FeedsController *feedsController = (FeedsController *)self.window.rootViewController;
+    
+
+    
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Reminder"
+                                                        message:notification.alertBody
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    // Request to reload table view data
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
+    
+    // Set icon badge number to zero
+    application.applicationIconBadgeNumber = 0;
+}
 @end

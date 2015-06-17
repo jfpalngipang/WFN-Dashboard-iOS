@@ -173,18 +173,26 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
     NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
-    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL];
+        /*
         NSMutableArray *notifs;
         for(id items in result){
             [notifs addObject:items];
         }
+        if(result){
+            completionHandler(UIBackgroundFetchResultNewData);
+            NSLog(@"new data!");
+        }
 
-        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-        localNotif.alertBody = @"Notif!";
-    }];
+         */
+   
     
     [dataTask resume];
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    localNotif.alertBody = @"Notif!";
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
 
