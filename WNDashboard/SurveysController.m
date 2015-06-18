@@ -141,8 +141,8 @@
     if([segue.identifier isEqualToString:@"showSurveyDetail"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSLog(@"%ld", (long)indexPath.row);
-        SurveyDetailsController *destViewController = segue.destinationViewController;
-        destViewController.surveyQuestion = [[surveys objectAtIndex:0] objectAtIndex:1];
+        //SurveyDetailsController *destViewController = segue.destinationViewController;
+        //destViewController.surveyQuestion = [[surveys objectAtIndex:0] objectAtIndex:1];
     }
 }
 

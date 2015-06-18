@@ -111,6 +111,7 @@
         
         if([ap_auth isEqualToString:@"<null>"]){
             [self.passkeySwitch setOn:NO animated:YES];
+            self.passkeyTextField.text = @"";
         } else{
             [self.passkeySwitch setOn:YES animated:YES];
             self.passkeyTextField.text = ap_auth;
@@ -139,6 +140,51 @@
     NSString *selectedAP = [self.downPicker text];
     int selected_index = [ap_list indexOfObject:selectedAP];
     NSLog(@"%@", apSettings[selected_index]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];
+        NSString *max_time = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_time"]];
+        NSString *ap_auth = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ap_auth"]];
+        NSString *ap_like_page = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ap_like_page"]];
+        NSString *ssid_private = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ssid_private"]];
+        self.ssidTextField.text = apSettings[selected_index][@"ssid"];
+        
+        //[self.apTextField setText:ap_list[0][@"ap"]];
+        if([max_down isEqualToString:@"<null>"]){
+            [self.maxdownloadSwitch setOn:NO animated:YES];
+        } else {
+            [self.maxdownloadSwitch setOn:YES animated:YES];
+        }
+        
+        if([max_time isEqualToString:@"<null>"]){
+            [self.maxsessionSwitch setOn:NO animated:YES];
+        } else {
+            [self.maxsessionSwitch setOn:YES animated:YES];
+            
+        }
+        
+        if([ap_auth isEqualToString:@"<null>"]){
+            [self.passkeySwitch setOn:NO animated:YES];
+        } else{
+            [self.passkeySwitch setOn:YES animated:YES];
+            self.passkeyTextField.text = ap_auth;
+        }
+        
+        
+        if([ap_like_page isEqualToString: @"<null>"]){
+            [self.fbpageSwitch setOn:NO animated:YES];
+        } else{
+            [self.fbpageSwitch setOn:YES animated:NO];
+            self.fbpageTextField.text = ap_like_page;
+            
+        }
+        if([ssid_private isEqualToString: @"<null>"]){
+            [self.privatessidSwitch setOn:NO animated:YES];
+        } else{
+            [self.privatessidSwitch setOn:YES animated:NO];
+        }
+        
+        
+    });
     
 }
 
