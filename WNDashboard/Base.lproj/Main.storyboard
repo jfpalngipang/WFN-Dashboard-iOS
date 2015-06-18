@@ -670,7 +670,7 @@
                                 </connections>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Yh-Lt-gD2">
-                                <rect key="frame" x="16" y="286" width="299" height="294"/>
+                                <rect key="frame" x="16" y="211" width="299" height="294"/>
                                 <connections>
                                     <segue destination="JjF-JE-ECR" kind="embed" id="FW3-Ru-mUA"/>
                                 </connections>
@@ -1021,148 +1021,6 @@
             </objects>
             <point key="canvasLocation" x="1642.5" y="2239.5"/>
         </scene>
-        <!--Connected Users-->
-        <scene sceneID="2Uo-iO-Pzx">
-            <objects>
-                <viewController id="mLG-A1-H4r" customClass="ConnectedUsersController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZTt-8K-pRV"/>
-                        <viewControllerLayoutGuide type="bottom" id="H9c-6H-XKy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2Th-13-wqI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31m-E4-2DT">
-                                <rect key="frame" x="16" y="86" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AP:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uww-MM-0uM">
-                                <rect key="frame" x="16" y="119" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Access Point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7NK-vp-fZS">
-                                <rect key="frame" x="67" y="113" width="135" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKB-ZF-yof">
-                                <rect key="frame" x="225" y="93" width="33" height="40"/>
-                                <state key="normal" image="Arrow-50.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gfK-zS-nyy">
-                                <rect key="frame" x="67" y="80" width="135" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJf-M9-W3t" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="185" width="375" height="433"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Connected Users" id="f0g-B6-kqO">
-                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="Du9-go-hJC">
-                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="lineChartView" destination="UJf-M9-W3t" id="lxN-8I-na0"/>
-                        <outlet property="sidebarButton" destination="Du9-go-hJC" id="mmh-ij-qy3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a9b-ke-sIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-517.5" y="3062.5"/>
-        </scene>
-        <!--Age/Gender Distribution-->
-        <scene sceneID="LGg-88-DeP">
-            <objects>
-                <viewController id="cif-XJ-r1C" customClass="AgeGenderController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="D4w-vj-dba"/>
-                        <viewControllerLayoutGuide type="bottom" id="mtw-2A-TLr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0uI-Ow-Evb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eRy-ht-dCk" customClass="HorizontalBarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="184" width="375" height="434"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rFL-2J-Gka">
-                                <rect key="frame" x="16" y="86" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AP:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHv-up-1vi">
-                                <rect key="frame" x="16" y="119" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Time" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hPQ-wr-pJi">
-                                <rect key="frame" x="66" y="80" width="137" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llh-dX-NSU">
-                                <rect key="frame" x="232" y="100" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select Access Point" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Gv-vQ-t5C">
-                                <rect key="frame" x="66" y="113" width="137" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Age/Gender Distribution" id="aiy-ny-F4q">
-                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="j8V-xZ-AnQ">
-                            <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="barChartView" destination="eRy-ht-dCk" id="z7N-m7-0gy"/>
-                        <outlet property="sidebarButton" destination="j8V-xZ-AnQ" id="c4K-B7-Pxb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gNg-ij-U2E" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-95.5" y="3062.5"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="5Zq-hF-0Vy">
-            <objects>
-                <tabBarController id="jV2-wr-iSr" sceneMemberID="viewController">
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="wZK-Zg-n1D">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="WIo-8m-Lqj" kind="relationship" relationship="viewControllers" id="aTJ-ug-Fc3"/>
-                        <segue destination="6Si-iw-BWb" kind="relationship" relationship="viewControllers" id="dXl-sv-Bxb"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IVm-m2-v9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-266.5" y="1321.5"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9zg-mw-Ey3">
             <objects>
@@ -1181,44 +1039,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2z-gJ-f48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="704.5" y="1514.5"/>
-        </scene>
-        <!--Connected Users-->
-        <scene sceneID="4ze-65-B6f">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Si-iw-BWb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Connected Users" id="AKd-fh-94F"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WjQ-iZ-IDE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="mLG-A1-H4r" kind="relationship" relationship="rootViewController" id="wPf-pf-oxS"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v2O-RZ-UdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-517.5" y="2328.5"/>
-        </scene>
-        <!--Age/Gender Distribution-->
-        <scene sceneID="hOT-NP-jjx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WIo-8m-Lqj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Age/Gender Distribution" id="hW2-iN-qel"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yZw-6e-BfQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cif-XJ-r1C" kind="relationship" relationship="rootViewController" id="g6P-WN-1Oy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uxc-mm-EBq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-95.5" y="2328.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OJ9-LH-T50">
@@ -1452,10 +1272,10 @@
             </objects>
             <point key="canvasLocation" x="3103" y="691"/>
         </scene>
-        <!--View Controller-->
+        <!--SurveyAP View Controller-->
         <scene sceneID="AH7-T5-Dmn">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JjF-JE-ECR" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JjF-JE-ECR" customClass="SurveyAPViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Brc-70-OOt"/>
                         <viewControllerLayoutGuide type="bottom" id="pYB-Uw-M92"/>
@@ -1463,6 +1283,12 @@
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cB8-Oc-fb5">
                         <rect key="frame" x="0.0" y="0.0" width="299" height="294"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FC7-24-JPe">
+                                <rect key="frame" x="0.0" y="0.0" width="299" height="294"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
@@ -1473,7 +1299,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Arrow-50.png" width="50" height="50"/>
         <image name="exit.png" width="30" height="30"/>
         <image name="grey_analytics.png" width="34" height="27"/>
         <image name="grey_controlpanel.png" width="30" height="27"/>

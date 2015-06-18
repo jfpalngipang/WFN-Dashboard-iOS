@@ -12,6 +12,7 @@
 {
     NSURL *loginURL;
     NSURL *userLogsURL;
+
 }
 
 
@@ -115,6 +116,10 @@
     [self requestSender:request withType: type withOption: nil completion:^(NSDictionary *responseDict){
         completion(responseDict);
     }];
+    
+}
+
+- (void) ControlPanelPOSTRequestSender{
     
 }
 

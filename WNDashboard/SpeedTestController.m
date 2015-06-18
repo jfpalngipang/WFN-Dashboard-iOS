@@ -26,7 +26,7 @@
     _lineChartView.delegate = self;
     
     _lineChartView.descriptionText = @"";
-    _lineChartView.noDataTextDescription = @"You need to provide data for the chart.";
+ 
     
     _lineChartView.highlightEnabled = YES;
     _lineChartView.dragEnabled = YES;
