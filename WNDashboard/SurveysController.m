@@ -10,6 +10,7 @@
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
 #import "SurveysViewCell.h"
+#import "SurveyDetailsController.h"
 
 @interface SurveysController () <UISearchBarDelegate, UISearchResultsUpdating>
 @property (strong, nonatomic) UISearchController *searchController;
@@ -130,13 +131,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *clickedSurveyId;
-    
-    clickedSurveyId = [NSString stringWithFormat:@"%@", surveys[indexPath.row][0]];
+
+    //indexPath = [self.tableView indexPathForSelectedRow];
+    [self performSegueWithIdentifier:@"showSurveyDetail" sender:self];
+    //NSLog(@"%@", [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1]);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+    if([segue.identifier isEqualToString:@"showSurveyDetail"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSLog(@"%ld", (long)indexPath.row);
+        SurveyDetailsController *destViewController = segue.destinationViewController;
+        destViewController.surveyQuestion = [[surveys objectAtIndex:0] objectAtIndex:1];
+    }
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {

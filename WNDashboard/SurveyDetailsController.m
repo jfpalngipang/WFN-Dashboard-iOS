@@ -14,10 +14,13 @@
 @end
 
 @implementation SurveyDetailsController
+@synthesize surveyQuestion;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.surveyLabel.text = @"Sample Survey Question";
+    self.surveyLabel.text = surveyQuestion;
+    self.pieChartContainer.hidden = false;
+    self.apListContainer.hidden = true;
     
 }
 

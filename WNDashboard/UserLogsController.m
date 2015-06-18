@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activityIndicator startAnimating];
     today = [[NSDate alloc] init];
     logs = [[NSMutableArray alloc] init];
     _ap_list = [[NSMutableArray alloc] init];
@@ -37,6 +38,9 @@
         }
         //NSLog(@"Picker Items: %@", _ap_list);
         self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
+        [self.downPicker addTarget:self
+                                action:@selector(apSelected:)
+                      forControlEvents:UIControlEventValueChanged];
 
     }];
     [reqUtil GETRequestSender:@"getUserLogs" withParams: @"06/02/15" completion:^(NSDictionary* logsDict){
@@ -80,7 +84,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.activityIndicator stopAnimating];
+    
     static NSString *identifier = @"Cell";
     UserLogsCell *cell = (UserLogsCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil){
@@ -94,6 +98,11 @@
     
     return cell;
     
+}
+
+-(void)apSelected:(id)ap {
+    NSString *selectedValue = [self.downPicker text];
+    NSLog(@"%@", selectedValue);
 }
 
 

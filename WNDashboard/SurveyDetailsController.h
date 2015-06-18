@@ -13,5 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIView *pieChartContainer;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 - (IBAction)indexChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *apListContainer;
+
+@property (nonatomic, strong) NSString *surveyQuestion;
 
 @end

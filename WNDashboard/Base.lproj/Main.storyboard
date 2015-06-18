@@ -27,7 +27,7 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Noo-iH-0QV">
-                                <rect key="frame" x="194" y="146" width="212" height="65"/>
+                                <rect key="frame" x="150" y="146" width="212" height="65"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Km6-Tv-oXd">
                                 <rect key="frame" x="197" y="308" width="207" height="30"/>
@@ -91,7 +91,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-JV-ZRA">
                                 <rect key="frame" x="124" y="97" width="180" height="30"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.49999999999999961"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SSID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xf0-YU-pXB">
@@ -133,17 +133,17 @@
                                 <rect key="frame" x="124" y="243" width="51" height="31"/>
                                 <color key="onTintColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-8g-PzT">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-8g-PzT">
                                 <rect key="frame" x="124" y="294" width="51" height="31"/>
                                 <color key="onTintColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgF-hZ-lFQ">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cgF-hZ-lFQ">
                                 <rect key="frame" x="124" y="341" width="51" height="31"/>
                                 <color key="onTintColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </switch>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="rwY-r9-Ted">
                                 <rect key="frame" x="124" y="394" width="162" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="facebook.com/" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G53-Ue-H2b">
@@ -163,7 +163,7 @@
                             </switch>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="xms-2G-bc7">
                                 <rect key="frame" x="164" y="140" width="140" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="WN" placeholder="facebook.com/" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-k0-hjb">
@@ -198,7 +198,17 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="sidebarButton" destination="ydI-rs-Cjn" id="ZHq-nO-7Gf"/>
+                        <outlet property="apTextField" destination="J2g-JV-ZRA" id="Ufv-un-cfZ"/>
+                        <outlet property="fbpageSwitch" destination="cgF-hZ-lFQ" id="uIK-xY-tRt"/>
+                        <outlet property="fbpageTextField" destination="rwY-r9-Ted" id="0mv-og-Rct"/>
+                        <outlet property="maxdownloadSwitch" destination="xZb-K4-n7J" id="h8p-dI-9Jq"/>
+                        <outlet property="maxsessionSwitch" destination="SNn-5V-eCn" id="2pC-h0-PKU"/>
+                        <outlet property="passkeySwitch" destination="4u7-8g-PzT" id="ovD-H2-9mN"/>
+                        <outlet property="passkeyTextField" destination="CEu-83-e05" id="Uv6-2C-ONa"/>
+                        <outlet property="privatessidSwitch" destination="ld1-FF-Ibf" id="r9w-QT-HQf"/>
+                        <outlet property="sidebarButton" destination="ydI-rs-Cjn" id="L9E-b5-pQq"/>
+                        <outlet property="ssidTextField" destination="xms-2G-bc7" id="0zI-0l-9Rz"/>
+                        <outlet property="updateButton" destination="ALO-0y-IGW" id="KfK-PP-Fqk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whh-cc-CAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -587,7 +597,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="News Feed" id="3iU-cH-hVd">
                         <barButtonItem key="leftBarButtonItem" image="menu.png" id="9Sn-tQ-haJ">
@@ -639,6 +649,12 @@
                                     <action selector="indexChanged:" destination="Qi4-ba-OQn" eventType="valueChanged" id="xsT-2O-ntS"/>
                                 </connections>
                             </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Yh-Lt-gD2">
+                                <rect key="frame" x="16" y="286" width="299" height="294"/>
+                                <connections>
+                                    <segue destination="JjF-JE-ECR" kind="embed" id="FW3-Ru-mUA"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -649,6 +665,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="apListContainer" destination="6Yh-Lt-gD2" id="YLp-fT-NYm"/>
                         <outlet property="pieChartContainer" destination="9Ov-Po-0zf" id="TuA-ao-So7"/>
                         <outlet property="segmentedControl" destination="DgA-RS-hVV" id="Bm2-mt-2oD"/>
                         <outlet property="surveyLabel" destination="BeH-3n-Vcg" id="OOo-MW-jRs"/>
@@ -856,6 +873,7 @@
                         <outlet property="sidebarButton" destination="7en-I5-9AQ" id="X7s-Qh-fCK"/>
                         <outlet property="tableView" destination="D3N-nU-Lte" id="gaR-nu-hhm"/>
                         <outlet property="totalPageLabel" destination="Cc0-7V-nhF" id="Cph-LY-u4u"/>
+                        <segue destination="J7h-EY-vjS" kind="show" identifier="showSurveyDetail" id="v4z-kh-FEy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Xk-bm-zcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1117,7 +1135,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2z-gJ-f48" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711.5" y="1514.5"/>
+            <point key="canvasLocation" x="704.5" y="1514.5"/>
         </scene>
         <!--Connected Users-->
         <scene sceneID="4ze-65-B6f">
@@ -1268,7 +1286,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Knt-M7-xZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1642.5" y="1514.5"/>
+            <point key="canvasLocation" x="1620.5" y="1514.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MeS-xR-rx8">
@@ -1388,6 +1406,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8W6-ed-964" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3103" y="691"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AH7-T5-Dmn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JjF-JE-ECR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Brc-70-OOt"/>
+                        <viewControllerLayoutGuide type="bottom" id="pYB-Uw-M92"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cB8-Oc-fb5">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="294"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywJ-A2-6xF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2113.5" y="2167"/>
         </scene>
     </scenes>
     <resources>

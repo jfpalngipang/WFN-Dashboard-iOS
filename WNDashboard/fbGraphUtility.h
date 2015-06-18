@@ -10,5 +10,5 @@
 
 @interface fbGraphUtility : NSObject
 
-- (void)getFBPhoto:(NSString *)fbId completion:(void (^)(NSData *)) completion;
+- (void)getFBPhoto:(NSString *)fbId completion:(void (^)(NSDictionary *)) completion;
 @end

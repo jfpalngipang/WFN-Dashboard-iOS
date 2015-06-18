@@ -42,6 +42,10 @@
 		C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906541B31193500F4F098 /* fbGraphUtility.m */; };
 		C67906571B31351600F4F098 /* icon_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906561B31351600F4F098 /* icon_survey.png */; };
 		C67906591B31378400F4F098 /* icon_user.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906581B31378400F4F098 /* icon_user.png */; };
+		C679065B1B31827100F4F098 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C679065A1B31827100F4F098 /* FBSDKCoreKit.framework */; };
+		C679065D1B31A11900F4F098 /* NewUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C679065C1B31A11900F4F098 /* NewUserCell.xib */; };
+		C67906601B31A33900F4F098 /* NewUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C679065F1B31A33900F4F098 /* NewUserCell.m */; };
+		C67906631B3286D200F4F098 /* ControlPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906621B3286D200F4F098 /* ControlPanelController.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -51,7 +55,6 @@
 		C67D97421B25719D0063FB84 /* WNDashboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97411B25719D0063FB84 /* WNDashboardTests.m */; };
 		C67D97501B2578F80063FB84 /* FeedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D974F1B2578F80063FB84 /* FeedsController.m */; };
 		C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97541B25A0ED0063FB84 /* requestUtility.m */; };
-		C67D97641B26982B0063FB84 /* ControlPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97631B26982B0063FB84 /* ControlPanelController.m */; };
 		C6B4F7281B26AE48007E22EB /* SurveysController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7271B26AE48007E22EB /* SurveysController.m */; };
 		C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F72A1B26AE8E007E22EB /* AnalyticsController.m */; };
 		C6B4F77F1B26B51B007E22EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B4F77E1B26B51B007E22EB /* QuartzCore.framework */; };
@@ -171,6 +174,12 @@
 		C67906541B31193500F4F098 /* fbGraphUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fbGraphUtility.m; sourceTree = "<group>"; };
 		C67906561B31351600F4F098 /* icon_survey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_survey.png; path = assets/icon_survey.png; sourceTree = SOURCE_ROOT; };
 		C67906581B31378400F4F098 /* icon_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_user.png; path = assets/icon_user.png; sourceTree = SOURCE_ROOT; };
+		C679065A1B31827100F4F098 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		C679065C1B31A11900F4F098 /* NewUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewUserCell.xib; sourceTree = "<group>"; };
+		C679065E1B31A33900F4F098 /* NewUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewUserCell.h; sourceTree = "<group>"; };
+		C679065F1B31A33900F4F098 /* NewUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewUserCell.m; sourceTree = "<group>"; };
+		C67906611B3286D200F4F098 /* ControlPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPanelController.h; sourceTree = "<group>"; };
+		C67906621B3286D200F4F098 /* ControlPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlPanelController.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -188,8 +197,6 @@
 		C67D974F1B2578F80063FB84 /* FeedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedsController.m; sourceTree = "<group>"; };
 		C67D97531B25A0ED0063FB84 /* requestUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = requestUtility.h; sourceTree = "<group>"; };
 		C67D97541B25A0ED0063FB84 /* requestUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = requestUtility.m; sourceTree = "<group>"; };
-		C67D97621B26982B0063FB84 /* ControlPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPanelController.h; sourceTree = "<group>"; };
-		C67D97631B26982B0063FB84 /* ControlPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlPanelController.m; sourceTree = "<group>"; };
 		C6B4F7261B26AE48007E22EB /* SurveysController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveysController.h; sourceTree = "<group>"; };
 		C6B4F7271B26AE48007E22EB /* SurveysController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveysController.m; sourceTree = "<group>"; };
 		C6B4F7291B26AE8E007E22EB /* AnalyticsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsController.h; sourceTree = "<group>"; };
@@ -313,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6B4F77F1B26B51B007E22EB /* QuartzCore.framework in Frameworks */,
+				C679065B1B31827100F4F098 /* FBSDKCoreKit.framework in Frameworks */,
 				C62417771B29570A00F1E623 /* Charts.framework in Frameworks */,
 				FC44BE2854737F2B82DBABDE /* libPods-WNDashboard.a in Frameworks */,
 			);
@@ -409,8 +417,6 @@
 				C67D974F1B2578F80063FB84 /* FeedsController.m */,
 				C67D97531B25A0ED0063FB84 /* requestUtility.h */,
 				C67D97541B25A0ED0063FB84 /* requestUtility.m */,
-				C67D97621B26982B0063FB84 /* ControlPanelController.h */,
-				C67D97631B26982B0063FB84 /* ControlPanelController.m */,
 				C6B4F7261B26AE48007E22EB /* SurveysController.h */,
 				C6B4F7271B26AE48007E22EB /* SurveysController.m */,
 				C6B4F7291B26AE8E007E22EB /* AnalyticsController.h */,
@@ -437,6 +443,8 @@
 				C679063E1B2EB53A00F4F098 /* TestimonialsController.m */,
 				C67906531B31193500F4F098 /* fbGraphUtility.h */,
 				C67906541B31193500F4F098 /* fbGraphUtility.m */,
+				C67906611B3286D200F4F098 /* ControlPanelController.h */,
+				C67906621B3286D200F4F098 /* ControlPanelController.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -623,6 +631,9 @@
 				C67906401B2EB60D00F4F098 /* MessageCell.xib */,
 				C67906421B2EB63300F4F098 /* MessageCell.h */,
 				C67906431B2EB63300F4F098 /* MessageCell.m */,
+				C679065C1B31A11900F4F098 /* NewUserCell.xib */,
+				C679065E1B31A33900F4F098 /* NewUserCell.h */,
+				C679065F1B31A33900F4F098 /* NewUserCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -653,6 +664,7 @@
 		C74CACBB366622BC85743EBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C679065A1B31827100F4F098 /* FBSDKCoreKit.framework */,
 				98876FBC58D162055C6C4843 /* libPods-WNDashboard.a */,
 			);
 			name = Frameworks;
@@ -776,6 +788,7 @@
 				C67906521B301D8B00F4F098 /* calendar.png in Resources */,
 				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
 				C6C249D21B2AD01100981C73 /* SurveyCell.xib in Resources */,
+				C679065D1B31A11900F4F098 /* NewUserCell.xib in Resources */,
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,
 				C6B4F7B41B27481C007E22EB /* grey_rpm.png in Resources */,
 				C67D97331B25719D0063FB84 /* Images.xcassets in Resources */,
@@ -849,7 +862,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6B4F7A71B2738DE007E22EB /* SidebarViewController.m in Sources */,
-				C67D97641B26982B0063FB84 /* ControlPanelController.m in Sources */,
 				C6C72FF11B2871BA003940DA /* DownPicker.m in Sources */,
 				C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */,
 				C6C72FF21B2871BA003940DA /* UIDownPicker.m in Sources */,
@@ -857,6 +869,7 @@
 				C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */,
 				C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */,
 				C67D972E1B25719D0063FB84 /* ViewController.m in Sources */,
+				C67906631B3286D200F4F098 /* ControlPanelController.m in Sources */,
 				C6C249D51B2AD02400981C73 /* SurveyCell.m in Sources */,
 				C6B4F7821B26BB2A007E22EB /* Analytics-ConnectedUsersController.m in Sources */,
 				C6B4F7281B26AE48007E22EB /* SurveysController.m in Sources */,
@@ -865,6 +878,7 @@
 				C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */,
 				C67906441B2EB63300F4F098 /* MessageCell.m in Sources */,
 				C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */,
+				C67906601B31A33900F4F098 /* NewUserCell.m in Sources */,
 				C679064C1B2FE70B00F4F098 /* SurveyDetailsViewController.m in Sources */,
 				C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */,
 				C679062F1B2D80A700F4F098 /* RPMController.m in Sources */,
@@ -1007,6 +1021,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jfpalngipang/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = WNDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1026,6 +1044,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/jfpalngipang/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = WNDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

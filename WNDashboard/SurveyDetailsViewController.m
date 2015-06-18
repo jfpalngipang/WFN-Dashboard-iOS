@@ -25,10 +25,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
+    /*
     [reqUtil GETRequestSender:@"getSurveyDetails" withParams:surveyId completion:^(NSDictionary *responseDict){
         NSLog(@"%@", responseDict);
     }];
-    
+    */
     
     _pieChartView.delegate = self;
     
@@ -52,7 +53,7 @@
     
     [_pieChartView animateWithXAxisDuration:1.5 yAxisDuration:1.5 easingOption:ChartEasingOptionEaseOutBack];
     
-    [self setDataCount:10 range:1];
+    [self setDataCount:4 range:1];
     
 }
 

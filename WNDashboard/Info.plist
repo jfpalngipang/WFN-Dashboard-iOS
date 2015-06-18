@@ -40,5 +40,20 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>FacebookAppID</key>
+	<string>577877185648175</string>
+	<key>FacebookDisplayName</key>
+	<string>WiFi Nation Dashboard</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb577877185648175</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

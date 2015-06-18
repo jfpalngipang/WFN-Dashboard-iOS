@@ -7,20 +7,41 @@
 //
 
 #import "fbGraphUtility.h"
+#import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
 
 @implementation fbGraphUtility
 
-- (void)getFBPhoto:(NSString *)fbId completion:(void (^)(NSData *)) completion{
-    NSString * URLStr = [NSString stringWithFormat: @"https://graph.facebook.com/v2.3/%@/picture?", fbId];
+- (void)getFBPhoto:(NSString *)fbId completion:(void (^)(NSDictionary *)) completion{
+  
+    NSString * URLStr = [NSString stringWithFormat: @"https://graph.facebook.com/v2.3/%@/picture?redirect=false", fbId];
     NSURL *fbURL = [NSURL URLWithString:URLStr];
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithURL:fbURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
-        completion(data);
-        //NSLog(@"RESP: %@", data);
+    NSMutableURLRequest *urlRequest =
+    [NSMutableURLRequest requestWithURL:fbURL
+                            cachePolicy:NSURLRequestUseProtocolCachePolicy
+                        timeoutInterval:2];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error){
+        
+        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        //NSLog(@"RESP: %@", result);
+        completion(result);
     }];
     
     [task resume];
-    
+   
+    /*
+    NSString *path = [NSString stringWithFormat:@"/%@/picture", fbId];
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                  initWithGraphPath:path
+                                  parameters:nil
+                                  HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                          id result,
+                                          NSError *error) {
+        NSLog(@"%@", result);
+        completion(result);
+    }];
+     */
 }
 
 @end

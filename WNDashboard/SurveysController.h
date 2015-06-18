@@ -16,7 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalPageLabel;
 @property (weak, nonatomic) IBOutlet UIButton *prevButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
+
 - (IBAction)nextClicked:(id)sender;
 - (IBAction)prevClicked:(id)sender;
+
 
 @end

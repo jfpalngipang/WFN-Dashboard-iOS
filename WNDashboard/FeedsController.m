@@ -13,6 +13,7 @@
 #import "OnlineUsersCell.h"
 #import "SurveyCell.h"
 #import "MessageCell.h"
+#import "NewUserCell.h"
 #import "fbGraphUtility.h"
 
 @interface FeedsController ()
@@ -30,15 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if(revealViewController){
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction:@selector(revealToggle:)];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-        
-    }
-    
-    
     news_array = [[NSMutableArray alloc] init];
     fbUtil = [[fbGraphUtility alloc] init];
     
@@ -54,6 +46,18 @@
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
     }];
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if(revealViewController){
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+    }
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor orangeColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    
+
 
     
     
@@ -91,6 +95,7 @@
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"frequent_users"]) {
             identifier = @"FrequentUsersCell";
+            NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
             FrequentUsersCell *cell = (FrequentUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
@@ -99,6 +104,11 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FrequentUsersCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
+                //NSLog(@"RESP: %@", imageData[@"data"][@"url"]);
+                NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageData[@"data"][@"url"]]];
+                cell.mainFBImage.image = [UIImage imageWithData:data];
+            }];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
             cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ times for the last 30 days", count];
             cell.timeDateLabel.text = time;
@@ -118,7 +128,7 @@
             cell.surveyResultsLabel.text = [NSString stringWithFormat:@"%@ answered %@ to your question: %@", count, answer, question];
             cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
-        } else {
+        } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"testimonial"]){
             identifier = @"MessageCell";
             NSString *name = [news_array objectAtIndex:indexPath.row][@"user"];
             NSString *message = [news_array objectAtIndex:indexPath.row][@"msg"];
@@ -131,9 +141,9 @@
                 cell = [nib objectAtIndex:0];
             }
             /**************/
-            [fbUtil getFBPhoto:fbId completion:^(NSData *imageData){
+            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
                 //NSLog(@"RESP: %@", imageData);
-                cell.userImage.image = [UIImage imageWithData:imageData];
+                //cell.userImage.image = [UIImage imageWithData:imageData];
             }];
             
             /**************/
@@ -142,22 +152,27 @@
             cell.timeLabel.text = time;
             cell.estabLabel.text = @"";
             return cell;
-        }
-    //}
-     
+        } else {
+            identifier = @"NewUserCell";
+            NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
+            NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
+            NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
+            NewUserCell *cell = (NewUserCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+            if (cell == nil)
+            {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewUserCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+            }
+            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
+                //NSLog(@"RESP: %@", imageData[@"data"][@"url"]);
+                NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageData[@"data"][@"url"]]];
+                cell.mainFBImage.image = [UIImage imageWithData:data];
+            }];
+            cell.countLabel.text = count;
+            cell.timeLabel.text = time;
+            return cell;
 
- /*
-    static NSString *identifier = @"Cell";
-    OnlineUsersCell *cell = (OnlineUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"OnlineUsersCell" owner:self options:nil];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    
-    return cell;
-  */
+        }
 }
 /*
 #pragma mark - Navigation

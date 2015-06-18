@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Analytics-AgeGenderController.h"
 #import "FeedsController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 
 
