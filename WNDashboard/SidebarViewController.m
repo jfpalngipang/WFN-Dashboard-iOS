@@ -8,6 +8,7 @@
 
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
+#import "ViewController.h"
 
 @interface SidebarViewController ()
 
@@ -20,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    menuItems = @[@"title", @"newsfeed", @"userlogs", @"surveys", @"analytics", @"controlpanel", @"rpm", @"testimonials"];
+    menuItems = @[@"title", @"newsfeed", @"userlogs", @"surveys", @"analytics", @"controlpanel", @"rpm", @"testimonials", @"terms"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

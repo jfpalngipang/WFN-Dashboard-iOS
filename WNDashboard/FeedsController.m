@@ -110,7 +110,7 @@
                 cell.mainFBImage.image = [UIImage imageWithData:data];
             }];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
-            cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ times for the last 30 days", count];
+            cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ for the last 30 days", count];
             cell.timeDateLabel.text = time;
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]) {

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Data.h"
 
 @interface ViewController ()
 
@@ -64,6 +65,9 @@
         if([result[@"status"] isEqualToString:@"OK"]){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
              {
+                 
+                 Data *apData = [[Data alloc] init];
+                 [apData fillAPArrays];
                  [self performSegueWithIdentifier:@"loginSuccess" sender:sender];
              }];
             

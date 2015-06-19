@@ -8,6 +8,7 @@
 
 #import "RPMController.h"
 #import "SWRevealViewController.h"
+#import "requestUtility.h"
 
 @interface RPMController ()
 
@@ -17,6 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    //[reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary* responseDict){
+    
+   // }];
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];

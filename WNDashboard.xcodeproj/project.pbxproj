@@ -48,6 +48,7 @@
 		C67906631B3286D200F4F098 /* ControlPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906621B3286D200F4F098 /* ControlPanelController.m */; };
 		C67906661B32CF5E00F4F098 /* TermsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906651B32CF5E00F4F098 /* TermsController.m */; };
 		C67906991B3328EA00F4F098 /* SurveyAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906981B3328EA00F4F098 /* SurveyAPViewController.m */; };
+		C679069D1B33E41700F4F098 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C679069C1B33E41700F4F098 /* Data.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -186,6 +187,8 @@
 		C67906651B32CF5E00F4F098 /* TermsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsController.m; sourceTree = "<group>"; };
 		C67906971B3328EA00F4F098 /* SurveyAPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyAPViewController.h; sourceTree = "<group>"; };
 		C67906981B3328EA00F4F098 /* SurveyAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyAPViewController.m; sourceTree = "<group>"; };
+		C679069B1B33E41700F4F098 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		C679069C1B33E41700F4F098 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 				C67906621B3286D200F4F098 /* ControlPanelController.m */,
 				C67906641B32CF5E00F4F098 /* TermsController.h */,
 				C67906651B32CF5E00F4F098 /* TermsController.m */,
+				C679069B1B33E41700F4F098 /* Data.h */,
+				C679069C1B33E41700F4F098 /* Data.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -896,6 +901,7 @@
 				C679062F1B2D80A700F4F098 /* RPMController.m in Sources */,
 				C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */,
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
+				C679069D1B33E41700F4F098 /* Data.m in Sources */,
 				C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
 				C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */,

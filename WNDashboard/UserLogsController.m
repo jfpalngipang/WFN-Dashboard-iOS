@@ -54,6 +54,8 @@
         NSLog(@"%@", logs);
     }];
     
+    //Get date today
+    
     
 
     SWRevealViewController *revealViewController = self.revealViewController;

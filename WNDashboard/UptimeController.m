@@ -19,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getRPM" completion:^(NSDictionary *responseDict){
+        NSLog(@"%@", responseDict);
+    }];
 
     
 }

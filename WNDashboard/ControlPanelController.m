@@ -10,6 +10,7 @@
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
 #import "DownPicker.h"
+#import "Data.h"
 
 @interface ControlPanelController ()
 
@@ -17,18 +18,22 @@
 
 @implementation ControlPanelController
 {
-    NSMutableArray *ap_list;
-    NSMutableArray *apId_list;
+    //NSMutableArray *ap_list;
+    //NSMutableArray *apId_list;
     NSMutableArray *apSettings;
     NSMutableArray *dd_array;
     NSMutableDictionary *ap_dict;
+    Data *apData;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    ap_list = [[NSMutableArray alloc] init];
-    apId_list = [[NSMutableArray alloc] init];
+    apData = [[Data alloc] init];
+    [apData fillAPArrays];
+    NSLog(@"APDATA: %@", apData.apNames);
+    //ap_list = [[NSMutableArray alloc] init];
+    //apId_list = [[NSMutableArray alloc] init];
     apSettings = [[NSMutableArray alloc] init];
     ap_dict = [[NSMutableDictionary alloc] init];
     self.apTextField.text = @"";
@@ -41,16 +46,16 @@
         //NSLog(@"AP Settings: %@", responseDict[@"response"]);
     
         for (id ap in responseDict[@"response"]){
-            [ap_list addObject:ap[@"ap"]];
-            [apId_list addObject:ap[@"id"]];
+            //[ap_list addObject:ap[@"ap"]];
+            //[apId_list addObject:ap[@"id"]];
             [apSettings addObject:ap[@"settings"]];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:ap_list];
+            self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apData.apNames];
             [self.downPicker addTarget:self
                                 action:@selector(apSelected:)
                       forControlEvents:UIControlEventValueChanged];
-            self.apTextField.text = ap_list[0];
+            self.apTextField.text = apData.apNames[0];
         [self showSettings];
         });
     }];
@@ -138,7 +143,7 @@
 
 -(void)apSelected:(id)ap{
     NSString *selectedAP = [self.downPicker text];
-    int selected_index = [ap_list indexOfObject:selectedAP];
+    NSUInteger selected_index = [apData.apNames indexOfObject:selectedAP];
     NSLog(@"%@", apSettings[selected_index]);
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];
@@ -164,6 +169,7 @@
         
         if([ap_auth isEqualToString:@"<null>"]){
             [self.passkeySwitch setOn:NO animated:YES];
+            self.passkeyTextField.text = @"";
         } else{
             [self.passkeySwitch setOn:YES animated:YES];
             self.passkeyTextField.text = ap_auth;
@@ -172,6 +178,7 @@
         
         if([ap_like_page isEqualToString: @"<null>"]){
             [self.fbpageSwitch setOn:NO animated:YES];
+            self.fbpageTextField.text = @"";
         } else{
             [self.fbpageSwitch setOn:YES animated:NO];
             self.fbpageTextField.text = ap_like_page;
