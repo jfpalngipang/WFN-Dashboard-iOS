@@ -11,7 +11,7 @@
 @interface FeedsController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDataDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
+
 -(void)fetchFeedUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler;
 
 @end

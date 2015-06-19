@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "requestUtility.h"
 #import "MessageCell.h"
+#import "SWTableViewCell.h"
 
 @interface TestimonialsController ()
 
@@ -61,11 +62,23 @@
     NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
     static NSString *identifier = @"Cell";
     MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    //SWTableViewCell
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:1.0f blue:0.35f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"Twitter-80.png"]];
+    [rightUtilityButtons sw_addUtilityButtonWithColor:
+     [UIColor colorWithRed:1.0f green:1.0f blue:0.35f alpha:0.7]
+                                                icon:[UIImage imageNamed:@"Facebook-80.png"]];
+    
     if(cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    cell.rightUtilityButtons = rightUtilityButtons;
+    cell.delegate = self;
     cell.nameLabel.text = name;
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;

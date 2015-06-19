@@ -49,6 +49,16 @@
 		C67906661B32CF5E00F4F098 /* TermsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906651B32CF5E00F4F098 /* TermsController.m */; };
 		C67906991B3328EA00F4F098 /* SurveyAPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906981B3328EA00F4F098 /* SurveyAPViewController.m */; };
 		C679069D1B33E41700F4F098 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = C679069C1B33E41700F4F098 /* Data.m */; };
+		C67906AB1B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906A01B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m */; };
+		C67906AC1B33FB5500F4F098 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906A21B33FB5500F4F098 /* SWCellScrollView.m */; };
+		C67906AD1B33FB5500F4F098 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906A41B33FB5500F4F098 /* SWLongPressGestureRecognizer.m */; };
+		C67906AE1B33FB5500F4F098 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906A61B33FB5500F4F098 /* SWTableViewCell.m */; };
+		C67906AF1B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906A81B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.m */; };
+		C67906B01B33FB5500F4F098 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906AA1B33FB5500F4F098 /* SWUtilityButtonView.m */; };
+		C67906B21B33FDAD00F4F098 /* Facebook-80.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906B11B33FDAD00F4F098 /* Facebook-80.png */; };
+		C67906B41B33FDC100F4F098 /* Twitter-80.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906B31B33FDC100F4F098 /* Twitter-80.png */; };
+		C67906B61B3408CE00F4F098 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906B51B3408CE00F4F098 /* ProfileCell.xib */; };
+		C67906B91B340A8400F4F098 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906B81B340A8400F4F098 /* ProfileCell.m */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -189,6 +199,23 @@
 		C67906981B3328EA00F4F098 /* SurveyAPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyAPViewController.m; sourceTree = "<group>"; };
 		C679069B1B33E41700F4F098 /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		C679069C1B33E41700F4F098 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
+		C679069F1B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+SWUtilityButtons.h"; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
+		C67906A01B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableArray+SWUtilityButtons.m"; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
+		C67906A11B33FB5500F4F098 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWCellScrollView.h; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWCellScrollView.h"; sourceTree = "<group>"; };
+		C67906A21B33FB5500F4F098 /* SWCellScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWCellScrollView.m; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWCellScrollView.m"; sourceTree = "<group>"; };
+		C67906A31B33FB5500F4F098 /* SWLongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWLongPressGestureRecognizer.h; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWLongPressGestureRecognizer.h"; sourceTree = "<group>"; };
+		C67906A41B33FB5500F4F098 /* SWLongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWLongPressGestureRecognizer.m; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWLongPressGestureRecognizer.m"; sourceTree = "<group>"; };
+		C67906A51B33FB5500F4F098 /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWTableViewCell.h; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWTableViewCell.h"; sourceTree = "<group>"; };
+		C67906A61B33FB5500F4F098 /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWTableViewCell.m; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWTableViewCell.m"; sourceTree = "<group>"; };
+		C67906A71B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWUtilityButtonTapGestureRecognizer.h; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWUtilityButtonTapGestureRecognizer.h"; sourceTree = "<group>"; };
+		C67906A81B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWUtilityButtonTapGestureRecognizer.m; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWUtilityButtonTapGestureRecognizer.m"; sourceTree = "<group>"; };
+		C67906A91B33FB5500F4F098 /* SWUtilityButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWUtilityButtonView.h; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWUtilityButtonView.h"; sourceTree = "<group>"; };
+		C67906AA1B33FB5500F4F098 /* SWUtilityButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWUtilityButtonView.m; path = "../../../../Downloads/SWTableViewCell-master/SWTableViewCell/PodFiles/SWUtilityButtonView.m"; sourceTree = "<group>"; };
+		C67906B11B33FDAD00F4F098 /* Facebook-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Facebook-80.png"; path = "assets/Facebook-80.png"; sourceTree = SOURCE_ROOT; };
+		C67906B31B33FDC100F4F098 /* Twitter-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Twitter-80.png"; path = "assets/Twitter-80.png"; sourceTree = SOURCE_ROOT; };
+		C67906B51B3408CE00F4F098 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		C67906B71B340A8400F4F098 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		C67906B81B340A8400F4F098 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -384,6 +411,25 @@
 			name = "Survey Details";
 			sourceTree = "<group>";
 		};
+		C679069E1B33FB3600F4F098 /* SWTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C679069F1B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.h */,
+				C67906A01B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m */,
+				C67906A11B33FB5500F4F098 /* SWCellScrollView.h */,
+				C67906A21B33FB5500F4F098 /* SWCellScrollView.m */,
+				C67906A31B33FB5500F4F098 /* SWLongPressGestureRecognizer.h */,
+				C67906A41B33FB5500F4F098 /* SWLongPressGestureRecognizer.m */,
+				C67906A51B33FB5500F4F098 /* SWTableViewCell.h */,
+				C67906A61B33FB5500F4F098 /* SWTableViewCell.m */,
+				C67906A71B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.h */,
+				C67906A81B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.m */,
+				C67906A91B33FB5500F4F098 /* SWUtilityButtonView.h */,
+				C67906AA1B33FB5500F4F098 /* SWUtilityButtonView.m */,
+			);
+			name = SWTableViewCell;
+			sourceTree = "<group>";
+		};
 		C67D97191B25719D0063FB84 = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +455,7 @@
 		C67D97241B25719D0063FB84 /* WNDashboard */ = {
 			isa = PBXGroup;
 			children = (
+				C679069E1B33FB3600F4F098 /* SWTableViewCell */,
 				C67906491B2FE6CD00F4F098 /* Survey Details */,
 				C67906451B2FE3B900F4F098 /* Search Controller */,
 				C6C249CD1B2ACFA300981C73 /* Custom Table Cells */,
@@ -599,6 +646,8 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C67906B31B33FDC100F4F098 /* Twitter-80.png */,
+				C67906B11B33FDAD00F4F098 /* Facebook-80.png */,
 				C67906581B31378400F4F098 /* icon_user.png */,
 				C67906561B31351600F4F098 /* icon_survey.png */,
 				C67906511B301D8B00F4F098 /* calendar.png */,
@@ -649,6 +698,9 @@
 				C679065C1B31A11900F4F098 /* NewUserCell.xib */,
 				C679065E1B31A33900F4F098 /* NewUserCell.h */,
 				C679065F1B31A33900F4F098 /* NewUserCell.m */,
+				C67906B51B3408CE00F4F098 /* ProfileCell.xib */,
+				C67906B71B340A8400F4F098 /* ProfileCell.h */,
+				C67906B81B340A8400F4F098 /* ProfileCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -797,6 +849,7 @@
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
 				C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */,
 				C607D1F51B2839E300467F86 /* actualize.png in Resources */,
+				C67906B41B33FDC100F4F098 /* Twitter-80.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
 				C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */,
@@ -819,8 +872,10 @@
 				C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */,
 				C607D1FD1B283DB700467F86 /* analytics2.png in Resources */,
 				C67906241B2D69DD00F4F098 /* exit.png in Resources */,
+				C67906B21B33FDAD00F4F098 /* Facebook-80.png in Resources */,
 				C607D1FB1B283DB700467F86 /* analytics1.png in Resources */,
 				C67906591B31378400F4F098 /* icon_user.png in Resources */,
+				C67906B61B3408CE00F4F098 /* ProfileCell.xib in Resources */,
 				C6B4F7B21B27481C007E22EB /* grey_analytics.png in Resources */,
 				C679061E1B2D65F600F4F098 /* UserLogsCell.xib in Resources */,
 				C6B4F7841B26C8A6007E22EB /* wnlogo.png in Resources */,
@@ -881,13 +936,17 @@
 				C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */,
 				C6C72FF21B2871BA003940DA /* UIDownPicker.m in Sources */,
 				C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */,
+				C67906AC1B33FB5500F4F098 /* SWCellScrollView.m in Sources */,
 				C67906661B32CF5E00F4F098 /* TermsController.m in Sources */,
 				C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */,
 				C67906991B3328EA00F4F098 /* SurveyAPViewController.m in Sources */,
 				C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */,
 				C67D972E1B25719D0063FB84 /* ViewController.m in Sources */,
+				C67906AD1B33FB5500F4F098 /* SWLongPressGestureRecognizer.m in Sources */,
 				C67906631B3286D200F4F098 /* ControlPanelController.m in Sources */,
 				C6C249D51B2AD02400981C73 /* SurveyCell.m in Sources */,
+				C67906B01B33FB5500F4F098 /* SWUtilityButtonView.m in Sources */,
+				C67906AE1B33FB5500F4F098 /* SWTableViewCell.m in Sources */,
 				C6B4F7821B26BB2A007E22EB /* Analytics-ConnectedUsersController.m in Sources */,
 				C6B4F7281B26AE48007E22EB /* SurveysController.m in Sources */,
 				C62417941B29AA3700F1E623 /* SpeedTestController.m in Sources */,
@@ -895,6 +954,7 @@
 				C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */,
 				C67906441B2EB63300F4F098 /* MessageCell.m in Sources */,
 				C6B4F72B1B26AE8E007E22EB /* AnalyticsController.m in Sources */,
+				C67906AF1B33FB5500F4F098 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				C67906601B31A33900F4F098 /* NewUserCell.m in Sources */,
 				C679064C1B2FE70B00F4F098 /* SurveyDetailsViewController.m in Sources */,
 				C67906321B2DE90B00F4F098 /* NewsFeedController.m in Sources */,
@@ -902,11 +962,13 @@
 				C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */,
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
 				C679069D1B33E41700F4F098 /* Data.m in Sources */,
+				C67906AB1B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
 				C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */,
 				C62417911B29993E00F1E623 /* ConnectedUsersController.m in Sources */,
 				C62417971B29AA4A00F1E623 /* UptimeController.m in Sources */,
+				C67906B91B340A8400F4F098 /* ProfileCell.m in Sources */,
 				C67906481B2FE3F600F4F098 /* SearchResultsTableViewController.m in Sources */,
 				C67D97281B25719D0063FB84 /* main.m in Sources */,
 				C67D97501B2578F80063FB84 /* FeedsController.m in Sources */,

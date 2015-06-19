@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     news_array = [[NSMutableArray alloc] init];
     fbUtil = [[fbGraphUtility alloc] init];
     
@@ -53,10 +54,16 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor orangeColor];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    
+    refresh = [[UIRefreshControl alloc] init];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                forKey:NSForegroundColorAttributeName];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh" attributes:attrsDictionary];
+    refresh.backgroundColor = [UIColor orangeColor];
+    refresh.tintColor = [UIColor whiteColor];
+    [refresh addTarget:self
+                            action:@selector(getLatestFeeds:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refresh];
 
 
     
@@ -208,6 +215,21 @@
     localNotif.alertBody = @"Notif!";
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+}
+
+-(void)getLatestFeeds:(UIRefreshControl*)refresh{
+    
+    [refresh endRefreshing];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getFeeds" completion:^(NSDictionary *responseDict){
+        for(id entry in responseDict){
+            [news_array addObject:entry];
+        }
+        NSLog(@"%@", news_array);
+        self.tableView.rowHeight = 100;
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        
+    }];
 }
 
 

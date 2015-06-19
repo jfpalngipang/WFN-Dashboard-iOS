@@ -9,6 +9,7 @@
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
 #import "ViewController.h"
+#import "ProfileCell.h"
 
 @interface SidebarViewController ()
 
@@ -51,11 +52,13 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
     
-
+    
+    NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     return cell;
+    
+    
 }
 
 

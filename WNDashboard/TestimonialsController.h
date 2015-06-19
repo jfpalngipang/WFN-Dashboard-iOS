@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWTableViewCell.h"
 
-@interface TestimonialsController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TestimonialsController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
