@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface Data : NSObject
+{
+    NSString *feedsURL;
+    
+}
 
 @property NSMutableArray *apNames;
 @property NSMutableArray *apIds;
+
 
 
 - (void) fillAPArrays;

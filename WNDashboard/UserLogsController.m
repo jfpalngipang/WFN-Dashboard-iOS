@@ -51,7 +51,7 @@
         
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
-        NSLog(@"%@", logs);
+        //NSLog(@"%@", logs);
     }];
     
     //Get date today
@@ -93,6 +93,17 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserLogsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
+    NSString* firstLetter = [[logs objectAtIndex:indexPath.row][@"device"] substringToIndex:1];
+    if([firstLetter isEqualToString:@"A"]){
+        cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
+    } else if([firstLetter isEqualToString:@"i"] || [firstLetter isEqualToString:@"M"] ){
+        cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
+    } else if([firstLetter isEqualToString:@"W"]){
+        cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+    }
+    NSLog(@"FIRST: %@", firstLetter);
+    //cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
     cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
 
     cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];

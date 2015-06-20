@@ -59,6 +59,9 @@
 		C67906B41B33FDC100F4F098 /* Twitter-80.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906B31B33FDC100F4F098 /* Twitter-80.png */; };
 		C67906B61B3408CE00F4F098 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906B51B3408CE00F4F098 /* ProfileCell.xib */; };
 		C67906B91B340A8400F4F098 /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906B81B340A8400F4F098 /* ProfileCell.m */; };
+		C67906BD1B34292300F4F098 /* and.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906BA1B34292300F4F098 /* and.png */; };
+		C67906BE1B34292300F4F098 /* ios.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906BB1B34292300F4F098 /* ios.png */; };
+		C67906BF1B34292300F4F098 /* win.png in Resources */ = {isa = PBXBuildFile; fileRef = C67906BC1B34292300F4F098 /* win.png */; };
 		C67D97281B25719D0063FB84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D97271B25719D0063FB84 /* main.m */; };
 		C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972A1B25719D0063FB84 /* AppDelegate.m */; };
 		C67D972E1B25719D0063FB84 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67D972D1B25719D0063FB84 /* ViewController.m */; };
@@ -216,6 +219,9 @@
 		C67906B51B3408CE00F4F098 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		C67906B71B340A8400F4F098 /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
 		C67906B81B340A8400F4F098 /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		C67906BA1B34292300F4F098 /* and.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = and.png; path = assets/and.png; sourceTree = SOURCE_ROOT; };
+		C67906BB1B34292300F4F098 /* ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ios.png; path = assets/ios.png; sourceTree = SOURCE_ROOT; };
+		C67906BC1B34292300F4F098 /* win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = win.png; path = assets/win.png; sourceTree = SOURCE_ROOT; };
 		C67D97221B25719D0063FB84 /* WNDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67D97261B25719D0063FB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C67D97271B25719D0063FB84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -646,6 +652,9 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C67906BA1B34292300F4F098 /* and.png */,
+				C67906BB1B34292300F4F098 /* ios.png */,
+				C67906BC1B34292300F4F098 /* win.png */,
 				C67906B31B33FDC100F4F098 /* Twitter-80.png */,
 				C67906B11B33FDAD00F4F098 /* Facebook-80.png */,
 				C67906581B31378400F4F098 /* icon_user.png */,
@@ -846,6 +855,7 @@
 				C6B4F7AC1B2747EF007E22EB /* grey_newsfeed.png in Resources */,
 				C67906291B2D6BD700F4F098 /* news.png in Resources */,
 				C67906251B2D69DD00F4F098 /* menu.png in Resources */,
+				C67906BE1B34292300F4F098 /* ios.png in Resources */,
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
 				C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */,
 				C607D1F51B2839E300467F86 /* actualize.png in Resources */,
@@ -855,6 +865,7 @@
 				C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */,
 				C67906521B301D8B00F4F098 /* calendar.png in Resources */,
 				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
+				C67906BD1B34292300F4F098 /* and.png in Resources */,
 				C6C249D21B2AD01100981C73 /* SurveyCell.xib in Resources */,
 				C679065D1B31A11900F4F098 /* NewUserCell.xib in Resources */,
 				C6C72FF01B2871BA003940DA /* downArrow@3x.png in Resources */,
@@ -864,6 +875,7 @@
 				C607D1FA1B283DB700467F86 /* analytics1_orange.png in Resources */,
 				C679063C1B2EADC400F4F098 /* next.png in Resources */,
 				C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */,
+				C67906BF1B34292300F4F098 /* win.png in Resources */,
 				C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */,
 				C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */,
 				C67906571B31351600F4F098 /* icon_survey.png in Resources */,
