@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+
     today = [[NSDate alloc] init];
     logs = [[NSMutableArray alloc] init];
     _ap_list = [[NSMutableArray alloc] init];
@@ -44,7 +44,7 @@
 
     }];
     [reqUtil GETRequestSender:@"getUserLogs" withParams: @"06/02/15" completion:^(NSDictionary* logsDict){
-        [self.activityIndicator startAnimating];
+        
         for (id log in logsDict){
            [logs addObject:log];
         }
@@ -102,7 +102,7 @@
     } else if([firstLetter isEqualToString:@"W"]){
         cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
     }
-    NSLog(@"FIRST: %@", firstLetter);
+    
     //cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
     cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
 
@@ -119,15 +119,21 @@
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+- (IBAction)dateTextFieldEditing:(UITextField *)sender {
+    UIDatePicker *datePickerView = [[UIDatePicker alloc] init];
+    datePickerView.datePickerMode = UIDatePickerModeDate;
+    sender.inputView = datePickerView;
+    [datePickerView addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
-*/
 
-
+- (void)datePickerValueChanged:(UIDatePicker*) sender{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yy"];
+    NSString *stringFromDate = [dateFormatter stringFromDate:sender.date];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.dateTextField.text = stringFromDate;
+    });
+}
 @end
