@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @interface FrequentUsersCell : UITableViewCell
 
@@ -16,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *usageLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+
 
 
 @end

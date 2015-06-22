@@ -65,9 +65,6 @@
                   forControlEvents:UIControlEventValueChanged];
     [self.tableView addSubview:refresh];
 
-
-    
-    
     
 }
 
@@ -95,7 +92,6 @@
                 cell = [nib objectAtIndex:0];
             }
 
-            
             cell.onlineImage.image = [UIImage imageNamed:@"icon_user"];
             cell.countLabel.text = [NSString stringWithFormat:@"%@", count];
             cell.timeLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
@@ -111,11 +107,10 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FrequentUsersCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
-                //NSLog(@"RESP: %@", imageData[@"data"][@"url"]);
-                NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageData[@"data"][@"url"]]];
-                cell.mainFBImage.image = [UIImage imageWithData:data];
-            }];
+            FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.profilePicture.frame];
+            
+            [profilePicture setProfileID:fbId];
+            [cell addSubview:profilePicture];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
             cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ for the last 30 days", count];
             cell.timeDateLabel.text = time;
@@ -170,11 +165,7 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewUserCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
-                //NSLog(@"RESP: %@", imageData[@"data"][@"url"]);
-                NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:imageData[@"data"][@"url"]]];
-                cell.mainFBImage.image = [UIImage imageWithData:data];
-            }];
+
             cell.countLabel.text = count;
             cell.timeLabel.text = time;
             return cell;
