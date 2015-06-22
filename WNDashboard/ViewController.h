@@ -13,13 +13,12 @@
     NSString *username;
 }
 
-
 @property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
+
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
 
 - (IBAction)buttonLogInClicked:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
-
 
 @end
 

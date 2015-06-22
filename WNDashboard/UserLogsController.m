@@ -11,12 +11,15 @@
 #import "SWRevealViewController.h"
 #import "DownPicker.h"
 #import "UserLogsCell.h"
+#import "Data.h"
 
 
 @interface UserLogsController () {
     NSMutableArray *_ap_list;
     NSMutableArray *logs;
     NSDate *today;
+    UIDatePicker *datePickerView;
+    NSArray *searchResults;
 }
 
 @end
@@ -31,18 +34,28 @@
     _ap_list = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    [reqUtil GETRequestSender:@"getAPList" completion:^(NSDictionary* responseDict){
-        
+    
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 60)];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 300, 40)];
+    headerLabel.text = NSLocalizedString(@"name     device  start time  total time", @"");
+    headerLabel.backgroundColor = [UIColor orangeColor];
+    [header addSubview:headerLabel];
+    
+    
+    //self.tableView.tableHeaderView = header;
+    //[reqUtil GETRequestSender:@"getAPList" completion:^(NSDictionary* responseDict){
+      /*
         for(id ap in responseDict){
             [_ap_list addObject:ap[1]];
         }
+       */
         //NSLog(@"Picker Items: %@", _ap_list);
-        self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:_ap_list];
+        self.downPicker = [[DownPicker alloc] initWithTextField:self.APListTextField withData:apNames];
         [self.downPicker addTarget:self
                                 action:@selector(apSelected:)
                       forControlEvents:UIControlEventValueChanged];
 
-    }];
+   // }];
     [reqUtil GETRequestSender:@"getUserLogs" withParams: @"06/02/15" completion:^(NSDictionary* logsDict){
         
         for (id log in logsDict){
@@ -89,11 +102,20 @@
     
     static NSString *identifier = @"Cell";
     UserLogsCell *cell = (UserLogsCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    
     if (cell == nil){
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserLogsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+    /*
+    if(indexPath.row == 0){
+        cell.nameLabel.text = @"User";
+        
+        cell.startLabel.text = @"Start Time";
+        cell.totalLabel.text = @"Total Time";
+    }
+    */
     NSString* firstLetter = [[logs objectAtIndex:indexPath.row][@"device"] substringToIndex:1];
     if([firstLetter isEqualToString:@"A"]){
         cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
@@ -122,7 +144,7 @@
 
 
 - (IBAction)dateTextFieldEditing:(UITextField *)sender {
-    UIDatePicker *datePickerView = [[UIDatePicker alloc] init];
+    datePickerView = [[UIDatePicker alloc] init];
     datePickerView.datePickerMode = UIDatePickerModeDate;
     sender.inputView = datePickerView;
     [datePickerView addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -136,4 +158,22 @@
         self.dateTextField.text = stringFromDate;
     });
 }
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    searchResults = [logs filteredArrayUsingPredicate:resultPredicate];
+}
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
+- (IBAction)backgroundTap:(id)sender {
+    [self.view endEditing:YES];
+}
+
 @end

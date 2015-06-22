@@ -8,6 +8,7 @@
 
 #import "fbGraphUtility.h"
 #import <FBSDKCoreKit/FBSDKGraphRequestConnection.h>
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @implementation fbGraphUtility
 

@@ -23,15 +23,13 @@
     NSMutableArray *apSettings;
     NSMutableArray *dd_array;
     NSMutableDictionary *ap_dict;
-    Data *apData;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    apData = [[Data alloc] init];
-    [apData fillAPArrays];
-    NSLog(@"APDATA: %@", apData.apNames);
+    NSLog(@"APDATA: %@", apNames);
     //ap_list = [[NSMutableArray alloc] init];
     //apId_list = [[NSMutableArray alloc] init];
     apSettings = [[NSMutableArray alloc] init];
@@ -51,11 +49,11 @@
             [apSettings addObject:ap[@"settings"]];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apData.apNames];
+            self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
             [self.downPicker addTarget:self
                                 action:@selector(apSelected:)
                       forControlEvents:UIControlEventValueChanged];
-            self.apTextField.text = apData.apNames[0];
+            self.apTextField.text = apNames[0];
         [self showSettings];
         });
     }];
@@ -143,7 +141,7 @@
 
 -(void)apSelected:(id)ap{
     NSString *selectedAP = [self.downPicker text];
-    NSUInteger selected_index = [apData.apNames indexOfObject:selectedAP];
+    NSUInteger selected_index = [apNames indexOfObject:selectedAP];
     NSLog(@"%@", apSettings[selected_index]);
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];

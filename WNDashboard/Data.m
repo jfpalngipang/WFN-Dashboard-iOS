@@ -10,30 +10,34 @@
 #import "requestUtility.h"
 
 @implementation Data
-{
-   
-}
+NSMutableArray *apNames = nil;
+NSMutableArray *apIds = nil;
+NSString *user = nil;
+NSString *url_str = @"http://dev.wifination.ph:3000";
 
-- (void) fillAPArrays{
-    self.apNames = [[NSMutableArray alloc] init];
-    self.apIds = [[NSMutableArray alloc] init];
++ (void) fillAPArrays{
+    apNames = [[NSMutableArray alloc] init];
+    apIds = [[NSMutableArray alloc] init];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
     [reqUtil GETRequestSender:@"getAPList" completion:^(NSDictionary *responseDict){
         for (id ap in responseDict){
-            [self.apNames addObject:ap[1]];
-            [self.apIds addObject:ap[0]];
+            [apNames addObject:ap[1]];
+            [apIds addObject:ap[0]];
         }
-        NSLog(@"AP: %@", self.apNames);
-        NSLog(@"AP: %@", self.apIds);
+        
     }];
 }
 
-- (NSString *) getIdForAPAtIndex: (NSUInteger)index{
++ (NSString *) getIdForAPAtIndex: (NSUInteger)index{
     NSString *apId = [[NSString alloc] init];
-    apId = [self.apIds objectAtIndex:index];
+    apId = [apIds objectAtIndex:index];
     
     return apId;
+}
+
++ (void) setUser: (NSString *)name{
+    user = [NSString stringWithFormat:@"%@", name];
 }
 
 @end

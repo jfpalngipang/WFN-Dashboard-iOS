@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *APListTextField;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)backgroundTap:(id)sender;
 
 
 

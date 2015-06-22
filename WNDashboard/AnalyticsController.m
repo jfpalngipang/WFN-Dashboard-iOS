@@ -11,18 +11,27 @@
 #import "SWRevealViewController.h"
 
 @implementation AnalyticsController
-
+NSMutableArray *active = nil;
+NSMutableArray *males = nil;
+NSMutableArray *females = nil;
+NSMutableArray *others = nil;
 -(void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.connectedusersContainer.hidden = true;
+    self.agegenderContainer.hidden = true;
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
     [reqUtil GETRequestSender:@"getAnalytics" completion:^(NSDictionary *responseDict){
-        NSLog(@"ANALYTICS: %@", responseDict);
+        
+        active = responseDict[@"active"];
+        females = responseDict[@"agegender"][@"f"];
+        males = responseDict[@"agegender"][@"m"];
+        others = responseDict[@"agegender"][@"o"];
+        self.connectedusersContainer.hidden = false;
+        self.agegenderContainer.hidden = true;
     }];
     
-    self.connectedusersContainer.hidden = false;
-    self.agegenderContainer.hidden = true;
+    
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){

@@ -86,6 +86,8 @@
         url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/accesspoints/"];
     } else if([type isEqual:@"getMessages"]){
         url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/testimonials/"];
+    } else if([type isEqual:@"getTerms"]){
+        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/terms/"];
     }
     
     
@@ -120,6 +122,7 @@
 }
 
 - (void) ControlPanelPOSTRequestSender{
+    
     
 }
 

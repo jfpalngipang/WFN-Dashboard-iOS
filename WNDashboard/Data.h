@@ -8,18 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSMutableArray *apNames;
+extern NSMutableArray *apIds;
+extern NSString *feedsURL;
+extern NSString *user;
+extern NSString *url_str;
 @interface Data : NSObject
-{
-    NSString *feedsURL;
-    
-}
-
-@property NSMutableArray *apNames;
-@property NSMutableArray *apIds;
 
 
-
-- (void) fillAPArrays;
-- (NSString *) getIdForAPAtIndex: (NSUInteger)index;
++ (void) fillAPArrays;
++ (NSString *) getIdForAPAtIndex: (NSUInteger)index;
++ (void) setUser: (NSString *)name;
 
 @end

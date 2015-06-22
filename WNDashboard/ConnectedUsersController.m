@@ -8,6 +8,7 @@
 
 #import "ConnectedUsersController.h"
 #import "SWRevealViewController.h"
+#include "AnalyticsController.h"
 
 @interface ConnectedUsersController () <ChartViewDelegate>
 
@@ -63,12 +64,17 @@
         [xVals addObject:[@(i) stringValue]];
     }
     
+    
+     
+    
     NSMutableArray *yVals = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < count; i++)
     {
-        double mult = (range + 1);
-        double val = (double) (arc4random_uniform(mult)) + 3;
+        NSString *str = [active objectAtIndex:i];
+        NSInteger val = [str doubleValue];
+        //double mult = (range + 1);
+        //double val = (double) (arc4random_uniform(mult)) + 3;
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     

@@ -43,35 +43,14 @@
             [surveys addObject:survey];
         }
         totalPages = (surveys.count / pageContentCount);
-        
-        
+        self.totalPageLabel.text = [NSString stringWithFormat:@"%ld", (long)totalPages];
         
         [self setPageTableContent:1];
-        
-        //NSLog(@"%@", [NSString stringWithFormat:@"%ld", (long)totalPages]);
-        
-        
     }];
     self.totalPageLabel.text = @"14";
     
     self.currentPageLabel.text = @"1";
-    /********************Search Controller Code*********************/
-    UINavigationController *searchResultsController = [[self storyboard] instantiateViewControllerWithIdentifier:@"SurveysSearchResultsNavController"];
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController: searchResultsController];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    
-    NSMutableArray *scopeButtonTitles = [[NSMutableArray alloc] init];
-    [scopeButtonTitles addObject:NSLocalizedString(@"All", @"Search display controller All button.")];
-    
-    
-    self.searchController.searchBar.scopeButtonTitles = scopeButtonTitles;
-    self.searchController.searchBar.delegate = self;
-    
-    self.definesPresentationContext = YES;
-    
-     /********************Search Controller Code*********************/
+
     surveys = [[NSMutableArray alloc] init];
   
     
@@ -160,56 +139,19 @@
         UINavigationController *navController = (UINavigationController *)self.searchController.searchResultsController;
     }
 }
-/*
-- (void)updateFilteredContentForProductName:(NSString *)productName type:(NSString *)typeName {
-    
-    // Update the filtered array based on the search text and scope.
-    if ((productName == nil) || [productName length] == 0) {
-        // If there is no search string and the scope is "All".
-        if (typeName == nil) {
-            self.searchResults = [self.products mutableCopy];
-        } else {
-            // If there is no search string and the scope is chosen.
-            NSMutableArray *searchResults = [[NSMutableArray alloc] init];
-            for (Product *product in self.products) {
-                if ([product.type isEqualToString:typeName]) {
-                    [searchResults addObject:product];
-                }
-            }
-            
-            self.searchResults = searchResults;
-        }
-        return;
-    }
-    
-    
-    [self.searchResults removeAllObjects]; // First clear the filtered array.
-    
-     //Search the main list for products whose type matches the scope (if selected) and whose name matches searchText; add items that match to the filtered array.
-    for (Product *product in self.products) {
-        if ((typeName == nil) || [product.type isEqualToString:typeName]) {
-            NSUInteger searchOptions = NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch;
-            NSRange productNameRange = NSMakeRange(0, product.name.length);
-            NSRange foundRange = [product.name rangeOfString:productName options:searchOptions range:productNameRange];
-            if (foundRange.length > 0) {
-                [self.searchResults addObject:product];
-            }
-        }
-    }
-}
-*/
+
 
 
 - (IBAction)nextClicked:(id)sender {
     currentPage++;
-    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", currentPage];
+    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", (long)currentPage];
  
     [self setPageTableContent:currentPage];
 }
 
 - (IBAction)prevClicked:(id)sender {
     currentPage--;
-    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", currentPage];
+    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", (long)currentPage];
     [self setPageTableContent:currentPage];
 }
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSMutableArray *active;
+extern NSMutableArray *males;
+extern NSMutableArray *females;
+extern NSMutableArray *others;
 @interface AnalyticsController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
