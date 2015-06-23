@@ -40,4 +40,14 @@ NSString *url_str = @"http://dev.wifination.ph:3000";
     user = [NSString stringWithFormat:@"%@", name];
 }
 
++ (void)getAgeGenderData{
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getAnalytics" completion:^(NSDictionary *responseDict){
+        for (id ap in responseDict){
+            
+        }
+        
+    }];
+}
+
 @end

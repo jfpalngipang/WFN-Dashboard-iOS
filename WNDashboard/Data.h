@@ -13,11 +13,16 @@ extern NSMutableArray *apIds;
 extern NSString *feedsURL;
 extern NSString *user;
 extern NSString *url_str;
+extern NSMutableArray *females;
+extern NSMutableArray *males;
+extern NSMutableArray *others;
+
 @interface Data : NSObject
 
 
 + (void) fillAPArrays;
 + (NSString *) getIdForAPAtIndex: (NSUInteger)index;
 + (void) setUser: (NSString *)name;
++ (void) getAgeGenderData;
 
 @end
