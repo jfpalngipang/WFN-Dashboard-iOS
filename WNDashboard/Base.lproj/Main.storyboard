@@ -883,6 +883,9 @@
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="DgA-RS-hVV">
                                 <rect key="frame" x="16" y="180" width="568" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="IUA-hi-tIT"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Survey Results"/>
                                     <segment title="Access Points"/>
@@ -986,6 +989,9 @@
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Ip-IN-hnb">
                                 <rect key="frame" x="16" y="170" width="568" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="cFT-v6-19b"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Speed Test"/>
                                     <segment title="Uptime"/>

@@ -16,6 +16,8 @@ NSMutableArray *active = nil;
 NSMutableArray *females = nil;
 NSMutableArray *males = nil;
 NSMutableArray *others = nil;
+NSMutableArray *heartbeats = nil;
+NSMutableArray *speed = nil;
 
 NSString *user = nil;
 NSString *url_str = @"http://dev.wifination.ph:3000";
@@ -30,6 +32,7 @@ NSString *url_str = @"http://dev.wifination.ph:3000";
             [apNames addObject:ap[1]];
             [apIds addObject:ap[0]];
         }
+        [Data getRPMData];
         
     }];
 }
@@ -52,7 +55,15 @@ NSString *url_str = @"http://dev.wifination.ph:3000";
         females = responseDict[@"agegender"][@"f"];
         others = responseDict[@"agegender"][@"o"];
         active = responseDict[@"active"];
-        NSLog(@"%@", males);
+    }];
+}
+
++ (void) getRPMData {
+    NSString *apId = [Data getIdForAPAtIndex:0];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary *responseDict){
+        heartbeats = responseDict[@"heartbeats"];
+        speed = responseDict[@"speed"];
     }];
 }
 

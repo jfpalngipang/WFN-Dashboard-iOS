@@ -17,6 +17,8 @@ extern NSMutableArray *females;
 extern NSMutableArray *males;
 extern NSMutableArray *others;
 extern NSMutableArray *active;
+extern NSMutableArray *heartbeats;
+extern NSMutableArray *speed;
 
 @interface Data : NSObject
 
@@ -25,5 +27,6 @@ extern NSMutableArray *active;
 + (NSString *) getIdForAPAtIndex: (NSUInteger)index;
 + (void) setUser: (NSString *)name;
 + (void) getAgeGenderData;
++ (void) getRPMData;
 
 @end
