@@ -16,6 +16,7 @@ extern NSString *url_str;
 extern NSMutableArray *females;
 extern NSMutableArray *males;
 extern NSMutableArray *others;
+extern NSMutableArray *active;
 
 @interface Data : NSObject
 

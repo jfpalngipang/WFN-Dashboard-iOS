@@ -8,7 +8,7 @@
 
 #import "ConnectedUsersController.h"
 #import "SWRevealViewController.h"
-#include "AnalyticsController.h"
+#import "Data.h"
 
 @interface ConnectedUsersController () <ChartViewDelegate>
 
@@ -36,8 +36,8 @@
     _lineChartView.drawGridBackgroundEnabled = YES;
     
     ChartYAxis *leftAxis = _lineChartView.leftAxis;
-    leftAxis.customAxisMax = 80;
-    leftAxis.customAxisMin = 0.0;
+    leftAxis.customAxisMax = 2000;
+    leftAxis.customAxisMin = 500;
     leftAxis.startAtZeroEnabled = YES;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
     leftAxis.drawLimitLinesBehindDataEnabled = YES;
@@ -71,8 +71,9 @@
     
     for (int i = 0; i < count; i++)
     {
-        NSString *str = [active objectAtIndex:i];
-        NSInteger val = [str doubleValue];
+        int val = [active[i] doubleValue];
+        //NSString *str = [active objectAtIndex:i];
+        //NSInteger val = [str doubleValue];
         //double mult = (range + 1);
         //double val = (double) (arc4random_uniform(mult)) + 3;
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];

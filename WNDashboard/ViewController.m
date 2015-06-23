@@ -95,6 +95,7 @@
                  
                  [Data setUser:username];
                  [Data fillAPArrays];
+                 [Data getAgeGenderData];
                  [self performSegueWithIdentifier:@"loginSuccess" sender:sender];
              }];
             

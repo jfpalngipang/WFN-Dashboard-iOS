@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "WNDashboard-Bridging-Header.h"
 #import "requestUtility.h"
+#import "Data.h"
 
 @interface AgeGenderController () <ChartViewDelegate>
 
@@ -28,6 +29,8 @@
     f = [[NSMutableArray alloc] init];
     m = [[NSMutableArray alloc] init];
     o = [[NSMutableArray alloc] init];
+    
+    //NSLog(@"%@", males);
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getAnalytics" completion:^(NSDictionary *responseDict){
@@ -101,9 +104,12 @@
     
     for (int i = 0; i < count; i++)
     {
-        double mult = (range + 1);
-        double val = (double) (arc4random_uniform(mult));
+        
+        int val = [males[i] doubleValue];
+        //double mult = (range + 1);
+        //double val = (double) (arc4random_uniform(mult));
         [yVals addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
+        //NSLog(@"double value: %d", val2);
     }
     
     BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithYVals:yVals label:@"Dataset"];

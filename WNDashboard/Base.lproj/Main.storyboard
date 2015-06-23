@@ -396,9 +396,6 @@
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g34-mu-v73">
                                 <rect key="frame" x="16" y="165" width="568" height="380"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="380" id="6UX-PX-zJA"/>
-                                </constraints>
                                 <connections>
                                     <segue destination="mmQ-85-7IS" kind="embed" id="fjJ-FG-7rI"/>
                                 </connections>
@@ -408,6 +405,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="380" id="Xtc-cc-n0Y"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Xtc-cc-n0Y"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="9kc-Ko-YdF" kind="embed" id="E3x-7Z-1Vi"/>
                                 </connections>
@@ -416,16 +418,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wMI-bY-RSj" firstAttribute="trailing" secondItem="flr-82-dzz" secondAttribute="trailingMargin" id="0Yu-w6-yCr"/>
+                            <constraint firstItem="8ti-mT-Ns5" firstAttribute="top" secondItem="g34-mu-v73" secondAttribute="bottom" constant="55" id="3SE-rP-0Og"/>
                             <constraint firstItem="wMI-bY-RSj" firstAttribute="top" secondItem="T4a-Ko-yHZ" secondAttribute="bottom" constant="38" id="4QD-XK-Sv4"/>
-                            <constraint firstItem="g34-mu-v73" firstAttribute="trailing" secondItem="flr-82-dzz" secondAttribute="trailingMargin" id="LT7-jW-FJR"/>
-                            <constraint firstItem="hqB-Sh-luA" firstAttribute="top" secondItem="wMI-bY-RSj" secondAttribute="bottom" constant="35" id="Nir-zK-Bfa"/>
-                            <constraint firstItem="hqB-Sh-luA" firstAttribute="trailing" secondItem="flr-82-dzz" secondAttribute="trailingMargin" id="YKD-pI-9ue"/>
-                            <constraint firstItem="g34-mu-v73" firstAttribute="top" secondItem="wMI-bY-RSj" secondAttribute="bottom" constant="35" id="ZW5-JJ-pFk"/>
+                            <constraint firstItem="hqB-Sh-luA" firstAttribute="leading" secondItem="flr-82-dzz" secondAttribute="leadingMargin" id="9gJ-Fw-PFH"/>
+                            <constraint firstItem="g34-mu-v73" firstAttribute="trailing" secondItem="flr-82-dzz" secondAttribute="trailingMargin" id="AYE-ap-kxt"/>
+                            <constraint firstItem="g34-mu-v73" firstAttribute="leading" secondItem="flr-82-dzz" secondAttribute="leadingMargin" id="GwV-qP-E9b"/>
+                            <constraint firstItem="8ti-mT-Ns5" firstAttribute="top" secondItem="hqB-Sh-luA" secondAttribute="bottom" constant="55" id="Gyj-vO-e35"/>
+                            <constraint firstItem="hqB-Sh-luA" firstAttribute="top" secondItem="wMI-bY-RSj" secondAttribute="bottom" constant="35" id="Hpd-pf-kXF"/>
+                            <constraint firstItem="hqB-Sh-luA" firstAttribute="trailing" secondItem="flr-82-dzz" secondAttribute="trailingMargin" id="Mcv-3o-zS6"/>
+                            <constraint firstItem="g34-mu-v73" firstAttribute="top" secondItem="wMI-bY-RSj" secondAttribute="bottom" constant="35" id="WyL-H3-BiH"/>
                             <constraint firstItem="wMI-bY-RSj" firstAttribute="leading" secondItem="flr-82-dzz" secondAttribute="leadingMargin" id="buU-CH-j0d"/>
-                            <constraint firstItem="g34-mu-v73" firstAttribute="leading" secondItem="flr-82-dzz" secondAttribute="leadingMargin" id="oqg-YP-jSE"/>
-                            <constraint firstItem="g34-mu-v73" firstAttribute="top" secondItem="T4a-Ko-yHZ" secondAttribute="bottom" constant="101" id="oyU-7f-vnH"/>
-                            <constraint firstItem="hqB-Sh-luA" firstAttribute="leading" secondItem="flr-82-dzz" secondAttribute="leadingMargin" id="rQm-aD-1U2"/>
-                            <constraint firstItem="hqB-Sh-luA" firstAttribute="top" secondItem="T4a-Ko-yHZ" secondAttribute="bottom" constant="101" id="wZI-pc-sam"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Analytics Report" id="11P-5e-0VO">
@@ -1430,12 +1432,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sbw-Wi-u8p" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbw-Wi-u8p" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sbw-Wi-u8p" firstAttribute="leading" secondItem="p9v-40-VTs" secondAttribute="leading" id="VVW-aL-f8f"/>
+                            <constraint firstItem="sbw-Wi-u8p" firstAttribute="top" secondItem="jAn-Sn-UeI" secondAttribute="bottom" id="jdU-Uc-Kk2"/>
+                            <constraint firstAttribute="trailing" secondItem="sbw-Wi-u8p" secondAttribute="trailing" id="sgP-tt-JZ2"/>
+                            <constraint firstItem="sbw-Wi-u8p" firstAttribute="bottom" secondItem="fnS-s5-Oy5" secondAttribute="top" id="wza-t4-eKU"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>
@@ -1593,12 +1601,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idX-RI-cfi" customClass="HorizontalBarChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idX-RI-cfi" customClass="HorizontalBarChartView" customModule="Charts">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="380"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="idX-RI-cfi" secondAttribute="trailing" id="Aqg-rL-5Dd"/>
+                            <constraint firstItem="idX-RI-cfi" firstAttribute="top" secondItem="P98-KA-mp4" secondAttribute="bottom" id="TRO-qs-hAl"/>
+                            <constraint firstItem="idX-RI-cfi" firstAttribute="bottom" secondItem="79Z-Ar-PBh" secondAttribute="top" id="YaR-bm-Ruw"/>
+                            <constraint firstItem="idX-RI-cfi" firstAttribute="leading" secondItem="0Zo-Cq-Lmp" secondAttribute="leading" id="bnz-Pp-rNU"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <connections>

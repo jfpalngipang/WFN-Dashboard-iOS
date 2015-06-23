@@ -12,6 +12,11 @@
 @implementation Data
 NSMutableArray *apNames = nil;
 NSMutableArray *apIds = nil;
+NSMutableArray *active = nil;
+NSMutableArray *females = nil;
+NSMutableArray *males = nil;
+NSMutableArray *others = nil;
+
 NSString *user = nil;
 NSString *url_str = @"http://dev.wifination.ph:3000";
 
@@ -43,10 +48,11 @@ NSString *url_str = @"http://dev.wifination.ph:3000";
 + (void)getAgeGenderData{
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getAnalytics" completion:^(NSDictionary *responseDict){
-        for (id ap in responseDict){
-            
-        }
-        
+        males = responseDict[@"agegender"][@"m"];
+        females = responseDict[@"agegender"][@"f"];
+        others = responseDict[@"agegender"][@"o"];
+        active = responseDict[@"active"];
+        NSLog(@"%@", males);
     }];
 }
 
