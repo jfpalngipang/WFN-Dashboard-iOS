@@ -3,39 +3,81 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SurveyCell" rowHeight="100" id="k0a-NQ-W4Y" customClass="SurveyCell">
-            <rect key="frame" x="0.0" y="0.0" width="312" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SurveyCell" rowHeight="231" id="k0a-NQ-W4Y" customClass="SurveyCell">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="231"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k0a-NQ-W4Y" id="5x3-Yl-2aC">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="time and date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olO-jJ-uYm">
-                        <rect key="frame" x="215" y="74" width="106" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time and date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olO-jJ-uYm">
+                        <rect key="frame" x="206" y="74" width="92" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="92" id="Yqj-de-ERo"/>
+                            <constraint firstAttribute="height" constant="21" id="rH0-Cx-pKd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="survey news" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vr4-TN-SHY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="survey news" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vr4-TN-SHY">
                         <rect key="frame" x="96" y="8" width="202" height="76"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="202" id="Utr-Og-If6"/>
+                            <constraint firstAttribute="height" constant="76" id="fJT-Cd-bHI"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-CK-Ifq">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DJ1-CK-Ifq">
                         <rect key="frame" x="8" y="15" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="8dw-iv-3WB"/>
+                            <constraint firstAttribute="height" constant="70" id="TpL-FH-PNr"/>
+                        </constraints>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7C-vM-S1z" customClass="PieChartView" customModule="Charts">
+                        <rect key="frame" x="62" y="103" width="190" height="119"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="119" id="UVZ-OV-P8Z"/>
+                            <constraint firstAttribute="width" constant="190" id="p0n-cm-6G9"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Vr4-TN-SHY" firstAttribute="leading" secondItem="DJ1-CK-Ifq" secondAttribute="trailing" constant="18" id="4AB-ey-I4G"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="y7C-vM-S1z" secondAttribute="trailing" constant="55" id="8TA-BF-zvW"/>
+                    <constraint firstItem="olO-jJ-uYm" firstAttribute="top" secondItem="Vr4-TN-SHY" secondAttribute="bottom" constant="-10" id="9CV-IF-Qge"/>
+                    <constraint firstItem="Vr4-TN-SHY" firstAttribute="top" secondItem="5x3-Yl-2aC" secondAttribute="topMargin" id="JWC-aU-STq"/>
+                    <constraint firstItem="y7C-vM-S1z" firstAttribute="top" secondItem="Vr4-TN-SHY" secondAttribute="bottom" constant="19" id="OKF-68-HP4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="olO-jJ-uYm" secondAttribute="trailing" constant="9" id="Qk0-gN-BW7"/>
+                    <constraint firstItem="olO-jJ-uYm" firstAttribute="leading" secondItem="Vr4-TN-SHY" secondAttribute="trailing" constant="-92" id="foA-aZ-WvZ"/>
+                    <constraint firstItem="y7C-vM-S1z" firstAttribute="leading" secondItem="5x3-Yl-2aC" secondAttribute="leadingMargin" constant="54" id="hEb-eF-YiP"/>
+                    <constraint firstItem="DJ1-CK-Ifq" firstAttribute="top" secondItem="5x3-Yl-2aC" secondAttribute="topMargin" constant="7" id="kci-CN-hv1"/>
+                    <constraint firstItem="olO-jJ-uYm" firstAttribute="top" secondItem="5x3-Yl-2aC" secondAttribute="topMargin" constant="66" id="mAX-XZ-hui"/>
+                    <constraint firstItem="DJ1-CK-Ifq" firstAttribute="leading" secondItem="5x3-Yl-2aC" secondAttribute="leadingMargin" id="qCp-3K-kGB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Vr4-TN-SHY" secondAttribute="trailing" constant="9" id="yaV-qP-WZm"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="9CV-IF-Qge"/>
+                        <exclude reference="foA-aZ-WvZ"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="pieChartView" destination="y7C-vM-S1z" id="Dc3-wu-aNH"/>
                 <outlet property="surveyImage" destination="DJ1-CK-Ifq" id="XHc-Rg-5pb"/>
                 <outlet property="surveyResultsLabel" destination="Vr4-TN-SHY" id="jOl-EP-s8j"/>
                 <outlet property="timeDateLabel" destination="olO-jJ-uYm" id="093-Iq-qda"/>
             </connections>
-            <point key="canvasLocation" x="290" y="164"/>
+            <point key="canvasLocation" x="291.5" y="229.5"/>
         </tableViewCell>
     </objects>
 </document>

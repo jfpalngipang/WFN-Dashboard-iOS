@@ -116,11 +116,13 @@
             cell.timeDateLabel.text = time;
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]) {
+            NSDictionary *questions = [news_array objectAtIndex:indexPath.row];
             identifier = @"SurveyUsersCell";
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *answer = [news_array objectAtIndex:indexPath.row][@"answer"];
             NSString *question = [news_array objectAtIndex:indexPath.row][@"question"];
             SurveyCell *cell = (SurveyCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];

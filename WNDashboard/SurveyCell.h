@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Charts/Charts.h>
 
 @interface SurveyCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *surveyResultsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeDateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *surveyImage;
+@property (weak, nonatomic) IBOutlet PieChartView *pieChartView;
 
 @end

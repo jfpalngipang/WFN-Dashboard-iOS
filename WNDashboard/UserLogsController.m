@@ -95,7 +95,12 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return logs.count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return searchResults.count;
+    } else {
+        return logs.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -108,30 +113,45 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"UserLogsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    /*
-    if(indexPath.row == 0){
-        cell.nameLabel.text = @"User";
+    
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView){
+        NSString* firstLetter = [[searchResults objectAtIndex:indexPath.row][@"device"] substringToIndex:1];
+        if([firstLetter isEqualToString:@"A"]){
+            cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
+        } else if([firstLetter isEqualToString:@"i"] || [firstLetter isEqualToString:@"M"] ){
+            cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
+        } else if([firstLetter isEqualToString:@"W"]){
+            cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+        }
         
-        cell.startLabel.text = @"Start Time";
-        cell.totalLabel.text = @"Total Time";
-    }
-    */
-    NSString* firstLetter = [[logs objectAtIndex:indexPath.row][@"device"] substringToIndex:1];
-    if([firstLetter isEqualToString:@"A"]){
-        cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
-    } else if([firstLetter isEqualToString:@"i"] || [firstLetter isEqualToString:@"M"] ){
-        cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
-    } else if([firstLetter isEqualToString:@"W"]){
-        cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+        //cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
+        cell.nameLabel.text = [searchResults objectAtIndex:indexPath.row][@"user"];
+        
+        cell.startLabel.text = [searchResults objectAtIndex:indexPath.row][@"time_start"];
+        cell.totalLabel.text = [searchResults objectAtIndex:indexPath.row][@"total_mins"];
+        
+        return cell;
+    } else {
+        NSString* firstLetter = [[logs objectAtIndex:indexPath.row][@"device"] substringToIndex:1];
+        if([firstLetter isEqualToString:@"A"]){
+            cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
+        } else if([firstLetter isEqualToString:@"i"] || [firstLetter isEqualToString:@"M"] ){
+            cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
+        } else if([firstLetter isEqualToString:@"W"]){
+            cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+        }
+        
+        //cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
+        cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
+        
+        cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];
+        cell.totalLabel.text = [logs objectAtIndex:indexPath.row][@"total_mins"];
+        
+        return cell;
     }
     
-    //cell.deviceImage.image = [UIImage imageNamed:@"and.png"];
-    cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
 
-    cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];
-    cell.totalLabel.text = [logs objectAtIndex:indexPath.row][@"total_mins"];
-    
-    return cell;
     
 }
 
@@ -159,8 +179,9 @@
     });
 }
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"ap contains[c] %@", searchText];
     searchResults = [logs filteredArrayUsingPredicate:resultPredicate];
+    
 }
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
