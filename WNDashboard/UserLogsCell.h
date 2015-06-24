@@ -14,5 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *deviceImage;
+@property (weak, nonatomic) IBOutlet UILabel *deviceLabel;
 
 @end

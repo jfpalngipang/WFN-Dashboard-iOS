@@ -43,7 +43,8 @@
             [news_array addObject:entry];
         }
         NSLog(@"%@", news_array);
-        self.tableView.rowHeight = 100;
+        self.tableView.estimatedRowHeight = 150.0;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
     }];
@@ -72,7 +73,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+*/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return news_array.count;
 }
@@ -110,6 +115,9 @@
             FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.profilePicture.frame];
             
             [profilePicture setProfileID:fbId];
+            profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height /2;
+            profilePicture.layer.masksToBounds = YES;
+            profilePicture.layer.borderWidth = 0;
             [cell addSubview:profilePicture];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
             cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ for the last 30 days", count];

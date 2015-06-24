@@ -23,6 +23,21 @@
         NSLog(@"%@", responseDict);
     }];
 
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:11.0f]};
+    [self.segmentedControl setTitleTextAttributes:attributes
+                                    forState:UIControlStateNormal];
+    self.segmentedControl.selectedSegmentIndex = 0;
+    NSDate *dateToday = [NSDate date];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:-6];
+    NSDate *sevenDaysAgo = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:dateToday options:0];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM dd"];
+    NSString *stringDateToday = [dateFormatter stringFromDate:dateToday];
+    NSString *stringDateSixDaysAgo = [dateFormatter stringFromDate:sevenDaysAgo];
+    NSLog(@"%@", stringDateToday);
+    NSLog(@"%@", stringDateSixDaysAgo);
+    
     
 }
 

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SurveyAPViewController : UIViewController
+@interface SurveyAPViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

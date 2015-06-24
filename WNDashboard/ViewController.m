@@ -16,13 +16,27 @@
 @implementation ViewController
 {
     NSURL *loginURL;
+    UITextField *activeTextField;
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.textFieldUsername.delegate = self;
+    self.textFieldPassword.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    
+}
+
+- (void) viewDidUnload{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,9 +107,12 @@
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
              {
                  
-                 [Data setUser:username];
-                 [Data fillAPArrays];
-                 [Data getAgeGenderData];
+                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                     [Data setUser:username];
+                     [Data fillAPArrays];
+                     [Data getAgeGenderData];
+                 });
+
                  [self performSegueWithIdentifier:@"loginSuccess" sender:sender];
              }];
             
@@ -111,5 +128,44 @@
     }];
     
     [loginDataTask resume];
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    activeTextField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    activeTextField = nil;
+}
+
+- (void)keyboardWasShown:(NSNotification *)aNotification
+{
+    // Step 1: Get the size of the keyboard.
+    
+        CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height-10, 0.0);
+        self.scrollView.contentInset = contentInsets;
+        self.scrollView.scrollIndicatorInsets = contentInsets;
+        
+        
+        // Step 3: Scroll the target text field into view.
+        CGRect aRect = self.view.frame;
+        aRect.size.height -= keyboardSize.height;
+        if (!CGRectContainsPoint(aRect, activeTextField.frame.origin) ) {
+            CGPoint scrollPoint = CGPointMake(0.0, activeTextField.frame.origin.y - (keyboardSize.height-15));
+            [self.scrollView setContentOffset:scrollPoint animated:YES];
+        }
+
+}
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    NSLog(@"hidden");
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
 }
 @end

@@ -56,9 +56,15 @@
     
     NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UIButton *exit = (UIButton *)[tableView viewWithTag:100];
+    [exit addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
     
+}
+
+- (IBAction)exitClicked:(id)sender{
+    NSLog(@"clicked.");
 }
 
 

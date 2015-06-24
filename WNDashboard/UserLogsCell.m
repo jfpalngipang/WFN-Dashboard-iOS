@@ -13,7 +13,7 @@
 @synthesize deviceImage = _deviceImage;
 @synthesize startLabel = _startLabel;
 @synthesize totalLabel = _totalLabel;
-
+@synthesize deviceLabel = _deviceLabel;
 
 - (void)awakeFromNib {
     // Initialization code

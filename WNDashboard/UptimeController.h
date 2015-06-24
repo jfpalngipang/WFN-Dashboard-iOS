@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UptimeController : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 
 @end

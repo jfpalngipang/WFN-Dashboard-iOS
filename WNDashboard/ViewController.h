@@ -19,6 +19,7 @@
 
 - (IBAction)buttonLogInClicked:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
