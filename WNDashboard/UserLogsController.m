@@ -34,12 +34,7 @@
     _ap_list = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 60)];
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 20, 300, 40)];
-    headerLabel.text = NSLocalizedString(@"name     device  start time  total time", @"");
-    headerLabel.backgroundColor = [UIColor orangeColor];
-    [header addSubview:headerLabel];
+ 
     
     
     //self.tableView.tableHeaderView = header;

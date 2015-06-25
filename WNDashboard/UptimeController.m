@@ -9,15 +9,23 @@
 #import "UptimeController.h"
 #import "SWRevealViewController.h"
 #import "requestUtility.h"
+#import "Data.h"
+#import "WNDashboard-Bridging-Header.h"
 
-@interface UptimeController ()
+@interface UptimeController () <ChartViewDelegate>
 
 @end
 
 @implementation UptimeController
+{
+    NSMutableArray *chartData;
+    NSString *beats;
+    NSString *temp;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    chartData = [[NSMutableArray alloc] init];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getRPM" completion:^(NSDictionary *responseDict){
         NSLog(@"%@", responseDict);
@@ -26,18 +34,79 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:11.0f]};
     [self.segmentedControl setTitleTextAttributes:attributes
                                     forState:UIControlStateNormal];
-    self.segmentedControl.selectedSegmentIndex = 0;
+    //self.segmentedControl.selectedSegmentIndex = 0;
     NSDate *dateToday = [NSDate date];
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    [dateComponents setDay:-6];
-    NSDate *sevenDaysAgo = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:dateToday options:0];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMM dd"];
-    NSString *stringDateToday = [dateFormatter stringFromDate:dateToday];
-    NSString *stringDateSixDaysAgo = [dateFormatter stringFromDate:sevenDaysAgo];
-    NSLog(@"%@", stringDateToday);
-    NSLog(@"%@", stringDateSixDaysAgo);
+    for(int i = 6; i >=0; i--){
+        [dateComponents setDay:-i];
+        NSDate *DaysAgo = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:dateToday options:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMM dd"];
+        NSString *stringDaysAgo = [dateFormatter stringFromDate:DaysAgo];
+        //NSLog(@"%@", stringDaysAgo);
+        [self.segmentedControl setTitle:stringDaysAgo forSegmentAtIndex:i];
+    }
+    _lineChartView.delegate = self;
     
+    _lineChartView.highlightEnabled = NO;
+    _lineChartView.dragEnabled = NO;
+    _lineChartView.pinchZoomEnabled = NO;
+    _lineChartView.drawGridBackgroundEnabled = NO;
+    
+    ChartYAxis *leftAxis = _lineChartView.leftAxis;
+    leftAxis.customAxisMax = 1;
+    leftAxis.customAxisMin = 0;
+    leftAxis.startAtZeroEnabled = YES;
+    //leftAxis.gridLineDashLengths = @[@5.f, @5.f];
+    leftAxis.drawLimitLinesBehindDataEnabled = YES;
+    
+    _lineChartView.rightAxis.enabled = NO;
+    _lineChartView.legend.form = ChartLegendFormLine;
+    
+    [_lineChartView animateWithXAxisDuration:3.5 easingOption:ChartEasingOptionEaseInOutQuart];
+
+    
+    
+    
+}
+
+- (void)setDataCount: (int)count range: (double)range{
+    NSMutableArray *xVals = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        [xVals addObject:[@(i) stringValue]];
+    }
+    
+    
+    NSMutableArray *yVals = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < count; i++)
+    {
+        //int val = [chartData[i] intValue];
+        //NSLog(@"BEAT: %@", chartData[i]);
+        double mult = (range + 1);
+        double val = (double) (arc4random_uniform(mult)) + 3;
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+    }
+    
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"Router Uptime"];
+    
+    set1.lineDashLengths = @[@5.f, @2.5f];
+    [set1 setColor:UIColor.orangeColor];
+    [set1 setCircleColor:UIColor.blackColor];
+    set1.lineWidth = 1.0;
+    set1.circleRadius = 3.0;
+    set1.drawCircleHoleEnabled = NO;
+    set1.valueFont = [UIFont systemFontOfSize:9.f];
+    set1.fillAlpha = 65/255.0;
+    set1.fillColor = UIColor.orangeColor;
+    
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [dataSets addObject:set1];
+    
+    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
+    _lineChartView.data = data;
     
 }
 
@@ -46,14 +115,57 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)segmentChanged:(id)sender {
+    switch (self.segmentedControl.selectedSegmentIndex){
+        case 0:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[6][1]];
+            
+            for(int i = 0; i <= [beats length]; i++){
+                temp = [beats substringToIndex:i];
+                int tempNum = [temp integerValue];
+                [chartData addObject:[NSNumber numberWithInt:tempNum]];
+            }
+             
+            //NSLog(@"BEATS %@", chartData);
+            //chartData = heartbeats[6][1];
+            [self setDataCount:10 range:1];
+            break;
+        case 1:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[5][1]];
+           // chartData = heartbeats[5][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+        case 2:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[4][1]];
+           // chartData = heartbeats[4][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+        case 3:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[3][1]];
+            //chartData = heartbeats[3][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+        case 4:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[2][1]];
+            //chartData = heartbeats[2][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+        case 5:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[1][1]];
+            //chartData = heartbeats[1][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+        case 6:
+            beats = [NSString stringWithFormat:@"%@", heartbeats[0][1]];
+            //chartData = heartbeats[0][1];
+            //[self setDataCount:10 range:1];
+            NSLog(@"BEATS %@", beats);
+            break;
+    }
 }
-*/
-
 @end

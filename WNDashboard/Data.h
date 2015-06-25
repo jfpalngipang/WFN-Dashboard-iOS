@@ -19,6 +19,9 @@ extern NSMutableArray *others;
 extern NSMutableArray *active;
 extern NSMutableArray *heartbeats;
 extern NSMutableArray *speed;
+extern NSMutableArray *feeds;
+
+
 
 @interface Data : NSObject
 

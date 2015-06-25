@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Charts/Charts.h>
 
 @interface UptimeController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
+@property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
+- (IBAction)segmentChanged:(id)sender;
 
 @end

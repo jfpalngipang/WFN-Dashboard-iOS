@@ -84,6 +84,14 @@
 		C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7B01B27481C007E22EB /* grey_survey.png */; };
 		C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B4F7B11B27481C007E22EB /* grey_userlogs.png */; };
 		C6B4F7BD1B280D11007E22EB /* UserLogsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B4F7BC1B280D11007E22EB /* UserLogsController.m */; };
+		C6B7EE8A1B3BD1BB00D96961 /* SurveyAPCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE891B3BD1BB00D96961 /* SurveyAPCell.xib */; };
+		C6B7EE8D1B3BD1F600D96961 /* SurveyAPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7EE8C1B3BD1F600D96961 /* SurveyAPCell.m */; };
+		C6B7EE8F1B3BEA7000D96961 /* RevealViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE8E1B3BEA7000D96961 /* RevealViewCell.xib */; };
+		C6B7EE921B3BEAFC00D96961 /* RevealViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7EE911B3BEAFC00D96961 /* RevealViewCell.m */; };
+		C6B7EE951B3BF87D00D96961 /* UserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7EE941B3BF87D00D96961 /* UserProfileController.m */; };
+		C6B7EE991B3C365D00D96961 /* newsfeed_activeusers.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */; };
+		C6B7EE9A1B3C365D00D96961 /* newsfeed_newuser.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE971B3C365D00D96961 /* newsfeed_newuser.png */; };
+		C6B7EE9B1B3C365D00D96961 /* newsfeed_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE981B3C365D00D96961 /* newsfeed_survey.png */; };
 		C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */; };
 		C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */; };
 		C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C249CB1B2ACF8900981C73 /* OnlineUsersCell.xib */; };
@@ -335,6 +343,17 @@
 		C6B4F7B11B27481C007E22EB /* grey_userlogs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = grey_userlogs.png; path = ../../../../Downloads/drawable/grey_userlogs.png; sourceTree = "<group>"; };
 		C6B4F7BB1B280D11007E22EB /* UserLogsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLogsController.h; sourceTree = "<group>"; };
 		C6B4F7BC1B280D11007E22EB /* UserLogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLogsController.m; sourceTree = "<group>"; };
+		C6B7EE891B3BD1BB00D96961 /* SurveyAPCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurveyAPCell.xib; sourceTree = "<group>"; };
+		C6B7EE8B1B3BD1F600D96961 /* SurveyAPCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyAPCell.h; sourceTree = "<group>"; };
+		C6B7EE8C1B3BD1F600D96961 /* SurveyAPCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyAPCell.m; sourceTree = "<group>"; };
+		C6B7EE8E1B3BEA7000D96961 /* RevealViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RevealViewCell.xib; sourceTree = "<group>"; };
+		C6B7EE901B3BEAFC00D96961 /* RevealViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RevealViewCell.h; sourceTree = "<group>"; };
+		C6B7EE911B3BEAFC00D96961 /* RevealViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RevealViewCell.m; sourceTree = "<group>"; };
+		C6B7EE931B3BF87D00D96961 /* UserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileController.h; sourceTree = "<group>"; };
+		C6B7EE941B3BF87D00D96961 /* UserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileController.m; sourceTree = "<group>"; };
+		C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_activeusers.png; path = assets/newsfeed_activeusers.png; sourceTree = SOURCE_ROOT; };
+		C6B7EE971B3C365D00D96961 /* newsfeed_newuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_newuser.png; path = assets/newsfeed_newuser.png; sourceTree = SOURCE_ROOT; };
+		C6B7EE981B3C365D00D96961 /* newsfeed_survey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_survey.png; path = assets/newsfeed_survey.png; sourceTree = SOURCE_ROOT; };
 		C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrequentUsersCell.xib; sourceTree = "<group>"; };
 		C6C249C81B2AC90500981C73 /* FrequentUsersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentUsersCell.h; sourceTree = "<group>"; };
 		C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentUsersCell.m; sourceTree = "<group>"; };
@@ -508,6 +527,8 @@
 				C67906651B32CF5E00F4F098 /* TermsController.m */,
 				C679069B1B33E41700F4F098 /* Data.h */,
 				C679069C1B33E41700F4F098 /* Data.m */,
+				C6B7EE931B3BF87D00D96961 /* UserProfileController.h */,
+				C6B7EE941B3BF87D00D96961 /* UserProfileController.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -647,6 +668,9 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */,
+				C6B7EE971B3C365D00D96961 /* newsfeed_newuser.png */,
+				C6B7EE981B3C365D00D96961 /* newsfeed_survey.png */,
 				C67906BA1B34292300F4F098 /* and.png */,
 				C67906BB1B34292300F4F098 /* ios.png */,
 				C67906BC1B34292300F4F098 /* win.png */,
@@ -705,6 +729,12 @@
 				C67906B51B3408CE00F4F098 /* ProfileCell.xib */,
 				C67906B71B340A8400F4F098 /* ProfileCell.h */,
 				C67906B81B340A8400F4F098 /* ProfileCell.m */,
+				C6B7EE891B3BD1BB00D96961 /* SurveyAPCell.xib */,
+				C6B7EE8B1B3BD1F600D96961 /* SurveyAPCell.h */,
+				C6B7EE8C1B3BD1F600D96961 /* SurveyAPCell.m */,
+				C6B7EE8E1B3BEA7000D96961 /* RevealViewCell.xib */,
+				C6B7EE901B3BEAFC00D96961 /* RevealViewCell.h */,
+				C6B7EE911B3BEAFC00D96961 /* RevealViewCell.m */,
 			);
 			name = "Custom Table Cells";
 			sourceTree = "<group>";
@@ -870,11 +900,16 @@
 				C67906371B2EA11300F4F098 /* SurveysViewCell.xib in Resources */,
 				C607D1FA1B283DB700467F86 /* analytics1_orange.png in Resources */,
 				C679063C1B2EADC400F4F098 /* next.png in Resources */,
+				C6B7EE8A1B3BD1BB00D96961 /* SurveyAPCell.xib in Resources */,
+				C6B7EE9A1B3C365D00D96961 /* newsfeed_newuser.png in Resources */,
 				C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */,
 				C67906BF1B34292300F4F098 /* win.png in Resources */,
+				C6B7EE991B3C365D00D96961 /* newsfeed_activeusers.png in Resources */,
 				C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */,
 				C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */,
+				C6B7EE9B1B3C365D00D96961 /* newsfeed_survey.png in Resources */,
 				C67906571B31351600F4F098 /* icon_survey.png in Resources */,
+				C6B7EE8F1B3BEA7000D96961 /* RevealViewCell.xib in Resources */,
 				C67906261B2D69DD00F4F098 /* refresh.png in Resources */,
 				C6C72FEE1B2871BA003940DA /* downArrow.png in Resources */,
 				C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */,
@@ -943,9 +978,12 @@
 				C6C72FF11B2871BA003940DA /* DownPicker.m in Sources */,
 				C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */,
 				C6C72FF21B2871BA003940DA /* UIDownPicker.m in Sources */,
+				C6B7EE8D1B3BD1F600D96961 /* SurveyAPCell.m in Sources */,
 				C67D97551B25A0ED0063FB84 /* requestUtility.m in Sources */,
+				C6B7EE951B3BF87D00D96961 /* UserProfileController.m in Sources */,
 				C67906AC1B33FB5500F4F098 /* SWCellScrollView.m in Sources */,
 				C67906661B32CF5E00F4F098 /* TermsController.m in Sources */,
+				C6B7EE921B3BEAFC00D96961 /* RevealViewCell.m in Sources */,
 				C67906351B2E8A9900F4F098 /* UserLogsCell.m in Sources */,
 				C67906991B3328EA00F4F098 /* SurveyAPViewController.m in Sources */,
 				C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */,

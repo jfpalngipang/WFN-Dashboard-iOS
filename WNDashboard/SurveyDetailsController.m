@@ -8,6 +8,8 @@
 
 #import "SurveyDetailsController.h"
 #import "requestUtility.h"
+#import "SurveyDetailsViewController.h"
+#import "SurveyAPViewController.h"
 
 @interface SurveyDetailsController ()
 
@@ -15,12 +17,36 @@
 
 @implementation SurveyDetailsController
 @synthesize surveyQuestion;
+@synthesize responseCounts;
+@synthesize responses;
+@synthesize responseAPList;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.pieChartContainer.hidden = false;
+    self.apListContainer.hidden = true;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
+    item.title = @"Title";
+    self.navigationItem.backBarButtonItem = item;
+    
     self.surveyLabel.text = surveyQuestion;
     self.pieChartContainer.hidden = false;
     self.apListContainer.hidden = true;
+    
+    //NSLog(@"RESPONSE COUNTS: %@", self.responseCounts);
+    
+    SurveyDetailsViewController *chart = [self.childViewControllers objectAtIndex:0];
+    [chart beginCharting];
+    //chart.responseCounts = self.responseCounts;
+    //chart.responses = self.responses;
+    NSLog(@"%%%%%%%%%%%%%%%%%%%%: %@", chart);
+    SurveyAPViewController *apTable = [self.childViewControllers objectAtIndex:1];
+    NSLog(@"%%%%%%%%%%%%%%: %@", apTable);
+    [apTable refreshTable];
+    
     
 }
 
@@ -40,5 +66,15 @@
 */
 
 - (IBAction)indexChanged:(id)sender {
+    switch(self.segmentedControl.selectedSegmentIndex){
+        case 0:
+            self.pieChartContainer.hidden = false;
+            self.apListContainer.hidden = true;
+            break;
+        case 1:
+            self.pieChartContainer.hidden = true;
+            self.apListContainer.hidden = false;
+            break;
+    }
 }
 @end

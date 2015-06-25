@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface SurveysController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,5 +21,6 @@
 - (IBAction)nextClicked:(id)sender;
 - (IBAction)prevClicked:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end

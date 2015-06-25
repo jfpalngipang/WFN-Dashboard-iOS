@@ -7,6 +7,7 @@
 //
 
 #import "TermsController.h"
+#import "SWRevealViewController.h"
 
 @interface TermsController ()
 
@@ -16,8 +17,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
+    item.title = @"Title";
+    self.navigationItem.backBarButtonItem = item;
+    
+    self.webView.frame=self.view.bounds;
+    NSString *strURL = @"http://dev.wifination.ph:3000/mobile/terms/";
+    NSURL *url = [NSURL URLWithString:strURL];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:urlRequest];
+    self.webView.scalesPageToFit = YES;
+    /*
+    UIStoryboard *st = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+    SWRevealViewController *revealViewController = [st instantiateViewControllerWithIdentifier:@"revealView"];
+    //[self presentViewController:revealViewController animated:YES completion:nil]
+    if(revealViewController){
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+    }
+     */
 }
+     
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -10,4 +10,7 @@
 
 @interface SurveyAPViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (void) refreshTable;
 @end

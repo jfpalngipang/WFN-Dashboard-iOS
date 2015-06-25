@@ -15,6 +15,7 @@
 #import "MessageCell.h"
 #import "NewUserCell.h"
 #import "fbGraphUtility.h"
+#import "Data.h"
 
 @interface FeedsController ()
 
@@ -25,6 +26,7 @@
     
     NSMutableArray *news_array;
     fbGraphUtility *fbUtil;
+    NSMutableArray *other;
 
     
 }
@@ -42,6 +44,8 @@
         for(id entry in responseDict){
             [news_array addObject:entry];
         }
+        feeds = news_array;
+        
         NSLog(@"%@", news_array);
         self.tableView.estimatedRowHeight = 150.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -73,11 +77,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]){
+        return 260;
+    } else {
+        return 100;
+    }
 }
-*/
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return news_array.count;
 }
@@ -97,7 +105,7 @@
                 cell = [nib objectAtIndex:0];
             }
 
-            cell.onlineImage.image = [UIImage imageNamed:@"icon_user"];
+            cell.onlineImage.image = [UIImage imageNamed:@"newsfeed_activeusers"];
             cell.countLabel.text = [NSString stringWithFormat:@"%@", count];
             cell.timeLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
@@ -115,20 +123,19 @@
             FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.profilePicture.frame];
             
             [profilePicture setProfileID:fbId];
-            profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height /2;
-            profilePicture.layer.masksToBounds = YES;
             profilePicture.layer.borderWidth = 0;
             [cell addSubview:profilePicture];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
-            cell.usageLabel.text = [NSString stringWithFormat:@"has used your hotspot %@ for the last 30 days", count];
+            cell.usageLabel.text = [NSString stringWithFormat:@"is one of your %@ users for the last 30 days", count];
             cell.timeDateLabel.text = time;
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]) {
-            NSDictionary *questions = [news_array objectAtIndex:indexPath.row];
+            //NSDictionary *questions = [news_array objectAtIndex:indexPath.row];
             identifier = @"SurveyUsersCell";
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *answer = [news_array objectAtIndex:indexPath.row][@"answer"];
             NSString *question = [news_array objectAtIndex:indexPath.row][@"question"];
+            other = [news_array objectAtIndex:indexPath.row][@"other"];
             SurveyCell *cell = (SurveyCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
 
             if (cell == nil)
@@ -136,7 +143,8 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-            cell.surveyImage.image = [UIImage imageNamed:@"icon_survey"];
+            
+            cell.surveyImage.image = [UIImage imageNamed:@"newsfeed_survey"];
             cell.surveyResultsLabel.text = [NSString stringWithFormat:@"%@ answered %@ to your question: %@", count, answer, question];
             cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
@@ -175,7 +183,7 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewUserCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-
+            cell.newuserImage.image = [UIImage imageNamed:@"newsfeed_newuser"];
             cell.countLabel.text = count;
             cell.timeLabel.text = time;
             return cell;
@@ -231,6 +239,15 @@
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
     }];
+}
+
+-(void)configurePieChart{
+    NSInteger other_total;
+    other_total = 0;
+    for(id ans in other){
+        other_total+=[ans[1] integerValue];
+    }
+    
 }
 
 

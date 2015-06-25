@@ -11,5 +11,9 @@
 
 @interface SurveyDetailsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet PieChartView *pieChartView;
+@property (nonatomic, strong) NSMutableArray *responses;
+@property (nonatomic, strong) NSMutableArray *responseCounts;
 
+
+- (void)beginCharting;
 @end

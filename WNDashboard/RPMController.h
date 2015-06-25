@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DownPicker.h"
 
 @interface RPMController : UIViewController
 
@@ -16,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIView *uptimeContainer;
 
 @property (weak, nonatomic) IBOutlet UIView *speedtestContainer;
+@property (weak, nonatomic) IBOutlet UITextField *apTextField;
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (strong, nonatomic) DownPicker *downPicker;
 
 - (IBAction)indexChanged:(id)sender;
 

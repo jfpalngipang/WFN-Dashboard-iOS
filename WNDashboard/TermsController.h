@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TermsController : UIViewController
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 
 @end

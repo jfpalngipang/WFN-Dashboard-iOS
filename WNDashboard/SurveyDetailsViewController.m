@@ -9,6 +9,8 @@
 #import "SurveyDetailsViewController.h"
 #import "WNDashboard-Bridging-Header.h"
 #import "requestUtility.h"
+#import <Charts/Charts.h>
+#import "SurveyDetailsController.h"
 
 @interface SurveyDetailsViewController () <ChartViewDelegate>
 
@@ -23,8 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"R: %@", self.responses);
     // Do any additional setup after loading the view.
-    requestUtility *reqUtil = [[requestUtility alloc] init];
+    //requestUtility *reqUtil = [[requestUtility alloc] init];
     /*
     [reqUtil GETRequestSender:@"getSurveyDetails" withParams:surveyId completion:^(NSDictionary *responseDict){
         NSLog(@"%@", responseDict);
@@ -52,9 +55,15 @@
     l.yOffset = 0.0;
     
     [_pieChartView animateWithXAxisDuration:1.5 yAxisDuration:1.5 easingOption:ChartEasingOptionEaseOutBack];
+
     
-    [self setDataCount:4 range:1];
     
+}
+
+- (void)beginCharting{
+    UIViewController *parent = self.parentViewController;
+    NSLog(@"^^^^^^PARENT^^^^^: %@", parent);
+    [self setDataCount:(int)((SurveyDetailsController *)parent).responseCounts.count range:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,21 +72,24 @@
 }
 
 - (void)setDataCount:(int)count range:(double)range{
-    double mult = range;
+    //double mult = range;
     
     NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
     
     // IMPORTANT: In a PieChart, no values (Entry) should have the same xIndex (even if from different DataSets), since no values can be drawn above each other.
+    UIViewController *parent = self.parentViewController;
     for (int i = 0; i < count; i++)
     {
-        [yVals1 addObject:[[BarChartDataEntry alloc] initWithValue:(arc4random_uniform(mult) + mult / 5) xIndex:i]];
+    
+        int val = [((SurveyDetailsController *)parent).responseCounts[i] doubleValue];//[self.parentViewController.responseCounts[i] doubleValue];
+        [yVals1 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
-    NSArray *test = [[NSArray alloc] initWithObjects:@"10",@"35",@"20",@"8",@"12", nil];
+    //NSArray *test = [[NSArray alloc] initWithObjects:@"10",@"35",@"20",@"8",@"12", nil];
     for (int i = 0; i < count; i++)
     {
-        [xVals addObject:test[i]];
+        [xVals addObject:((SurveyDetailsController *)parent).responses[i]];
     }
     
     PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithYVals:yVals1 label:@"Survey Details"];
@@ -106,6 +118,9 @@
     
     _pieChartView.data = data;
     [_pieChartView highlightValues:nil];
+    ((SurveyDetailsController *)parent).responseCounts = nil;
+    ((SurveyDetailsController *)parent).responses = nil;
+    
 }
 
 /*

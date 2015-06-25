@@ -9,6 +9,8 @@
 #import "RPMController.h"
 #import "SWRevealViewController.h"
 #import "requestUtility.h"
+#import "Data.h"
+#import "DownPicker.h"
 
 @interface RPMController ()
 
@@ -18,10 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    requestUtility *reqUtil = [[requestUtility alloc] init];
+    //requestUtility *reqUtil = [[requestUtility alloc] init];
     //[reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary* responseDict){
     
    // }];
+    
+    self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
+    [self.downPicker addTarget:self
+                        action:@selector(apSelected:)
+              forControlEvents:UIControlEventValueChanged];
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
@@ -68,4 +75,9 @@
     }
     
 }
+-(void)apSelected:(id)ap {
+    NSString *selectedValue = [self.downPicker text];
+    NSLog(@"%@", selectedValue);
+}
+
 @end

@@ -18,6 +18,7 @@ NSMutableArray *males = nil;
 NSMutableArray *others = nil;
 NSMutableArray *heartbeats = nil;
 NSMutableArray *speed = nil;
+NSMutableArray *feeds = nil;
 
 NSString *user = nil;
 NSString *url_str = @"http://dev.wifination.ph:3000";

@@ -9,6 +9,7 @@
 #import "ConnectedUsersController.h"
 #import "SWRevealViewController.h"
 #import "Data.h"
+#import "WNDashboard-Bridging-Header.h"
 
 @interface ConnectedUsersController () <ChartViewDelegate>
 

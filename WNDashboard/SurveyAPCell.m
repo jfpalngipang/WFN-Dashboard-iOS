@@ -1,17 +1,14 @@
 //
-//  SurveysViewCell.m
+//  SurveyAPCell.m
 //  WNDashboard
 //
-//  Created by Jan Franz Palngipang on 6/15/15.
+//  Created by Jan Franz Palngipang on 6/25/15.
 //  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
 //
 
-#import "SurveysViewCell.h"
+#import "SurveyAPCell.h"
 
-@implementation SurveysViewCell
-@synthesize questionLabel = _questionLabel;
-@synthesize respLabel = _respLabel;
-@synthesize activeLabel = _activeLabel;
+@implementation SurveyAPCell
 
 - (void)awakeFromNib {
     // Initialization code

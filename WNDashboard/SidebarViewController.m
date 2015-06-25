@@ -10,6 +10,8 @@
 #import "SWRevealViewController.h"
 #import "ViewController.h"
 #import "ProfileCell.h"
+#import "RevealViewCell.h"
+#import "Data.h"
 
 @interface SidebarViewController ()
 
@@ -22,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    menuItems = @[@"title", @"newsfeed", @"userlogs", @"surveys", @"analytics", @"controlpanel", @"rpm", @"testimonials", @"terms"];
+    menuItems = @[@"title", @"newsfeed", @"userlogs", @"surveys", @"analytics", @"controlpanel", @"rpm", @"testimonials"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,34 +41,85 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return menuItems.count;
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    indexPath = [tableView indexPathForSelectedRow];
+    if(indexPath.row == 0){
+        UIActionSheet *logoutSheet = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Profile", @"Terms and Agreement", @"Log Out",nil];
+        [logoutSheet showInView:self.view];
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     
     NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    UIButton *exit = (UIButton *)[tableView viewWithTag:100];
-    [exit addTarget:self action:@selector(exitClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //UIButton *logoutButton = (UIButton *)[cell viewWithTag:100];
+    //[logoutButton addTarget:self action:@selector(logoutClicked:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
     
+    /*
+    if(indexPath.row == 0){
+        static NSString *identifier = @"Cell";
+        RevealViewCell *cell = (RevealViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil){
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RevealViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        cell.viewLabel.text = user;
+        cell.viewLabel.textColor = [UIColor orangeColor];
+        cell.logoutButton.tag = 100;
+        [cell.logoutButton addTarget:self action:@selector(logoutClicked:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
+    }else{
+        static NSString *identifier = @"Cell";
+        RevealViewCell *cell = (RevealViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil){
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"RevealViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        cell.viewLabel.text = [menuItems objectAtIndex:indexPath.row-1];
+        cell.logoutButton.hidden = true;
+        return cell;
+    }
+*/
+    
     
 }
 
-- (IBAction)exitClicked:(id)sender{
-    NSLog(@"clicked.");
+-(void)logoutClicked:(UIButton*)sender
+{
+    if (sender.tag == 100)
+    {
+        UIActionSheet *logoutSheet = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Profile", @"Terms and Agreement", @"Log Out",nil];
+        [logoutSheet showInView:self.view];
+        
+    }
+    
 }
-
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if([buttonTitle isEqualToString:@"Profile"]){
+        NSLog(@"PROFILE!");
+        UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileNavigationController"];
+        [self presentViewController:vc animated:NO completion:nil];
+    } else if ([buttonTitle isEqualToString:@"Terms and Agreement"]){
+        UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsNavigationController"];
+        [self presentViewController:vc animated:NO completion:nil];
+    } else if ([buttonTitle isEqualToString:@"Log Out"]){
+        NSLog(@"****LOG OUT!");
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

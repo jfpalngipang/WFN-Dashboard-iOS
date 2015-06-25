@@ -9,12 +9,22 @@
 #import <UIKit/UIKit.h>
 
 @interface SurveyDetailsController : UIViewController
+{
+    NSMutableArray *responses;
+    NSMutableArray *responseCounts;
+    NSArray *responseAPList;
+    
+}
 @property (weak, nonatomic) IBOutlet UILabel *surveyLabel;
 @property (weak, nonatomic) IBOutlet UIView *pieChartContainer;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-- (IBAction)indexChanged:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UIView *apListContainer;
 
 @property (nonatomic, strong) NSString *surveyQuestion;
+@property (nonatomic, strong) NSMutableArray *responses;
+@property (nonatomic, strong) NSMutableArray *responseCounts;
+@property (nonatomic, strong) NSArray *responseAPList;
+- (IBAction)indexChanged:(id)sender;
 
 @end
