@@ -20,6 +20,7 @@ extern NSMutableArray *active;
 extern NSMutableArray *heartbeats;
 extern NSMutableArray *speed;
 extern NSMutableArray *feeds;
+extern NSMutableArray *userInfo;
 
 
 
@@ -31,5 +32,8 @@ extern NSMutableArray *feeds;
 + (void) setUser: (NSString *)name;
 + (void) getAgeGenderData;
 + (void) getRPMData;
++ (void)clearRPM;
++ (void)setRPM:(NSMutableArray *)sp andHeartbeats:(NSMutableArray *)hb;
++ (void)getUserInfo;
 
 @end

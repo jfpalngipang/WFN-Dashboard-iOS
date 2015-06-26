@@ -49,7 +49,7 @@
     _pieChartView.centerText = @"Survey Details Chart";
     
     ChartLegend *l = _pieChartView.legend;
-    l.position = ChartLegendPositionRightOfChart;
+    l.position = ChartLegendPositionBelowChartLeft;
     l.xEntrySpace = 7.0;
     l.yEntrySpace = 0.0;
     l.yOffset = 0.0;
@@ -62,7 +62,6 @@
 
 - (void)beginCharting{
     UIViewController *parent = self.parentViewController;
-    NSLog(@"^^^^^^PARENT^^^^^: %@", parent);
     [self setDataCount:(int)((SurveyDetailsController *)parent).responseCounts.count range:1];
 }
 
@@ -114,7 +113,7 @@
     pFormatter.percentSymbol = @" %";
     [data setValueFormatter:pFormatter];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:11.f]];
-    [data setValueTextColor:UIColor.whiteColor];
+    [data setValueTextColor:UIColor.blackColor];
     
     _pieChartView.data = data;
     [_pieChartView highlightValues:nil];

@@ -14,5 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
 - (IBAction)segmentChanged:(id)sender;
+- (void)beginCharting:(int)size;
 
 @end

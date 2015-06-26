@@ -17,10 +17,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
     item.title = @"Title";
     self.navigationItem.backBarButtonItem = item;
-    
+    /*
+    if([[segue identifier] isEqualToString:@"try"]){
+        SWRevealViewController *revealViewController = [segue destinationViewController];//self.revealViewController;
+        if(revealViewController){
+            [self.sidebarButton setTarget: self.revealViewController];
+            [self.sidebarButton setAction:@selector(revealToggle:)];
+            [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+            
+        }
+    }
+     */
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if(revealViewController){
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction:@selector(revealToggle:)];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+        
+    }
     self.webView.frame=self.view.bounds;
     NSString *strURL = @"http://dev.wifination.ph:3000/mobile/terms/";
     NSURL *url = [NSURL URLWithString:strURL];

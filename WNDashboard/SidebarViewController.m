@@ -12,6 +12,7 @@
 #import "ProfileCell.h"
 #import "RevealViewCell.h"
 #import "Data.h"
+#import "TermsController.h"
 
 @interface SidebarViewController ()
 
@@ -66,6 +67,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     //UIButton *logoutButton = (UIButton *)[cell viewWithTag:100];
     //[logoutButton addTarget:self action:@selector(logoutClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *username = (UILabel *)[cell viewWithTag:101];
+    username.text = user;
     return cell;
     
     /*
@@ -110,12 +113,17 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
     if([buttonTitle isEqualToString:@"Profile"]){
-        NSLog(@"PROFILE!");
-        UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserProfileNavigationController"];
-        [self presentViewController:vc animated:NO completion:nil];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [self performSegueWithIdentifier:@"showProfile" sender:self];
+         }];
     } else if ([buttonTitle isEqualToString:@"Terms and Agreement"]){
-        UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsNavigationController"];
-        [self presentViewController:vc animated:NO completion:nil];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^
+         {
+             [self performSegueWithIdentifier:@"showTerms" sender:self];
+         }];
+        //UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsNavigationController"];
+        //[self presentViewController:vc animated:NO completion:nil];
     } else if ([buttonTitle isEqualToString:@"Log Out"]){
         NSLog(@"****LOG OUT!");
     }

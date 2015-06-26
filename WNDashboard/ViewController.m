@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.activityIndicatorContainer.hidden = true;
     // Do any additional setup after loading the view, typically from a nib.
     self.textFieldUsername.delegate = self;
     self.textFieldPassword.delegate = self;
@@ -72,6 +73,11 @@
     return YES;
 }
 - (IBAction)buttonLogInClicked:(id)sender {
+    [activeTextField resignFirstResponder];
+    self.textFieldUsername.hidden = true;
+    self.textFieldPassword.hidden = true;
+    self.loginButton.hidden = true;
+    self.activityIndicatorContainer.hidden = false;
     username = [NSString stringWithString:[self.textFieldUsername text]];
     loginURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/login_app/"];
     NSLog(@"%@", [self.textFieldPassword text]);
@@ -111,6 +117,7 @@
                      [Data setUser:username];
                      [Data fillAPArrays];
                      [Data getAgeGenderData];
+                     [Data getUserInfo];
                  });
 
                  [self performSegueWithIdentifier:@"loginSuccess" sender:sender];
@@ -119,6 +126,10 @@
         } else {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
              {
+                 self.textFieldUsername.hidden = false;
+                 self.textFieldPassword.hidden = false;
+                 self.loginButton.hidden = false;
+                 self.activityIndicatorContainer.hidden = true;
                  [self alertLoginError];
              }];
             

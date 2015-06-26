@@ -17,9 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
 
+@property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 - (IBAction)buttonLogInClicked:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 

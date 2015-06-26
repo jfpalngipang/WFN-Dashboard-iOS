@@ -16,8 +16,10 @@
 #import "NewUserCell.h"
 #import "fbGraphUtility.h"
 #import "Data.h"
+#import <Charts/Charts.h>
+#import "WNDashboard-Bridging-Header.h"
 
-@interface FeedsController ()
+@interface FeedsController () <ChartViewDelegate>
 
 @end
 
@@ -25,14 +27,22 @@
 {
     
     NSMutableArray *news_array;
+    NSMutableArray *updated_news_array;
     fbGraphUtility *fbUtil;
     NSMutableArray *other;
-
-    
+    NSMutableArray *chartData;
+    NSString *oHash;
+    NSMutableArray *fHash;
+    NSString *sHash;
+    NSString *nHash;
+    NSString *mHash;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"News Feed";
+    chartData = [[NSMutableArray alloc]init];
+    fHash = [[NSMutableArray alloc] init];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     news_array = [[NSMutableArray alloc] init];
     fbUtil = [[fbGraphUtility alloc] init];
@@ -98,6 +108,7 @@
         if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"on_users"]){
             identifier = @"OnlineUsersCell";
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
+            oHash = [news_array objectAtIndex:indexPath.row][@"hash"];
             OnlineUsersCell *cell = (OnlineUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
@@ -111,10 +122,13 @@
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"frequent_users"]) {
             identifier = @"FrequentUsersCell";
+            
+            [fHash  addObject:[news_array objectAtIndex:indexPath.row][@"hash"]];
             NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
             FrequentUsersCell *cell = (FrequentUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+            cell.profilePicture.image = nil;
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FrequentUsersCell" owner:self options:nil];
@@ -131,11 +145,16 @@
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]) {
             //NSDictionary *questions = [news_array objectAtIndex:indexPath.row];
+            [chartData removeAllObjects];
             identifier = @"SurveyUsersCell";
+            sHash = [news_array objectAtIndex:indexPath.row][@"hash"];
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
+            [chartData addObject:count];
             NSString *answer = [news_array objectAtIndex:indexPath.row][@"answer"];
             NSString *question = [news_array objectAtIndex:indexPath.row][@"question"];
             other = [news_array objectAtIndex:indexPath.row][@"other"];
+            //[self configurePieChart];
+         
             SurveyCell *cell = (SurveyCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
 
             if (cell == nil)
@@ -143,13 +162,87 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveyCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            /*********************/
+            NSInteger other_total;
+            other_total = 0;
+            for(id ans in other){
+                other_total+=[ans[1] integerValue];
+            }
+            //NSLog(@"************ %d", other_total);
+            [chartData addObject:[NSString stringWithFormat:@"%d", other_total]];
+
+            cell.pieChartView.delegate = self;
             
+            cell.pieChartView.usePercentValuesEnabled = YES;
+            cell.pieChartView.holeTransparent = YES;
+            cell.pieChartView.centerTextFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:6.f];
+            cell.pieChartView.holeRadiusPercent = 0.58;
+            cell.pieChartView.transparentCircleRadiusPercent = 0.61;
+            cell.pieChartView.descriptionText = @"";
+            cell.pieChartView.drawCenterTextEnabled = YES;
+            cell.pieChartView.drawHoleEnabled = YES;
+            cell.pieChartView.rotationAngle = 0.0;
+            cell.pieChartView.rotationEnabled = YES;
+            cell.pieChartView.centerText = @"Survey Details Chart";
+            
+            ChartLegend *l = cell.pieChartView.legend;
+            l.position = ChartLegendPositionBelowChartLeft;
+            l.xEntrySpace = 7.0;
+            l.yEntrySpace = 0.0;
+            l.yOffset = 0.0;
+            
+            [cell.pieChartView animateWithXAxisDuration:1.5 yAxisDuration:1.5 easingOption:ChartEasingOptionEaseOutBack];
+            
+            NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
+            NSMutableArray *xVals = [[NSMutableArray alloc] init];
+            for (int i = 0; i < 2; i++)
+            {
+                int val = (double)[chartData[i] doubleValue];
+                [yVals1 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                if(i == 0){
+                    [xVals addObject:answer];
+                } else {
+                    [xVals addObject:@"Others"];
+                }
+                
+            }
+            PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithYVals:yVals1 label:@""];
+            dataSet.sliceSpace = 3.0;
+            NSMutableArray *colors = [[NSMutableArray alloc] init];
+            [colors addObjectsFromArray:ChartColorTemplates.vordiplom];
+            [colors addObjectsFromArray:ChartColorTemplates.joyful];
+            [colors addObjectsFromArray:ChartColorTemplates.colorful];
+            [colors addObjectsFromArray:ChartColorTemplates.liberty];
+            [colors addObjectsFromArray:ChartColorTemplates.pastel];
+            [colors addObject:[UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]];
+            
+            dataSet.colors = colors;
+            
+            PieChartData *data = [[PieChartData alloc] initWithXVals:xVals dataSet:dataSet];
+            
+            NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
+            pFormatter.numberStyle = NSNumberFormatterPercentStyle;
+            pFormatter.maximumFractionDigits = 1;
+            pFormatter.multiplier = @1.f;
+            pFormatter.percentSymbol = @" %";
+            [data setValueFormatter:pFormatter];
+            [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:6.f]];
+            [data setValueTextColor:UIColor.blackColor];
+            
+            cell.pieChartView.data = data;
+            [cell.pieChartView highlightValues:nil];
+
+            /*********************/
             cell.surveyImage.image = [UIImage imageNamed:@"newsfeed_survey"];
             cell.surveyResultsLabel.text = [NSString stringWithFormat:@"%@ answered %@ to your question: %@", count, answer, question];
             cell.timeDateLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"testimonial"]){
             identifier = @"MessageCell";
+            mHash = [news_array objectAtIndex:indexPath.row][@"hash"];
             NSString *name = [news_array objectAtIndex:indexPath.row][@"user"];
             NSString *message = [news_array objectAtIndex:indexPath.row][@"msg"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
@@ -174,6 +267,7 @@
             return cell;
         } else {
             identifier = @"NewUserCell";
+            nHash = [news_array objectAtIndex:indexPath.row][@"hash"];
             NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
@@ -229,10 +323,32 @@
 -(void)getLatestFeeds:(UIRefreshControl*)refresh{
     
     [refresh endRefreshing];
+    //NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ %@", fHash);
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getFeeds" completion:^(NSDictionary *responseDict){
         for(id entry in responseDict){
-            [news_array addObject:entry];
+            if([entry[@"type"] isEqualToString:@"on_users"]){
+                if(![entry[@"hash"] isEqualToString:oHash]){
+                    [news_array insertObject:entry atIndex:0];
+                    //NSLog(@"****************************************************");
+                }
+            } else if([entry[@"type"] isEqualToString:@"frequent_users"]){
+                    //[news_array addObject:entry];
+
+            } else if([entry[@"type"] isEqualToString:@"new_users"]){
+                if(![entry[@"hash"] isEqualToString:nHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            } else if([entry[@"type"] isEqualToString:@"survey"]){
+                if(![entry[@"hash"] isEqualToString:sHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            } else if([entry[@"type"] isEqualToString:@"testimonial"]){
+                if(![entry[@"hash"] isEqualToString:mHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            }
+            
         }
         NSLog(@"%@", news_array);
         self.tableView.rowHeight = 100;
@@ -242,12 +358,9 @@
 }
 
 -(void)configurePieChart{
-    NSInteger other_total;
-    other_total = 0;
-    for(id ans in other){
-        other_total+=[ans[1] integerValue];
-    }
-    
+
+    NSLog(@"TOTAL: %@", chartData);
+
 }
 
 

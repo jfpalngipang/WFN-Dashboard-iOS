@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (weak, nonatomic) IBOutlet UIButton *updateButton;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

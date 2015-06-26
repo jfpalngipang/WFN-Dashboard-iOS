@@ -11,6 +11,7 @@
 #import "requestUtility.h"
 #import "MessageCell.h"
 #import "SWTableViewCell.h"
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @interface TestimonialsController ()
 
@@ -60,6 +61,7 @@
     NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
     NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
     NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
+    NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
     static NSString *identifier = @"Cell";
     MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
     
@@ -79,6 +81,11 @@
     }
     cell.rightUtilityButtons = rightUtilityButtons;
     cell.delegate = self;
+    FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.userImage.frame];
+    
+    [profilePicture setProfileID:fbId];
+    profilePicture.layer.borderWidth = 0;
+    [cell addSubview:profilePicture];
     cell.nameLabel.text = name;
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;

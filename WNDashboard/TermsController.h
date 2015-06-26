@@ -11,5 +11,6 @@
 @interface TermsController : UIViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

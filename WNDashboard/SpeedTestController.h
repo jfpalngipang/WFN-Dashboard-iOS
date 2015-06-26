@@ -13,4 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet LineChartView *lineChartView;
 
+- (void)beginCharting:(int)size;
+
 @end

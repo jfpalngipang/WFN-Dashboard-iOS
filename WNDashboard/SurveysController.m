@@ -28,6 +28,7 @@
     NSMutableArray *responseCounts;
     NSArray *responseAPList;
     NSString *ap;
+    int sIndex;
     
 
     
@@ -104,26 +105,52 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return surveyPage.count;
+    if([tableView isEqual:self.tableView]){
+        return surveyPage.count;
+    } else {
+        return 1;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:2]];
-    static NSString *identifier = @"Cell";
-    SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil){
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    cell.questionLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1];
-    cell.respLabel.text = responseCount;
-    if([[[surveyPage objectAtIndex:indexPath.row] objectAtIndex:3] isEqualToString:@"Yes"]){
-        cell.activeLabel.text = @"Active";
+    if([tableView isEqual:self.tableView]){
+        NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:2]];
+        static NSString *identifier = @"Cell";
+        SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil){
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        [cell contentView].backgroundColor= [UIColor whiteColor];
+        cell.questionLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1];
+        cell.respLabel.text = responseCount;
+        if([[[surveyPage objectAtIndex:indexPath.row] objectAtIndex:3] isEqualToString:@"Yes"]){
+            cell.activeLabel.text = @"Active";
+        } else {
+            cell.activeLabel.text = @"Inactive";
+        }
+    
+        return cell;
     } else {
-        cell.activeLabel.text = @"Inactive";
+
+        static NSString *identifier = @"Cell";
+        SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil){
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SurveysViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        cell.questionLabel.text = @"Question";
+        cell.respLabel.text = @"Responses";
+        cell.activeLabel.text = @"Status";
+        //cell.questionLabel.textColor = [UIColor whiteColor];
+        ////cell.respLabel.textColor = [UIColor whiteColor];
+        //cell.activeLabel.textColor = [UIColor whiteColor];
+        //[cell contentView].backgroundColor= [UIColor orangeColor];
+        
+        return cell;
     }
     
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -132,7 +159,7 @@
     [responseCounts removeAllObjects];
     
     indexPath = [self.tableView indexPathForSelectedRow];
-
+    sIndex = indexPath.row;
     NSString *surveyId = [[surveys objectAtIndex:indexPath.row] objectAtIndex:0];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     ap = [surveys objectAtIndex:indexPath.row][4];
@@ -156,7 +183,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSLog(@"%ld", (long)indexPath.row);
         SurveyDetailsController *destViewController = [segue.destinationViewController topViewController];
-        destViewController.surveyQuestion = [[surveys objectAtIndex:0] objectAtIndex:1];
+        destViewController.surveyQuestion = [[surveys objectAtIndex:sIndex] objectAtIndex:1];
         destViewController.responses = responses;
         destViewController.responseCounts = responseCounts;
         responseAPList = [ap componentsSeparatedByString:@","];

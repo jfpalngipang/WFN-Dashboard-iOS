@@ -11,20 +11,28 @@
 #import "requestUtility.h"
 #import "Data.h"
 #import "DownPicker.h"
+#import "UptimeController.h"
+#import "SpeedTestController.h"
 
 @interface RPMController ()
 
 @end
 
 @implementation RPMController
+{
+    NSMutableArray *sp;
+    NSMutableArray *hb;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     //requestUtility *reqUtil = [[requestUtility alloc] init];
     //[reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary* responseDict){
     
    // }];
-    
+    hb = [[NSMutableArray alloc] init];
+    sp = [[NSMutableArray alloc] init];
     self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
     [self.downPicker addTarget:self
                         action:@selector(apSelected:)
@@ -36,6 +44,7 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
+    self.activityIndicatorContainer.hidden = true;
     self.speedtestContainer.hidden = false;
     self.uptimeContainer.hidden = true;
 
@@ -76,8 +85,64 @@
     
 }
 -(void)apSelected:(id)ap {
+    if(self.segmentedControl.selectedSegmentIndex == 0){
+        self.speedtestContainer.hidden = true;
+        self.activityIndicatorContainer.hidden = false;
+    } else if(self.segmentedControl.selectedSegmentIndex == 1){
+        self.uptimeContainer.hidden = true;
+        self.activityIndicatorContainer.hidden = false;
+    }
     NSString *selectedValue = [self.downPicker text];
     NSLog(@"%@", selectedValue);
-}
+    NSUInteger selected_index = [apNames indexOfObject:selectedValue];
+    NSString *selected_apId = [Data getIdForAPAtIndex:selected_index];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getRPM" withParams:selected_apId completion:^(NSDictionary* responseDict){
+        NSLog(@"******** %@", responseDict);
+        SpeedTestController *spC = [self.childViewControllers objectAtIndex:0];
+        SpeedTestController *hbC = [self.childViewControllers objectAtIndex:1];
+        sp = responseDict[@"speed"];
+        if([sp count] == 0 ){
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^
+             {
+                 [self alertLoginError];
+             }];
+        }else {
+            [Data setRPM:sp andHeartbeats:hb];
+            [spC beginCharting:sp.count];
+        }
+        hb = responseDict[@"heartbeats"];
+        if([hb count] == 0 ){
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^
+             {
+                 [self alertLoginError];
+             }];
+        } else {
+            [Data setRPM:sp andHeartbeats:hb];
+            [hbC beginCharting:hb.count];
+        }
 
+        
+        
+        
+     }];
+}
+- (void)alertLoginError{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Empty Data"
+                                  message:@"No data available."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 @end

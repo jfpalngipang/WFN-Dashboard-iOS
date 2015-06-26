@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Charts/Charts.h>
 
-@interface SurveyCell : UITableViewCell
+@interface SurveyCell : UITableViewCell <ChartViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *surveyResultsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeDateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *surveyImage;

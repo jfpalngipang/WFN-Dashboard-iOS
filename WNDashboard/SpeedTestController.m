@@ -16,10 +16,24 @@
 
 @end
 
-@implementation SpeedTestController
+@implementation SpeedTestController{
+    NSMutableArray *labels;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    labels = [[NSMutableArray alloc] init];
+    NSDate *dateToday = [NSDate date];
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    for(int i = 2; i >=0; i--){
+        [dateComponents setDay:-i];
+        NSDate *DaysAgo = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:dateToday options:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMM dd"];
+        NSString *stringDaysAgo = [dateFormatter stringFromDate:DaysAgo];
+        [labels addObject:stringDaysAgo];
+        
+    }
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil GETRequestSender:@"getRPM" completion:^(NSDictionary *responseDict){
@@ -36,10 +50,10 @@
     _lineChartView.dragEnabled = YES;
     [_lineChartView setScaleEnabled:YES];
     _lineChartView.pinchZoomEnabled = NO;
-    _lineChartView.drawGridBackgroundEnabled = NO;
+    _lineChartView.drawGridBackgroundEnabled = YES;
     
     _lineChartView.xAxis.enabled = YES;
-    _lineChartView.leftAxis.enabled = NO;
+    _lineChartView.leftAxis.enabled = YES;
     _lineChartView.rightAxis.enabled = NO;
     _lineChartView.legend.enabled = NO;
     
@@ -55,33 +69,54 @@
 }
 
 - (void)setDataCount:(int)count range:(double)range{
-    NSMutableArray *xVals = [[NSMutableArray alloc] initWithObjects: @"Jun 17", @"Jun 18", @"Jun 19", @"Jun 20", nil];
-    
-    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < count; i++)
-    {
-        int val = [speed[i][1] doubleValue];
-        //double mult = (range + 1);
-        //double val = (double) (arc4random_uniform(mult)) + 20;
-        [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+    NSMutableArray *xVals = [[NSMutableArray alloc] init];
+
+    for (int i = 0; i < count; i++){
+        [xVals addObject:labels[i]];
     }
-    
+    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
+    if(count == 0){
+        /*
+        for (int i = 0; i < 3; i++){
+            int val = 0;
+            [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+
+        }
+         */
+    } else {
+        for (int i = 0; i < count; i++)
+        {
+            double val = (double)[speed[i][1] doubleValue];
+            //double mult = (range + 1);
+            //double val = (double) (arc4random_uniform(mult)) + 20;
+            [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
+        }
+    }
     LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals1 label:@"Speedtest"];
-    set1.drawCubicEnabled = YES;
-    set1.cubicIntensity = 0.3;
-    set1.drawCirclesEnabled = NO;
+    set1.lineDashLengths = @[@5.f, @2.5f];
+    [set1 setColor:UIColor.orangeColor];
+    //[set1 setCircleColor:UIColor.blackColor];
+    
     set1.lineWidth = 2.0;
-    set1.circleRadius = 5.0;
-    set1.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-    [set1 setColor:[UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f]];
-    set1.fillColor = [UIColor orangeColor];
+    set1.circleRadius = 0.0;
+    set1.drawCircleHoleEnabled = NO;
+    set1.valueFont = [UIFont systemFontOfSize:8.f];
+    set1.fillAlpha = 65/255.0;
+    set1.fillColor = UIColor.orangeColor;
     
-    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSet:set1];
-    [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:9.f]];
-    [data setDrawValues:NO];
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [dataSets addObject:set1];
     
+    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
     _lineChartView.data = data;
+    
+}
+
+- (void)beginCharting:(int)size {
+    NSLog(@"CHARTING..........");
+        [self setDataCount:size range:1];
+    
+    
     
 }
 

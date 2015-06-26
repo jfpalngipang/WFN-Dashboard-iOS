@@ -23,6 +23,7 @@
 
 - (IBAction)indexChanged:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 
 
 @end

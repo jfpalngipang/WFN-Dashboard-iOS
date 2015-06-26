@@ -19,7 +19,7 @@ NSMutableArray *others = nil;
 NSMutableArray *heartbeats = nil;
 NSMutableArray *speed = nil;
 NSMutableArray *feeds = nil;
-
+NSMutableArray *userInfo = nil;
 NSString *user = nil;
 NSString *url_str = @"http://dev.wifination.ph:3000";
 
@@ -65,6 +65,25 @@ NSString *url_str = @"http://dev.wifination.ph:3000";
     [reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary *responseDict){
         heartbeats = responseDict[@"heartbeats"];
         speed = responseDict[@"speed"];
+    }];
+}
+
++ (void)clearRPM{
+    [speed removeAllObjects];
+    [heartbeats removeAllObjects];
+}
+
++ (void)setRPM:(NSMutableArray *)sp andHeartbeats:(NSMutableArray *)hb{
+    speed = sp;
+    heartbeats = hb;
+}
+
++ (void)getUserInfo{
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getAccountSettings" completion:^(NSDictionary *responseDict){
+        for (id info in responseDict){
+            userInfo = info;
+        }
     }];
 }
 

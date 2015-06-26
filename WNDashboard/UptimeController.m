@@ -83,10 +83,17 @@
     
     for (int i = 0; i < count; i++)
     {
-        //int val = [chartData[i] intValue];
+        double val = 1.2;
+        
+        if([chartData[i] isEqualToString:@"0"]){
+            val = 0.1;
+        } else {
+            val = 0.1;
+        }
+        
         //NSLog(@"BEAT: %@", chartData[i]);
-        double mult = (range + 1);
-        double val = (double) (arc4random_uniform(mult)) + 3;
+        //double mult = (range + 1);
+        //double val = (double) (arc4random_uniform(mult)) + 3;
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
@@ -94,9 +101,10 @@
     
     set1.lineDashLengths = @[@5.f, @2.5f];
     [set1 setColor:UIColor.orangeColor];
-    [set1 setCircleColor:UIColor.blackColor];
+    //[set1 setCircleColor:UIColor.blackColor];
+
     set1.lineWidth = 1.0;
-    set1.circleRadius = 3.0;
+    set1.circleRadius = 0;
     set1.drawCircleHoleEnabled = NO;
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.0;
@@ -120,52 +128,70 @@
         case 0:
             beats = [NSString stringWithFormat:@"%@", heartbeats[6][1]];
             
-            for(int i = 0; i <= [beats length]; i++){
-                temp = [beats substringToIndex:i];
-                int tempNum = [temp integerValue];
-                [chartData addObject:[NSNumber numberWithInt:tempNum]];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
             }
              
-            //NSLog(@"BEATS %@", chartData);
+            NSLog(@"BEATS %@", chartData);
             //chartData = heartbeats[6][1];
             [self setDataCount:10 range:1];
             break;
         case 1:
             beats = [NSString stringWithFormat:@"%@", heartbeats[5][1]];
-           // chartData = heartbeats[5][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
         case 2:
             beats = [NSString stringWithFormat:@"%@", heartbeats[4][1]];
-           // chartData = heartbeats[4][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
         case 3:
             beats = [NSString stringWithFormat:@"%@", heartbeats[3][1]];
-            //chartData = heartbeats[3][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
         case 4:
             beats = [NSString stringWithFormat:@"%@", heartbeats[2][1]];
-            //chartData = heartbeats[2][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
         case 5:
             beats = [NSString stringWithFormat:@"%@", heartbeats[1][1]];
-            //chartData = heartbeats[1][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
         case 6:
             beats = [NSString stringWithFormat:@"%@", heartbeats[0][1]];
-            //chartData = heartbeats[0][1];
-            //[self setDataCount:10 range:1];
+            for(int i = 0; i < [beats length]; i++){
+                temp = [NSString stringWithFormat:@"%C", [beats characterAtIndex:i]];
+                [chartData addObject:temp];
+            }
             NSLog(@"BEATS %@", beats);
             break;
     }
+}
+- (void)beginCharting:(int)size {
+    NSLog(@"CHARTING..........");
+    [self setDataCount:size range:1];
+    
+    
+    
 }
 @end

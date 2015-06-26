@@ -93,6 +93,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:self];
     
     // Set icon badge number to zero
-    application.applicationIconBadgeNumber = 1;
+    application.applicationIconBadgeNumber+=1;
 }
 @end

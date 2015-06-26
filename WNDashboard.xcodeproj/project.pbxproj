@@ -92,6 +92,8 @@
 		C6B7EE991B3C365D00D96961 /* newsfeed_activeusers.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */; };
 		C6B7EE9A1B3C365D00D96961 /* newsfeed_newuser.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE971B3C365D00D96961 /* newsfeed_newuser.png */; };
 		C6B7EE9B1B3C365D00D96961 /* newsfeed_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = C6B7EE981B3C365D00D96961 /* newsfeed_survey.png */; };
+		C6B7EEA21B3C971800D96961 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B7EEA11B3C971800D96961 /* CoreData.framework */; };
+		C6B7EEA71B3D169400D96961 /* ActivityIndicatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B7EEA61B3D169400D96961 /* ActivityIndicatorController.m */; };
 		C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */; };
 		C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */; };
 		C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6C249CB1B2ACF8900981C73 /* OnlineUsersCell.xib */; };
@@ -354,6 +356,10 @@
 		C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_activeusers.png; path = assets/newsfeed_activeusers.png; sourceTree = SOURCE_ROOT; };
 		C6B7EE971B3C365D00D96961 /* newsfeed_newuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_newuser.png; path = assets/newsfeed_newuser.png; sourceTree = SOURCE_ROOT; };
 		C6B7EE981B3C365D00D96961 /* newsfeed_survey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newsfeed_survey.png; path = assets/newsfeed_survey.png; sourceTree = SOURCE_ROOT; };
+		C6B7EEA11B3C971800D96961 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C6B7EEA41B3C993400D96961 /* WNDashboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WNDashboard-Prefix.pch"; sourceTree = "<group>"; };
+		C6B7EEA51B3D169400D96961 /* ActivityIndicatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorController.h; sourceTree = "<group>"; };
+		C6B7EEA61B3D169400D96961 /* ActivityIndicatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorController.m; sourceTree = "<group>"; };
 		C6C249C61B2ABB3500981C73 /* FrequentUsersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FrequentUsersCell.xib; sourceTree = "<group>"; };
 		C6C249C81B2AC90500981C73 /* FrequentUsersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequentUsersCell.h; sourceTree = "<group>"; };
 		C6C249C91B2AC90500981C73 /* FrequentUsersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequentUsersCell.m; sourceTree = "<group>"; };
@@ -377,6 +383,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6B7EEA21B3C971800D96961 /* CoreData.framework in Frameworks */,
 				C6B4F77F1B26B51B007E22EB /* QuartzCore.framework in Frameworks */,
 				C679065B1B31827100F4F098 /* FBSDKCoreKit.framework in Frameworks */,
 				C62417771B29570A00F1E623 /* Charts.framework in Frameworks */,
@@ -529,6 +536,9 @@
 				C679069C1B33E41700F4F098 /* Data.m */,
 				C6B7EE931B3BF87D00D96961 /* UserProfileController.h */,
 				C6B7EE941B3BF87D00D96961 /* UserProfileController.m */,
+				C6B7EEA41B3C993400D96961 /* WNDashboard-Prefix.pch */,
+				C6B7EEA51B3D169400D96961 /* ActivityIndicatorController.h */,
+				C6B7EEA61B3D169400D96961 /* ActivityIndicatorController.m */,
 			);
 			path = WNDashboard;
 			sourceTree = "<group>";
@@ -765,6 +775,7 @@
 		C74CACBB366622BC85743EBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6B7EEA11B3C971800D96961 /* CoreData.framework */,
 				C679065A1B31827100F4F098 /* FBSDKCoreKit.framework */,
 				98876FBC58D162055C6C4843 /* libPods-WNDashboard.a */,
 			);
@@ -1008,6 +1019,7 @@
 				C67D972B1B25719D0063FB84 /* AppDelegate.m in Sources */,
 				C679069D1B33E41700F4F098 /* Data.m in Sources */,
 				C67906AB1B33FB5500F4F098 /* NSMutableArray+SWUtilityButtons.m in Sources */,
+				C6B7EEA71B3D169400D96961 /* ActivityIndicatorController.m in Sources */,
 				C67906551B31193500F4F098 /* fbGraphUtility.m in Sources */,
 				C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */,
 				C6C249CA1B2AC90500981C73 /* FrequentUsersCell.m in Sources */,
@@ -1152,6 +1164,7 @@
 					"$(inherited)",
 					/Users/jfpalngipang/Documents/FacebookSDK,
 				);
+				GCC_PREFIX_HEADER = "WNDashboard/WNDashboard-Prefix.pch";
 				INFOPLIST_FILE = WNDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1178,6 +1191,7 @@
 					"$(inherited)",
 					/Users/jfpalngipang/Documents/FacebookSDK,
 				);
+				GCC_PREFIX_HEADER = "WNDashboard/WNDashboard-Prefix.pch";
 				INFOPLIST_FILE = WNDashboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

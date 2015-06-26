@@ -85,8 +85,8 @@
     set1.lineDashLengths = @[@5.f, @2.5f];
     [set1 setColor:UIColor.orangeColor];
     [set1 setCircleColor:UIColor.blackColor];
-    set1.lineWidth = 1.0;
-    set1.circleRadius = 3.0;
+    set1.lineWidth = 2.0;
+    set1.circleRadius = 0.0;
     set1.drawCircleHoleEnabled = NO;
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.0;

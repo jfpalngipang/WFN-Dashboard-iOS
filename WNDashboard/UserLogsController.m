@@ -195,6 +195,10 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.dateTextField.text = stringFromDate;
     });
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil GETRequestSender:@"getUserLogs" withParams:stringFromDate completion:^(NSDictionary *responseDict){
+        
+    }];
 }
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"ap contains[c] %@", searchText];

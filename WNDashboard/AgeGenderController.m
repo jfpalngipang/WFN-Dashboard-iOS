@@ -52,7 +52,7 @@
     _barChartView.noDataTextDescription = @"You need to provide data for the chart.";
     
     _barChartView.drawBarShadowEnabled = NO;
-    _barChartView.drawValueAboveBarEnabled = YES;
+    _barChartView.drawValueAboveBarEnabled = NO;
     
     _barChartView.maxVisibleValueCount = 60;
     _barChartView.pinchZoomEnabled = NO;
@@ -85,12 +85,17 @@
     [_barChartView animateWithYAxisDuration:2.5];
     
     [self setDataCount:11 range:10];
+    NSLog(@"FEMALES: %@", females);
+    NSLog(@"MALES: %@", males);
+    NSLog(@"OTHERS: %@", others);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 - (void)setDataCount:(int)count range:(double)range {
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
@@ -100,23 +105,34 @@
     {
         [xVals addObject: testX[i]];
     }
-    NSMutableArray *yVals = [[NSMutableArray alloc] init];
+    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
+    NSMutableArray *yVals2 = [[NSMutableArray alloc] init];
+    NSMutableArray *yVals3 = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < count; i++)
     {
         
-        int val = [males[i] doubleValue];
-        //double mult = (range + 1);
-        //double val = (double) (arc4random_uniform(mult));
-        [yVals addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
-        //NSLog(@"double value: %d", val2);
+        double val = (double)[males[i] doubleValue];
+        [yVals1 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
+        
+        val = [females[i] doubleValue];
+        [yVals2 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
+        
+        val = [others[i] doubleValue];
+        [yVals3 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
-    BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithYVals:yVals label:@"Dataset"];
-    set1.barSpace = 0.35;
+    BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithYVals:yVals1 label:@"males"];
+    [set1 setColor:[UIColor colorWithRed:104/255.f green:241/255.f blue:175/255.f alpha:1.f]];
+    BarChartDataSet *set2 = [[BarChartDataSet alloc] initWithYVals:yVals2 label:@"females"];
+    [set2 setColor:[UIColor colorWithRed:164/255.f green:228/255.f blue:251/255.f alpha:1.f]];
+    BarChartDataSet *set3 = [[BarChartDataSet alloc] initWithYVals:yVals3 label:@"other"];
+    [set3 setColor:[UIColor colorWithRed:242/255.f green:247/255.f blue:158/255.f alpha:1.f]];
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
+    [dataSets addObject:set2];
+    [dataSets addObject:set3];
     
     BarChartData *data = [[BarChartData alloc] initWithXVals:xVals dataSets:dataSets];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f]];
@@ -137,6 +153,13 @@
     NSLog(@"chartValueNothingSelected");
 }
 
+- (void)beginCharting:(int)size {
+    NSLog(@"CHARTING..........");
+    [self setDataCount:size range:1];
+    
+    
+    
+}
 /*
 #pragma mark - Navigation
 
