@@ -12,7 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 
-@property (weak, nonatomic) IBOutlet UILabel *activeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *statusImage;
+@property (weak, nonatomic) IBOutlet UIButton *nextImage;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *respLabel;
 

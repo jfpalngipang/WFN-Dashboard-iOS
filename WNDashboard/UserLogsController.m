@@ -163,8 +163,21 @@
             cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];
             cell.deviceLabel.text = nil;
             cell.startLabel.text = [logs objectAtIndex:indexPath.row][@"time_start"];
-            cell.totalLabel.text = [logs objectAtIndex:indexPath.row][@"total_mins"];
-        
+            
+            NSString *time_connected = [logs objectAtIndex:indexPath.row][@"total_mins"];
+            if([time_connected isEqualToString:@"--"]){
+                cell.totalLabel.text = @"--";
+            } else {
+                if([time_connected doubleValue] >= 60){
+                    double time = [time_connected doubleValue];
+                    double hours = time/60;
+                    cell.totalLabel.text = [NSString stringWithFormat:@"%0.2f hr", hours];
+                } else {
+                    double time = [time_connected doubleValue];
+                    cell.totalLabel.text = [NSString stringWithFormat:@"%0.2f min", time];
+                }
+            }
+
             //return cell;
         }
         return cell;

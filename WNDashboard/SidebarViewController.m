@@ -104,7 +104,7 @@
 {
     if (sender.tag == 100)
     {
-        UIActionSheet *logoutSheet = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Profile", @"Terms and Agreement", @"Log Out",nil];
+        UIActionSheet *logoutSheet = [[UIActionSheet alloc] initWithTitle:@"Menu" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Account Settings", @"Terms and Agreement", @"Log Out",nil];
         [logoutSheet showInView:self.view];
         
     }
@@ -112,7 +112,7 @@
 }
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if([buttonTitle isEqualToString:@"Profile"]){
+    if([buttonTitle isEqualToString:@"Account Settings"]){
         [[NSOperationQueue mainQueue] addOperationWithBlock:^
          {
              [self performSegueWithIdentifier:@"showProfile" sender:self];
@@ -122,10 +122,9 @@
          {
              [self performSegueWithIdentifier:@"showTerms" sender:self];
          }];
-        //UINavigationController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TermsNavigationController"];
-        //[self presentViewController:vc animated:NO completion:nil];
+
     } else if ([buttonTitle isEqualToString:@"Log Out"]){
-        NSLog(@"****LOG OUT!");
+        
     }
 }
 

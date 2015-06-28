@@ -59,7 +59,7 @@
     
     [_lineChartView animateWithXAxisDuration:2.0 yAxisDuration:2.0];
     
-    [self setDataCount:3 range:1];
+    //[self setDataCount:3 range:1];
     //NSLog(@"SPEEDS: %@", speed);
 }
 
@@ -114,7 +114,7 @@
 
 - (void)beginCharting:(int)size {
     NSLog(@"CHARTING..........");
-        [self setDataCount:size range:1];
+    //[self setDataCount:size range:1];
     
     
     

@@ -126,9 +126,9 @@
         cell.questionLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1];
         cell.respLabel.text = responseCount;
         if([[[surveyPage objectAtIndex:indexPath.row] objectAtIndex:3] isEqualToString:@"Yes"]){
-            cell.activeLabel.text = @"Active";
+            cell.statusImage.image = [UIImage imageNamed:@"Ok-60.png"];
         } else {
-            cell.activeLabel.text = @"Inactive";
+            cell.statusImage.image = [UIImage imageNamed:@"Cancel-60.png"];
         }
     
         return cell;
@@ -142,7 +142,7 @@
         }
         cell.questionLabel.text = @"Question";
         cell.respLabel.text = @"Responses";
-        cell.activeLabel.text = @"Status";
+        cell.statusImage.image = nil;
         //cell.questionLabel.textColor = [UIColor whiteColor];
         ////cell.respLabel.textColor = [UIColor whiteColor];
         //cell.activeLabel.textColor = [UIColor whiteColor];

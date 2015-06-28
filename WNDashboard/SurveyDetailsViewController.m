@@ -46,7 +46,7 @@
     _pieChartView.drawHoleEnabled = YES;
     _pieChartView.rotationAngle = 0.0;
     _pieChartView.rotationEnabled = YES;
-    _pieChartView.centerText = @"Survey Details Chart";
+    _pieChartView.centerText = @"";
     
     ChartLegend *l = _pieChartView.legend;
     l.position = ChartLegendPositionBelowChartLeft;

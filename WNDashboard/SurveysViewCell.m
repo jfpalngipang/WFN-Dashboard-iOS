@@ -11,7 +11,7 @@
 @implementation SurveysViewCell
 @synthesize questionLabel = _questionLabel;
 @synthesize respLabel = _respLabel;
-@synthesize activeLabel = _activeLabel;
+@synthesize statusImage = _statusImage;
 
 - (void)awakeFromNib {
     // Initialization code

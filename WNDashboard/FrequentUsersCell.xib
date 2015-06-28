@@ -14,56 +14,31 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FKQ-uL-T1Z" id="tPD-fN-X2D">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-jc-bxl">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jfx-jc-bxl">
                         <rect key="frame" x="86" y="15" width="188" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="AP2-fN-RJJ"/>
-                            <constraint firstAttribute="width" constant="188" id="aBY-yi-Kpb"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="usage" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-Jv-Hec">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="usage" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blp-Jv-Hec">
                         <rect key="frame" x="86" y="29" width="205" height="41"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="41" id="P1e-kP-U0R"/>
-                            <constraint firstAttribute="width" constant="205" id="oa0-cK-FtP"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VCH-o6-l4x">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VCH-o6-l4x">
                         <rect key="frame" x="8" y="15" width="50" height="50"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="GhC-Pc-tMM"/>
-                            <constraint firstAttribute="height" constant="50" id="yri-6C-1LQ"/>
-                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 26 2:34 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mS-4f-d3h">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jun 26 2:34 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5mS-4f-d3h">
                         <rect key="frame" x="210" y="70" width="97" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="97" id="Pad-vj-pIL"/>
-                            <constraint firstAttribute="height" constant="21" id="ruc-o2-pGp"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Blp-Jv-Hec" firstAttribute="leading" secondItem="VCH-o6-l4x" secondAttribute="trailing" constant="28" id="0Fl-H6-ufP"/>
-                    <constraint firstItem="Blp-Jv-Hec" firstAttribute="top" secondItem="Jfx-jc-bxl" secondAttribute="bottom" constant="-7" id="7uS-tg-3kb"/>
-                    <constraint firstItem="5mS-4f-d3h" firstAttribute="bottom" secondItem="tPD-fN-X2D" secondAttribute="bottomMargin" id="ABO-xN-g8Z"/>
-                    <constraint firstItem="Jfx-jc-bxl" firstAttribute="leading" secondItem="VCH-o6-l4x" secondAttribute="trailing" constant="28" id="AO3-40-Pt8"/>
-                    <constraint firstItem="5mS-4f-d3h" firstAttribute="trailing" secondItem="tPD-fN-X2D" secondAttribute="trailingMargin" id="Adb-Zf-YQo"/>
-                    <constraint firstItem="VCH-o6-l4x" firstAttribute="leading" secondItem="tPD-fN-X2D" secondAttribute="leadingMargin" id="hB8-l3-Nif"/>
                     <constraint firstItem="VCH-o6-l4x" firstAttribute="top" secondItem="tPD-fN-X2D" secondAttribute="topMargin" constant="7" id="hpO-3R-1ry"/>
-                    <constraint firstItem="Jfx-jc-bxl" firstAttribute="top" secondItem="tPD-fN-X2D" secondAttribute="topMargin" constant="7" id="rUo-UA-zHT"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VCH-o6-l4x" secondAttribute="bottom" constant="6" id="sFD-gz-lNY"/>
-                    <constraint firstItem="VCH-o6-l4x" firstAttribute="top" secondItem="tPD-fN-X2D" secondAttribute="topMargin" constant="7" id="uYI-ME-8YW"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="VCH-o6-l4x" secondAttribute="bottom" constant="26" id="wtK-yg-pBS"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
