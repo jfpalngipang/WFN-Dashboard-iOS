@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/18/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import "TermsController.h"
@@ -17,6 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    SWRevealViewController *revealController = [self revealViewController];
+    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
 
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
     item.title = @"Title";

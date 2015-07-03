@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/18/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import "ControlPanelController.h"
@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "DownPicker.h"
 #import "Data.h"
+#import "DateSelectionController.h"
 
 @interface ControlPanelController ()
 
@@ -18,8 +19,7 @@
 
 @implementation ControlPanelController
 {
-    //NSMutableArray *ap_list;
-    //NSMutableArray *apId_list;
+
     NSMutableArray *apSettings;
     NSMutableArray *dd_array;
     NSMutableDictionary *ap_dict;
@@ -28,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    SWRevealViewController *revealController = [self revealViewController];
+    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     NSLog(@"APDATA: %@", apNames);
     //ap_list = [[NSMutableArray alloc] init];
@@ -38,6 +42,7 @@
     self.ssidTextField.text = @"";
     self.passkeyTextField.text = @"";
     self.fbpageTextField.text = @"";
+    self.apTextField.delegate = self;
     
     
     [reqUtil GETRequestSender:@"getAPSettings" completion:^(NSDictionary* responseDict){
@@ -49,10 +54,12 @@
             [apSettings addObject:ap[@"settings"]];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
+            //self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
+            /*
             [self.downPicker addTarget:self
                                 action:@selector(apSelected:)
                       forControlEvents:UIControlEventValueChanged];
+             */
             self.apTextField.text = apNames[0];
         [self showSettings];
         });
@@ -74,7 +81,71 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DateSelectionController *selectModal = [storyboard instantiateViewControllerWithIdentifier:@"DateSelectionController"];
+    selectModal.selectMode = @"ap";
+    selectModal.myDelegate = self;
+    [selectModal setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:selectModal animated:YES completion:nil];
+    return NO;
 
+}
+- (void)modalViewDismissed:(NSString *)value withSelectMode:(NSString *)mode{
+
+    self.apTextField.text = value;
+    NSString *selectedAP = self.apTextField.text;
+    NSUInteger selected_index = [apNames indexOfObject:selectedAP];
+    NSLog(@"%@", apSettings[selected_index]);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];
+        NSString *max_time = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_time"]];
+        NSString *ap_auth = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ap_auth"]];
+        NSString *ap_like_page = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ap_like_page"]];
+        NSString *ssid_private = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"ssid_private"]];
+        self.ssidTextField.text = apSettings[selected_index][@"ssid"];
+        
+        //[self.apTextField setText:ap_list[0][@"ap"]];
+        if([max_down isEqualToString:@"<null>"]){
+            [self.maxdownloadSwitch setOn:NO animated:YES];
+        } else {
+            [self.maxdownloadSwitch setOn:YES animated:YES];
+        }
+        
+        if([max_time isEqualToString:@"<null>"]){
+            [self.maxsessionSwitch setOn:NO animated:YES];
+        } else {
+            [self.maxsessionSwitch setOn:YES animated:YES];
+            
+        }
+        
+        if([ap_auth isEqualToString:@"<null>"]){
+            [self.passkeySwitch setOn:NO animated:YES];
+            self.passkeyTextField.text = @"";
+        } else{
+            [self.passkeySwitch setOn:YES animated:YES];
+            self.passkeyTextField.text = ap_auth;
+        }
+        
+        
+        if([ap_like_page isEqualToString: @"<null>"]){
+            [self.fbpageSwitch setOn:NO animated:YES];
+            self.fbpageTextField.text = @"";
+        } else{
+            [self.fbpageSwitch setOn:YES animated:NO];
+            self.fbpageTextField.text = ap_like_page;
+            
+        }
+        if([ssid_private isEqualToString: @"<null>"]){
+            [self.privatessidSwitch setOn:NO animated:YES];
+        } else{
+            [self.privatessidSwitch setOn:YES animated:NO];
+        }
+        
+        
+    });
+    
+}
 /*
 #pragma mark - Navigation
 

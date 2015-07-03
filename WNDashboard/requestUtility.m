@@ -3,10 +3,12 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/8/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
+//  utility class for sending GET and POST requests to server
 
 #import "requestUtility.h"
+#import "AFNetworking.h"
 
 @implementation requestUtility
 {
@@ -15,7 +17,76 @@
 
 }
 
+- (void) logIn:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *)) completion{
+    __block NSString *status;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    NSDictionary *parameters = @{@"username": username, @"password": password};
+    
+    [manager POST:@"https://wifination.ph/login_app/" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+        status = [responseObject valueForKeyPath:@"status"];
+        completion(status);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
+- (void) getData:(NSString *)type completion:(void (^)(NSDictionary *)) completion{
+   
+    NSString *urlStr;
+    if([type  isEqual: @"feeds"]) {
+        urlStr = @"https://wifination.ph/mobile/feed/";
+    } else if([type  isEqual: @"userlogs"]){
+        urlStr = @"https://wifination.ph/mobile/userlogs/";
+    } else if([type isEqual:@"getAPSettings"]){
+        urlStr = @"https://wifination.ph/mobile/apsettings/";
+    } else if([type isEqual:@"surveys"]){
+        urlStr = @"https://wifination.ph/mobile/survey/";
+    } else if([type isEqual:@"analytics"]){
+        urlStr = @"https://wifination.ph/mobile/analytics/";
+    } else if([type isEqual:@"aplist"]){
+        urlStr = @"https://wifination.ph/mobile/accesspoints/";
+    } else if([type isEqual:@"messages"]){
+        urlStr = @"https://wifination.ph/mobile/testimonials/";
+    } else if([type isEqual:@"terms"]){
+        urlStr = @"https://wifination.ph/mobile/terms/";
+    } else if ([type isEqual:@"userprofile"]){
+        urlStr = @"https://wifination.ph/mobile/user_profile/";
+    } else if([type isEqualToString:@"resetpassword"]){
+        urlStr = @"https://wifination.ph/password_reset/";
+    }
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completion(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+}
 
+- (void) getData:(NSString *)type withParams:(NSString *)param completion:(void (^)(NSString *))completion{
+    NSString *urlStr;
+    if([type isEqualToString:@"surveydetails"]){
+        urlStr = [NSString stringWithFormat:@"https://wifination.ph/mobile/detailedsurvey/?id=%@", param];
+    } else if([type isEqualToString:@"rpm"]){
+        urlStr = [NSString stringWithFormat:@"https://wifination.ph/mobile/rpm/?id=%@", param];
+    } else if([type  isEqual: @"userlogs"]){
+        urlStr = [NSString stringWithFormat:@"https://wifination.ph/mobile/userlogs/?date=%@", param];
+    }
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completion(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+}
+    
 
 - (void) requestSender: (NSMutableURLRequest *) request withType: (NSString *) type withOption: (NSString *) option completion:(void (^)(NSDictionary *)) completion{
     __block NSDictionary *result;
@@ -28,16 +99,39 @@
         sessionConfiguration.HTTPAdditionalHeaders = @{@"Content-Type"  : [NSString stringWithFormat:@"multipart/form-data; boundary=%@", option],@"Accept" : @"application/json"};
         
     }
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfiguration delegate:self delegateQueue: nil];
-    
-    
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        completion(result);
-    }];
-    
-    [dataTask resume];
+    if([type isEqualToString:@"resetPassword"]){
+        NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfiguration delegate:self delegateQueue: nil];
+        
+        
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            
+            //completion(result);
+            NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+            NSDictionary *fields = [resp allHeaderFields];
+            NSString *cookie = [fields valueForKey:@"Set-Cookie"];
+            NSArray *responseStrings = [cookie componentsSeparatedByString:@";"];
+            NSArray *cookieParts = [responseStrings[0] componentsSeparatedByString:@"="];
+            NSLog(@"RESET RESPONSE: %@", cookieParts[1]);
+            //NSDictionary *cookieDict = [[NSDictionary alloc] init];
+            //[cookieDict setValue:cookieParts[1] forKey:@"cookie"];
+            //[result setValue:[NSString stringWithFormat:@"%@", cookieParts[1]] forKey:@"cookie"];
+            completion(cookieParts[1]);
+            //NSLog(@"COOKIE: %@", result);
+        }];
+        [dataTask resume];
+    }else {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfiguration delegate:self delegateQueue: nil];
+        
+        
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            completion(result);
+        }];
+        NSLog(@"HELLLLO!");
+        
+        [dataTask resume];
+    }
+
 
    
     
@@ -69,27 +163,72 @@
     
 }
 
+- (void) resetPasswordWithToken:(NSString*)token andEmail:(NSString*)email completion:(void (^)(NSDictionary *)) completion{
+     __block NSDictionary *result;
+    NSMutableData *body = [NSMutableData data];
+    NSString *boundary = @"WebKitFormBoundary";
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"email"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", token] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"csrfmiddlewaretoken"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"%@\r\n", email] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:@"http://dev.wifination.ph:3000/password_reset/"]];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = body;
+    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sessionConfiguration.HTTPAdditionalHeaders = @{@"Content-Type"  : [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary],@"Accept" : @"application/json"};
+    NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfiguration delegate:self delegateQueue: nil];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+        //NSDictionary *fields = [resp allHeaderFields];
+        NSString *status = [NSString stringWithFormat:@"%ld",(long)resp.statusCode];
+        NSLog(@"STATUS CODE: %@", status);
+        completion(status);
+        //NSString *status = [fields valueForKey:@"Set-Cookie"];
+        /*
+        NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:[resp allHeaderFields] forURL:[response URL]];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookies:cookies forURL:[response URL] mainDocumentURL:nil];
+        */
+        //NSArray *responseStrings = [cookie componentsSeparatedByString:@";"];
+        //NSArray *cookieParts = [responseStrings[0] componentsSeparatedByString:@"="];
+        //NSLog(@"RESET RESPONSE: %@", cookieParts[1]);
+        //NSDictionary *cookieDict = [[NSDictionary alloc] init];
+        //[cookieDict setValue:cookieParts[1] forKey:@"cookie"];
+        //[result setValue:[NSString stringWithFormat:@"%@", cookieParts[1]] forKey:@"cookie"];
+        //completion(cookieParts[1]);
+    }];
+
+    
+    [dataTask resume];
+}
+
 - (void) GETRequestSender: (NSString *) type completion:(void (^)(NSDictionary *)) completion{
    
     NSURL *url;
     if([type  isEqual: @"getFeeds"]) {
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/feed/"];
     } else if([type  isEqual: @"getUserLogs"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/userlogs/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/userlogs/"];
     } else if([type isEqual:@"getAPSettings"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/apsettings/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/apsettings/"];
     } else if([type isEqual:@"getSurveys"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/survey/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/survey/"];
     } else if([type isEqual:@"getAnalytics"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/analytics/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/analytics/"];
     } else if([type isEqual:@"getAPList"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/accesspoints/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/accesspoints/"];
     } else if([type isEqual:@"getMessages"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/testimonials/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/testimonials/"];
     } else if([type isEqual:@"getTerms"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/terms/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/terms/"];
     } else if ([type isEqual:@"getTerms"]){
-        url = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/user_profile/"];
+        url = [NSURL URLWithString:@"https://wifination.ph/mobile/user_profile/"];
+    } else if([type isEqualToString:@"resetPassword"]){
+        url = [NSURL URLWithString:@"https://wifination.ph/password_reset/"];
     }
     
     
@@ -122,10 +261,18 @@
     }];
     
 }
-
-- (void) ControlPanelPOSTRequestSender{
+- (void) GETAnalyticsFor: (NSString *)ap withRange:(NSString *)range completion:(void(^)(NSDictionary *))completion{
+    NSString *urlStr = [NSString stringWithFormat:@"http://dev.wifination.ph:3000/mobile/analytics/?date=%@&id=%@", range, ap];
     
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+        completion(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
     
 }
+
 
 @end

@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/15/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import "TestimonialsController.h"
@@ -20,10 +20,16 @@
 @implementation TestimonialsController
 {
     NSMutableArray *messages;
+    BOOL sidebarMenuOpen;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    sidebarMenuOpen = NO;
+    SWRevealViewController *revealController = [self revealViewController];
+    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
     messages = [[NSMutableArray alloc] init];
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
@@ -39,12 +45,25 @@
         for (id message in responseDict){
             [messages addObject:message];
         }
+        //self.tableView.rowHeight = 300;
+        //[setSelectionStyle:UITableViewCellSelectionStyleNone];
+        //[cell setUserInteractionEnabled:NO];
+        self.tableView.allowsSelection = NO;
         NSLog(@"%@", messages);
-        self.tableView.rowHeight = 100;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }];
     
     // Do any additional setup after loading the view.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.row == 4){
+        return 300;
+    } else {
+        return 150;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,22 +83,13 @@
     NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
     static NSString *identifier = @"Cell";
     MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    //SWTableViewCell
-    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:1.0f blue:0.35f alpha:0.7]
-                                                icon:[UIImage imageNamed:@"Twitter-80.png"]];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:1.0f green:1.0f blue:0.35f alpha:0.7]
-                                                icon:[UIImage imageNamed:@"Facebook-80.png"]];
+
     
     if(cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.rightUtilityButtons = rightUtilityButtons;
     cell.delegate = self;
     FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.userImage.frame];
     
@@ -95,7 +105,35 @@
 }
 
 
+- (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+        sidebarMenuOpen = NO;
+    } else {
+        self.view.userInteractionEnabled = NO;
+        sidebarMenuOpen = YES;
+    }
+}
 
+- (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
+{
+    if(position == FrontViewPositionLeft) {
+        self.view.userInteractionEnabled = YES;
+        sidebarMenuOpen = NO;
+    } else {
+        self.view.userInteractionEnabled = NO;
+        sidebarMenuOpen = YES;
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(sidebarMenuOpen == YES){
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
 /*
 #pragma mark - Navigation
 

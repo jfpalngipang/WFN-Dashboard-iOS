@@ -35,6 +35,7 @@
     */
     
     _pieChartView.delegate = self;
+    [_pieChartView clear];
     
     _pieChartView.usePercentValuesEnabled = YES;
     _pieChartView.holeTransparent = YES;
@@ -47,6 +48,7 @@
     _pieChartView.rotationAngle = 0.0;
     _pieChartView.rotationEnabled = YES;
     _pieChartView.centerText = @"";
+   
     
     ChartLegend *l = _pieChartView.legend;
     l.position = ChartLegendPositionBelowChartLeft;
@@ -71,8 +73,7 @@
 }
 
 - (void)setDataCount:(int)count range:(double)range{
-    //double mult = range;
-    
+    [_pieChartView clear];
     NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
     
     // IMPORTANT: In a PieChart, no values (Entry) should have the same xIndex (even if from different DataSets), since no values can be drawn above each other.
@@ -80,18 +81,17 @@
     for (int i = 0; i < count; i++)
     {
     
-        int val = [((SurveyDetailsController *)parent).responseCounts[i] doubleValue];//[self.parentViewController.responseCounts[i] doubleValue];
+        int val = [((SurveyDetailsController *)parent).responseCounts[i] doubleValue];
         [yVals1 addObject:[[BarChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
-    //NSArray *test = [[NSArray alloc] initWithObjects:@"10",@"35",@"20",@"8",@"12", nil];
     for (int i = 0; i < count; i++)
     {
         [xVals addObject:((SurveyDetailsController *)parent).responses[i]];
     }
     
-    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithYVals:yVals1 label:@"Survey Details"];
+    PieChartDataSet *dataSet = [[PieChartDataSet alloc] initWithYVals:yVals1 label:@""];
     dataSet.sliceSpace = 3.0;
     
     NSMutableArray *colors = [[NSMutableArray alloc] init];
@@ -105,7 +105,7 @@
     dataSet.colors = colors;
     
     PieChartData *data = [[PieChartData alloc] initWithXVals:xVals dataSet:dataSet];
-    
+
     NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
     pFormatter.numberStyle = NSNumberFormatterPercentStyle;
     pFormatter.maximumFractionDigits = 1;
@@ -121,16 +121,6 @@
     ((SurveyDetailsController *)parent).responses = nil;
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - ChartViewDelegate
 

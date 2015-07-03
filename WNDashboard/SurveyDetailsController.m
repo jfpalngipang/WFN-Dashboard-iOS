@@ -10,6 +10,7 @@
 #import "requestUtility.h"
 #import "SurveyDetailsViewController.h"
 #import "SurveyAPViewController.h"
+#import "Data.h"
 
 @interface SurveyDetailsController ()
 
@@ -24,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    surveyClicked = NO;
     self.pieChartContainer.hidden = false;
     self.apListContainer.hidden = true;
     
@@ -35,16 +36,13 @@
     self.surveyLabel.text = surveyQuestion;
     self.pieChartContainer.hidden = false;
     self.apListContainer.hidden = true;
-    
-    //NSLog(@"RESPONSE COUNTS: %@", self.responseCounts);
+
     
     SurveyDetailsViewController *chart = [self.childViewControllers objectAtIndex:0];
     [chart beginCharting];
-    //chart.responseCounts = self.responseCounts;
-    //chart.responses = self.responses;
-    NSLog(@"%%%%%%%%%%%%%%%%%%%%: %@", chart);
+
     SurveyAPViewController *apTable = [self.childViewControllers objectAtIndex:1];
-    NSLog(@"%%%%%%%%%%%%%%: %@", apTable);
+
     [apTable refreshTable];
     
     
@@ -55,15 +53,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)indexChanged:(id)sender {
     switch(self.segmentedControl.selectedSegmentIndex){

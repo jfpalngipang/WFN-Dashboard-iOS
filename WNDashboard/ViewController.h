@@ -3,10 +3,11 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/8/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetworking.h"
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
 {
@@ -16,12 +17,22 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
+@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
+- (IBAction)forgotClicked:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+- (IBAction)backButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 - (IBAction)buttonLogInClicked:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+- (IBAction)resetClicked:(id)sender;
+
 
 @end
 

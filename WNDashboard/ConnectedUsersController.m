@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/11/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import "ConnectedUsersController.h"
@@ -16,10 +16,13 @@
 @end
 
 @implementation ConnectedUsersController
+{
+    ChartYAxis *leftAxis;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.a = [[NSMutableArray alloc] init];
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
@@ -33,12 +36,12 @@
     
     _lineChartView.highlightEnabled = YES;
     _lineChartView.dragEnabled = NO;
-    _lineChartView.pinchZoomEnabled = YES;
+    _lineChartView.pinchZoomEnabled = NO;
     _lineChartView.drawGridBackgroundEnabled = YES;
     
-    ChartYAxis *leftAxis = _lineChartView.leftAxis;
-    leftAxis.customAxisMax = 2000;
-    leftAxis.customAxisMin = 500;
+    leftAxis = _lineChartView.leftAxis;
+    leftAxis.customAxisMax = 20;
+    leftAxis.customAxisMin = 0;
     leftAxis.startAtZeroEnabled = YES;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
     leftAxis.drawLimitLinesBehindDataEnabled = YES;
@@ -47,8 +50,8 @@
     _lineChartView.legend.form = ChartLegendFormLine;
     
     [_lineChartView animateWithXAxisDuration:3.5 easingOption:ChartEasingOptionEaseInOutQuart];
-    
-    [self setDataCount:10 range:1];
+    self.a = active;
+    [self setDataCount:self.a.count range:1];
     
 }
 
@@ -58,6 +61,7 @@
 }
 
 - (void)setDataCount: (int)count range: (double)range{
+    dispatch_async(dispatch_get_main_queue(), ^{
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < count; i++)
@@ -72,11 +76,13 @@
     
     for (int i = 0; i < count; i++)
     {
-        int val = [active[i] doubleValue];
-        //NSString *str = [active objectAtIndex:i];
-        //NSInteger val = [str doubleValue];
-        //double mult = (range + 1);
-        //double val = (double) (arc4random_uniform(mult)) + 3;
+        NSString *valStr = [NSString stringWithFormat:@"%@", self.a[i]];
+        double val;
+        if([valStr isEqualToString:@"0"]){
+            val = 0.1;
+        }else {
+            val = (double)[valStr doubleValue];
+        }
         [yVals addObject:[[ChartDataEntry alloc] initWithValue:val xIndex:i]];
     }
     
@@ -91,6 +97,7 @@
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.0;
     set1.fillColor = UIColor.orangeColor;
+    set1.drawValuesEnabled = NO;
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
@@ -98,6 +105,7 @@
     LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
     
     _lineChartView.data = data;
+    });
 }
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
@@ -119,5 +127,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+- (void)beginCharting{
+    NSLog(@"CHARTING..........");
+    [self setDataCount:self.a.count range:1];
+    
+    
+}
 
 @end

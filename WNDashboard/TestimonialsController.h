@@ -3,13 +3,13 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/15/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
 
-@interface TestimonialsController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+@interface TestimonialsController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *refreshButton;

@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/19/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -21,6 +21,9 @@ extern NSMutableArray *heartbeats;
 extern NSMutableArray *speed;
 extern NSMutableArray *feeds;
 extern NSMutableArray *userInfo;
+extern NSString *today;
+extern NSMutableArray *newsfeedsStore;
+extern BOOL surveyClicked;
 
 
 
@@ -35,5 +38,7 @@ extern NSMutableArray *userInfo;
 + (void)clearRPM;
 + (void)setRPM:(NSMutableArray *)sp andHeartbeats:(NSMutableArray *)hb;
 + (void)getUserInfo;
++ (void)getDateToday;
++ (void) storeLatestFeeds:(NSMutableArray *)feeds;
 
 @end

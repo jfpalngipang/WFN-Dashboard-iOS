@@ -3,13 +3,14 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/18/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "DownPicker.h"
+#import "DateSelectionController.h"
 
-@interface ControlPanelController : UIViewController
+@interface ControlPanelController : UIViewController <UITextFieldDelegate, modalDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITextField *apTextField;
 @property (weak, nonatomic) IBOutlet UITextField *ssidTextField;

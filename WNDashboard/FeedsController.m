@@ -3,8 +3,9 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/8/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
+//  News Feed View Controller
 
 #import "FeedsController.h"
 #import "requestUtility.h"
@@ -14,7 +15,6 @@
 #import "SurveyCell.h"
 #import "MessageCell.h"
 #import "NewUserCell.h"
-#import "fbGraphUtility.h"
 #import "Data.h"
 #import <Charts/Charts.h>
 #import "WNDashboard-Bridging-Header.h"
@@ -28,9 +28,9 @@
     
     NSMutableArray *news_array;
     NSMutableArray *updated_news_array;
-    fbGraphUtility *fbUtil;
     NSMutableArray *other;
     NSMutableArray *chartData;
+    // variables for checking hash of new feeds
     NSString *oHash;
     NSMutableArray *fHash;
     NSString *sHash;
@@ -40,28 +40,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    SWRevealViewController *revealController = [self revealViewController];
+    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+    tap.delegate = self;
+    
+    [self.view addGestureRecognizer:tap];
+    self.activityIndicatorContainer.hidden = false;
+    self.tableView.hidden = true;
     self.title = @"News Feed";
     chartData = [[NSMutableArray alloc]init];
     fHash = [[NSMutableArray alloc] init];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     news_array = [[NSMutableArray alloc] init];
-    fbUtil = [[fbGraphUtility alloc] init];
-    
+
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    
-    
-    [reqUtil GETRequestSender:@"getFeeds" completion:^(NSDictionary *responseDict){
+        
+    [reqUtil getData:@"feeds" completion:^(NSDictionary *responseDict){
         for(id entry in responseDict){
             [news_array addObject:entry];
         }
-        feeds = news_array;
-        
-        NSLog(@"%@", news_array);
+        if(news_array.count == 0){
+            [self alertEmptyData];
+        }
+        newsfeedsStore = news_array;
         self.tableView.estimatedRowHeight = 150.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+            self.activityIndicatorContainer.hidden = true;
+            self.tableView.hidden = false;
+        });
+            
     }];
+
+    [NSTimer scheduledTimerWithTimeInterval:30.0f
+                                     target:self selector:@selector(getTimedLatestFeeds:) userInfo:nil repeats:YES];
+    
+
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
@@ -85,9 +101,9 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
+}
+// different cell height for survey custom cell
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]){
         return 260;
@@ -99,9 +115,26 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return news_array.count;
 }
+- (void)alertEmptyData{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Empty Data"
+                                  message:@"No data available."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
-
-
+// table view of the items in the feed
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
  
     static NSString *identifier;
@@ -168,30 +201,30 @@
             for(id ans in other){
                 other_total+=[ans[1] integerValue];
             }
-            //NSLog(@"************ %d", other_total);
+            
+            // charting the survey results
+            
             [chartData addObject:[NSString stringWithFormat:@"%d", other_total]];
 
             cell.pieChartView.delegate = self;
-            
+            cell.pieChartView.highlightEnabled = NO;
             cell.pieChartView.usePercentValuesEnabled = YES;
             cell.pieChartView.holeTransparent = YES;
             cell.pieChartView.centerTextFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:6.f];
-            cell.pieChartView.holeRadiusPercent = 0.58;
+            cell.pieChartView.holeRadiusPercent = 0.50;
             cell.pieChartView.transparentCircleRadiusPercent = 0.61;
             cell.pieChartView.descriptionText = @"";
-            cell.pieChartView.drawCenterTextEnabled = YES;
+            cell.pieChartView.drawCenterTextEnabled = NO;
             cell.pieChartView.drawHoleEnabled = YES;
             cell.pieChartView.rotationAngle = 0.0;
             cell.pieChartView.rotationEnabled = YES;
-            cell.pieChartView.centerText = @"Survey Details Chart";
+            cell.pieChartView.centerText = @"";
             
             ChartLegend *l = cell.pieChartView.legend;
-            l.position = ChartLegendPositionBelowChartLeft;
+            l.position = ChartLegendPositionBelowChartCenter;
             l.xEntrySpace = 7.0;
             l.yEntrySpace = 0.0;
             l.yOffset = 0.0;
-            
-            [cell.pieChartView animateWithXAxisDuration:1.5 yAxisDuration:1.5 easingOption:ChartEasingOptionEaseOutBack];
             
             NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
             NSMutableArray *xVals = [[NSMutableArray alloc] init];
@@ -229,7 +262,7 @@
             pFormatter.multiplier = @1.f;
             pFormatter.percentSymbol = @" %";
             [data setValueFormatter:pFormatter];
-            [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:6.f]];
+            [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f]];
             [data setValueTextColor:UIColor.blackColor];
             
             cell.pieChartView.data = data;
@@ -253,13 +286,6 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-            /**************/
-            [fbUtil getFBPhoto:fbId completion:^(NSDictionary *imageData){
-                //NSLog(@"RESP: %@", imageData);
-                //cell.userImage.image = [UIImage imageWithData:imageData];
-            }];
-            
-            /**************/
             cell.nameLabel.text = name;
             cell.testimonialLabel.text = message;
             cell.timeLabel.text = time;
@@ -268,15 +294,78 @@
         } else {
             identifier = @"NewUserCell";
             nHash = [news_array objectAtIndex:indexPath.row][@"hash"];
-            NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
+            NSMutableArray *uids = [news_array objectAtIndex:indexPath.row][@"uids"];
             NewUserCell *cell = (NewUserCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewUserCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
+            if(uids.count == 1){
+                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                
+                [profilePicture1 setProfileID:uids[0]];
+                profilePicture1.layer.borderWidth = 0;
+                [cell addSubview:profilePicture1];
+            } else if(uids.count == 2){
+                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                
+                [profilePicture1 setProfileID:uids[0]];
+                profilePicture1.layer.borderWidth = 0;
+                [cell addSubview:profilePicture1];
+                
+                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
+                
+                [profilePicture2 setProfileID:uids[1]];
+                profilePicture2.layer.borderWidth = 0;
+                [cell addSubview:profilePicture2];
+            } else if(uids.count == 3){
+                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                
+                [profilePicture1 setProfileID:uids[0]];
+                profilePicture1.layer.borderWidth = 0;
+                [cell addSubview:profilePicture1];
+                
+                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
+                
+                [profilePicture2 setProfileID:uids[1]];
+                profilePicture2.layer.borderWidth = 0;
+                [cell addSubview:profilePicture2];
+                
+                FBSDKProfilePictureView *profilePicture3 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage3.frame];
+                
+                [profilePicture3 setProfileID:uids[2]];
+                profilePicture3.layer.borderWidth = 0;
+                [cell addSubview:profilePicture3];
+            } else if (uids.count >= 4) {
+                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                
+                [profilePicture1 setProfileID:uids[0]];
+                profilePicture1.layer.borderWidth = 0;
+                [cell addSubview:profilePicture1];
+                
+                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
+                
+                [profilePicture2 setProfileID:uids[1]];
+                profilePicture2.layer.borderWidth = 0;
+                [cell addSubview:profilePicture2];
+                
+                FBSDKProfilePictureView *profilePicture3 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage3.frame];
+                
+                [profilePicture3 setProfileID:uids[2]];
+                profilePicture3.layer.borderWidth = 0;
+                [cell addSubview:profilePicture3];
+                
+                
+                FBSDKProfilePictureView *profilePicture4 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage4.frame];
+                
+                [profilePicture4 setProfileID:uids[3]];
+                profilePicture4.layer.borderWidth = 0;
+                [cell addSubview:profilePicture4];
+            }
+            
             cell.newuserImage.image = [UIImage imageNamed:@"newsfeed_newuser"];
             cell.countLabel.text = count;
             cell.timeLabel.text = time;
@@ -294,46 +383,50 @@
 }
 */
 -(void)fetchFeedUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler{
+    /*
     NSURL *notifURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/?feed="];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
     NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
     
     NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL];
-        /*
-        NSMutableArray *notifs;
-        for(id items in result){
-            [notifs addObject:items];
-        }
-        if(result){
-            completionHandler(UIBackgroundFetchResultNewData);
-            NSLog(@"new data!");
-        }
-
-         */
+     */
+    
    
     
-    [dataTask resume];
+    //[dataTask resume];
+    [self fetchNewFeeds];
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     localNotif.alertBody = @"Notif!";
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
--(void)getLatestFeeds:(UIRefreshControl*)refresh{
+- (void)fetchNewFeeds{
+    NSURL *notifURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/?feed="];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
+    NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+    }];
+    
+    [dataTask resume];
+}
+
+- (void)getLatestFeeds:(UIRefreshControl*)refresh{
     
     [refresh endRefreshing];
-    //NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ %@", fHash);
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    [reqUtil GETRequestSender:@"getFeeds" completion:^(NSDictionary *responseDict){
+    [reqUtil getData:@"feeds" completion:^(NSDictionary *responseDict){
         for(id entry in responseDict){
             if([entry[@"type"] isEqualToString:@"on_users"]){
                 if(![entry[@"hash"] isEqualToString:oHash]){
                     [news_array insertObject:entry atIndex:0];
-                    //NSLog(@"****************************************************");
+
                 }
             } else if([entry[@"type"] isEqualToString:@"frequent_users"]){
-                    //[news_array addObject:entry];
+
 
             } else if([entry[@"type"] isEqualToString:@"new_users"]){
                 if(![entry[@"hash"] isEqualToString:nHash]){
@@ -357,11 +450,58 @@
     }];
 }
 
+- (void)getTimedLatestFeeds: (id)update{
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil getData:@"feeds" completion:^(NSDictionary *responseDict){
+        for(id entry in responseDict){
+            if([entry[@"type"] isEqualToString:@"on_users"]){
+                if(![entry[@"hash"] isEqualToString:oHash]){
+                    [news_array insertObject:entry atIndex:0];
+                    
+                }
+            } else if([entry[@"type"] isEqualToString:@"frequent_users"]){
+                
+                
+            } else if([entry[@"type"] isEqualToString:@"new_users"]){
+                if(![entry[@"hash"] isEqualToString:nHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            } else if([entry[@"type"] isEqualToString:@"survey"]){
+                if(![entry[@"hash"] isEqualToString:sHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            } else if([entry[@"type"] isEqualToString:@"testimonial"]){
+                if(![entry[@"hash"] isEqualToString:mHash]){
+                    [news_array insertObject:entry atIndex:0];
+                }
+            }
+            
+        }
+        NSLog(@"%@", news_array);
+        self.tableView.rowHeight = 100;
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        
+    }];
+
+}
+
 -(void)configurePieChart{
 
     NSLog(@"TOTAL: %@", chartData);
 
 }
 
+- (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
+{
+    NSLog(@"chartValueSelected");
+}
 
+- (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
+{
+    NSLog(@"chartValueNothingSelected");
+}
+
+
+- (IBAction)frontViewTap:(id)sender {
+}
 @end

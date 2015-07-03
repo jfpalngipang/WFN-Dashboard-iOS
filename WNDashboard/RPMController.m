@@ -3,7 +3,7 @@
 //  WNDashboard
 //
 //  Created by Jan Franz Palngipang on 6/14/15.
-//  Copyright (c) 2015 Jan Franz Palngipang. All rights reserved.
+//  Copyright (c) 2015 WiFi Nation. All rights reserved.
 //
 
 #import "RPMController.h"
@@ -22,21 +22,25 @@
 {
     NSMutableArray *sp;
     NSMutableArray *hb;
+
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    SWRevealViewController *revealController = [self revealViewController];
+    UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
     
     //requestUtility *reqUtil = [[requestUtility alloc] init];
     //[reqUtil GETRequestSender:@"getRPM" withParams:apId completion:^(NSDictionary* responseDict){
     
    // }];
+    
+    self.apTextField.delegate = self;
     hb = [[NSMutableArray alloc] init];
     sp = [[NSMutableArray alloc] init];
-    self.downPicker = [[DownPicker alloc] initWithTextField:self.apTextField withData:apNames];
-    [self.downPicker addTarget:self
-                        action:@selector(apSelected:)
-              forControlEvents:UIControlEventValueChanged];
+
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
         [self.sidebarButton setTarget: self.revealViewController];
@@ -84,6 +88,73 @@
     }
     
 }
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DateSelectionController *selectModal = [storyboard instantiateViewControllerWithIdentifier:@"DateSelectionController"];
+    selectModal.selectMode = @"ap";
+    selectModal.myDelegate = self;
+    [selectModal setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:selectModal animated:YES completion:nil];
+    return NO;
+}
+
+
+- (void)modalViewDismissed:(NSString *)value withSelectMode:(NSString *)mode{
+    self.apTextField.text = value;
+    self.activityIndicatorContainer.hidden = false;
+    self.speedtestContainer.hidden = true;
+    self.uptimeContainer.hidden = true;
+    NSUInteger selected_index = [apNames indexOfObject:value];
+    NSString *selected_apId = [Data getIdForAPAtIndex:selected_index];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    NSLog(@"%@ : %@", selected_apId, value);
+
+    [reqUtil GETRequestSender:@"getRPM" withParams:selected_apId completion:^(NSDictionary* responseDict){
+        NSLog(@"********%@", responseDict);
+        sp = responseDict[@"speed"];
+        hb = responseDict[@"heartbeats"];
+        NSLog(@"1. put data in hb array : %@", hb);
+        SpeedTestController *spC = [self.childViewControllers objectAtIndex:2];
+        UptimeController *hbC = [self.childViewControllers objectAtIndex:0];
+        NSLog(@"2. make instance oh Uptime Controller");
+        
+        [hbC.beatsData removeAllObjects];
+        [spC.speedData removeAllObjects];
+        
+        for(id beat in hb){
+            [hbC.beatsData addObject:beat[1]];
+        }
+        
+        for(id speed in sp){
+            [spC.speedData addObject:speed[1]];
+        }
+        NSLog(@"3. copy to heartbeats of hbC %@", hbC.beatsData);
+        [spC beginCharting];
+        [hbC beginCharting];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.speedtestContainer.hidden = false;
+            self.uptimeContainer.hidden = false;
+            self.activityIndicatorContainer.hidden = true;
+        });
+
+
+  /*
+        if(self.segmentedControl.selectedSegmentIndex == 0){
+            if(sp.count == 0){
+                [self alertEmptyError:@"speed"];
+            }
+        }else{
+            if(hb.count == 0){
+                [self alertEmptyError:@"uptime"];
+            }
+        }
+   */
+        //NSLog(@"4. copy to char data of hbC %@", hbC.chartData);
+    }];
+    //NSLog(@"4. copy to char data of hbC %@", hbC.chartData);
+}
+/*
 -(void)apSelected:(id)ap {
     if(self.segmentedControl.selectedSegmentIndex == 0){
         self.speedtestContainer.hidden = true;
@@ -103,10 +174,12 @@
         SpeedTestController *hbC = [self.childViewControllers objectAtIndex:1];
         sp = responseDict[@"speed"];
         if([sp count] == 0 ){
+            NSLog(@"*******%@", sp);
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
              {
-                 [self alertLoginError];
+                 [self alertEmptyError];
              }];
+            
         }else {
             [Data setRPM:sp andHeartbeats:hb];
             [spC beginCharting:sp.count];
@@ -115,7 +188,7 @@
         if([hb count] == 0 ){
             [[NSOperationQueue mainQueue] addOperationWithBlock:^
              {
-                 [self alertLoginError];
+                 [self alertEmptyError];
              }];
         } else {
             [Data setRPM:sp andHeartbeats:hb];
@@ -127,9 +200,16 @@
         
      }];
 }
-- (void)alertLoginError{
+ */
+- (void)alertEmptyError:(NSString *)type{
+    NSString *alertFor = [[NSString alloc] init];
+    if([type isEqualToString:@"speed"]){
+        alertFor = @"No Speed Test Data Available";
+    }else if([type isEqualToString:@"uptime"]){
+        alertFor = @"No Uptime Data Available";
+    }
     UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Empty Data"
+                                  alertControllerWithTitle:alertFor
                                   message:@"No data available."
                                   preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* ok = [UIAlertAction
