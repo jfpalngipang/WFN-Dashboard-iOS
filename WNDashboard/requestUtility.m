@@ -41,7 +41,7 @@
         urlStr = @"https://wifination.ph/mobile/feed/";
     } else if([type  isEqual: @"userlogs"]){
         urlStr = @"https://wifination.ph/mobile/userlogs/";
-    } else if([type isEqual:@"getAPSettings"]){
+    } else if([type isEqual:@"apsettings"]){
         urlStr = @"https://wifination.ph/mobile/apsettings/";
     } else if([type isEqual:@"surveys"]){
         urlStr = @"https://wifination.ph/mobile/survey/";

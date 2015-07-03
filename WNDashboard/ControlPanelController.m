@@ -45,7 +45,7 @@
     self.apTextField.delegate = self;
     
     
-    [reqUtil GETRequestSender:@"getAPSettings" completion:^(NSDictionary* responseDict){
+    [reqUtil getData:@"apsettings" completion:^(NSDictionary *responseDict){
         //NSLog(@"AP Settings: %@", responseDict[@"response"]);
     
         for (id ap in responseDict[@"response"]){
