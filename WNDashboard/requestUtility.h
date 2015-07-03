@@ -18,6 +18,7 @@
 - (void) logIn:(NSString *)username password:(NSString *)password completion:(void (^)(NSString *)) completion;
 - (void) getData:(NSString *)type completion:(void (^)(NSDictionary *)) completion;
 - (void) getData:(NSString *)type withParams:(NSString *)param completion:(void (^)(NSDictionary *))completion;
+- (void) postControlPanelUpdate:(NSDictionary *)settingsDict completion:(void (^)(NSString *))completion;
 
 
 

@@ -66,12 +66,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+
     completionHandler(UIBackgroundFetchResultNewData);
     NSLog(@"BG!");
     FeedsController *feedsController = [[FeedsController alloc] init];
     [feedsController fetchFeedUpdateWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
-        //NSLog(@"RESULT of FETCH: %@", result);
+        NSLog(@"RESULT of FETCH: %lu", (unsigned long)result);
     }];
     application.applicationIconBadgeNumber++;
     //FeedsController *feedsController = (FeedsController *)self.window.rootViewController;

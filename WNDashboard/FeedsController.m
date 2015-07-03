@@ -18,6 +18,7 @@
 #import "Data.h"
 #import <Charts/Charts.h>
 #import "WNDashboard-Bridging-Header.h"
+#import "AFNetworking.h"
 
 @interface FeedsController () <ChartViewDelegate>
 
@@ -73,7 +74,7 @@
             
     }];
 
-    [NSTimer scheduledTimerWithTimeInterval:30.0f
+    [NSTimer scheduledTimerWithTimeInterval:60.0f
                                      target:self selector:@selector(getTimedLatestFeeds:) userInfo:nil repeats:YES];
     
 
@@ -383,33 +384,65 @@
 }
 */
 -(void)fetchFeedUpdateWithCompletionHandler:(void(^)(UIBackgroundFetchResult))completionHandler{
-    /*
-    NSURL *notifURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/?feed="];
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
-    NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    
-    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL];
-     */
-    
-   
-    
-    //[dataTask resume];
-    [self fetchNewFeeds];
+    __block BOOL newFeedFetched = NO;
+    NSString *notifURLStr = @"https://wifination.ph/mobile/feed/?feed=";
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:notifURLStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"FETCH RESULT**********: %@", responseObject);
+        for(id entry in responseObject){
+            if([entry[@"type"] isEqualToString:@"new_users"]){
+                if(![entry[@"hash"] isEqualToString:nHash]){
+                    newFeedFetched = YES;
+                    [news_array insertObject:entry atIndex:0];
+                    NSString* message = [NSString stringWithFormat:@"You have %@ new users!", entry[@"count"]];
+                    [self notify:message];
+                }
+            } else if([entry[@"type"] isEqualToString:@"survey"]){
+                if(![entry[@"hash"] isEqualToString:sHash]){
+                    newFeedFetched = YES;
+                    [news_array insertObject:entry atIndex:0];
+                    NSString* message = [NSString stringWithFormat:@"%@ answered \'%@\' to your question: %@", entry[@"count"], entry[@"answer"], entry[@"question"]];
+                    [self notify:message];
+                    
+                }
+            } else if([entry[@"type"] isEqualToString:@"testimonial"]){
+                if(![entry[@"hash"] isEqualToString:mHash]){
+                    newFeedFetched = YES;
+                    [news_array insertObject:entry atIndex:0];
+                    NSString* message = [NSString stringWithFormat:@"You have a new message."];
+                    [self notify:message];
+                }
+            }
+            if(newFeedFetched == YES){
+                completionHandler(UIBackgroundFetchResultNewData);
+            }else {
+                completionHandler(UIBackgroundFetchResultNoData);
+            }
+            
+
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+}
+
+- (void)notify:(NSString *)message{
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     localNotif.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
-    localNotif.alertBody = @"Notif!";
+    localNotif.alertBody = message;
     localNotif.soundName = UILocalNotificationDefaultSoundName;
     localNotif.timeZone = [NSTimeZone defaultTimeZone];
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
+    
 }
 
 - (void)fetchNewFeeds{
     NSURL *notifURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/mobile/feed/?feed="];
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration backgroundSessionConfigurationWithIdentifier:@"feeds"];
     NSURLSession *backgroundSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-    }];
+   
+    NSURLSessionDataTask *dataTask = [backgroundSession dataTaskWithURL:notifURL];
     
     [dataTask resume];
 }

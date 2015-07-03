@@ -67,7 +67,7 @@
     }];
 }
 
-- (void) getData:(NSString *)type withParams:(NSString *)param completion:(void (^)(NSString *))completion{
+- (void) getData:(NSString *)type withParams:(NSString *)param completion:(void (^)(NSDictionary *))completion{
     NSString *urlStr;
     if([type isEqualToString:@"surveydetails"]){
         urlStr = [NSString stringWithFormat:@"https://wifination.ph/mobile/detailedsurvey/?id=%@", param];
@@ -86,7 +86,30 @@
     }];
     
 }
+
+- (void) postControlPanelUpdate:(NSDictionary *)settingsDict completion:(void (^)(NSString *))completion{
     
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    for (id setting in settingsDict[@"settings"]){
+        [parameters setValue:setting[@"value"] forKey:setting[@"name"]];
+    }
+    NSString *urlStr = [NSString stringWithFormat:@"https://wifination.ph/mobile/controlpanel/update/?id=%@", settingsDict[@"id"]];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    [manager POST:urlStr parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+        NSString *statusCode = [NSString stringWithFormat:@"%d", [operation.response statusCode]];
+        completion(statusCode);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+   
+}
+
 
 - (void) requestSender: (NSMutableURLRequest *) request withType: (NSString *) type withOption: (NSString *) option completion:(void (^)(NSDictionary *)) completion{
     __block NSDictionary *result;

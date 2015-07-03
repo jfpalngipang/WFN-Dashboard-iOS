@@ -23,5 +23,20 @@
 @property (weak, nonatomic) IBOutlet UISwitch *privatessidSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *updateButton;
 @property (strong, nonatomic) DownPicker *downPicker;
+- (IBAction)updateClicked:(id)sender;
+- (IBAction)max_download:(id)sender;
+- (IBAction)max_time:(id)sender;
+- (IBAction)passkey:(id)sender;
+- (IBAction)ap_page:(id)sender;
+- (IBAction)private_ssid:(id)sender;
+- (IBAction)passkey_changed:(id)sender;
+- (IBAction)ssid_changed:(id)sender;
+- (IBAction)ap_page_changed:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *maxdownloadTextField;
+@property (weak, nonatomic) IBOutlet UITextField *maxsessionTextField;
+
+- (IBAction)max_download_changed:(id)sender;
+- (IBAction)max_session_changed:(id)sender;
+
 
 @end

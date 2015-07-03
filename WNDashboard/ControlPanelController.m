@@ -23,16 +23,25 @@
     NSMutableArray *apSettings;
     NSMutableArray *dd_array;
     NSMutableDictionary *ap_dict;
+    requestUtility *reqUtil;
+    NSMutableDictionary *settings;
+    NSMutableArray *settingsArr;
+    NSString *sAP;
+    NSString *sID;
 
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    sAP = [[NSString alloc] init];
+    sID = [[NSString alloc] init];
+    settings = [[NSMutableDictionary alloc] init];
+    settingsArr = [[NSMutableArray alloc] init];
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];
-    requestUtility *reqUtil = [[requestUtility alloc] init];
+    reqUtil = [[requestUtility alloc] init];
     NSLog(@"APDATA: %@", apNames);
     //ap_list = [[NSMutableArray alloc] init];
     //apId_list = [[NSMutableArray alloc] init];
@@ -159,8 +168,9 @@
 {
     //NSString *ssid = [NSString stringWithFormat:@"%@",ap_list[0][@"settings"][@"ssid"]];
     //[self.apTextField setText:ap_list[0][@"ap"]];
-    
-    
+    NSUInteger selected_index = [apNames indexOfObject:apNames[0]];
+    sID = [Data getIdForAPAtIndex:selected_index];
+    sAP = apNames[0];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[0][@"max_down"]];
         NSString *max_time = [NSString stringWithFormat:@"%@", apSettings[0][@"max_time"]];
@@ -172,31 +182,42 @@
         //[self.apTextField setText:ap_list[0][@"ap"]];
         if([max_down isEqualToString:@"<null>"]){
             [self.maxdownloadSwitch setOn:NO animated:YES];
+            self.maxdownloadTextField.hidden = true;
         } else {
             [self.maxdownloadSwitch setOn:YES animated:YES];
+            self.maxdownloadTextField.text = max_down;
+            self.maxdownloadTextField.hidden = false;
         }
         
         if([max_time isEqualToString:@"<null>"]){
             [self.maxsessionSwitch setOn:NO animated:YES];
+            self.maxsessionTextField.hidden = true;
         } else {
             [self.maxsessionSwitch setOn:YES animated:YES];
+            self.maxsessionTextField.text = max_time;
+            self.maxsessionTextField.hidden = false;
             
         }
         
         if([ap_auth isEqualToString:@"<null>"]){
             [self.passkeySwitch setOn:NO animated:YES];
             self.passkeyTextField.text = @"";
+            self.passkeyTextField.hidden = true;
         } else{
             [self.passkeySwitch setOn:YES animated:YES];
             self.passkeyTextField.text = ap_auth;
+            self.passkeyTextField.hidden = false;
         }
         
         
         if([ap_like_page isEqualToString: @"<null>"]){
             [self.fbpageSwitch setOn:NO animated:YES];
+            self.fbpageTextField.text = @"";
+            self.fbpageTextField.hidden = true;
         } else{
             [self.fbpageSwitch setOn:YES animated:NO];
             self.fbpageTextField.text = ap_like_page;
+            self.fbpageTextField.hidden = false;
             
         }
         if([ssid_private isEqualToString: @"<null>"]){
@@ -212,7 +233,9 @@
 
 -(void)apSelected:(id)ap{
     NSString *selectedAP = [self.downPicker text];
+    sAP = selectedAP;
     NSUInteger selected_index = [apNames indexOfObject:selectedAP];
+    sID = [Data getIdForAPAtIndex:selected_index];
     NSLog(@"%@", apSettings[selected_index]);
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];
@@ -225,32 +248,42 @@
         //[self.apTextField setText:ap_list[0][@"ap"]];
         if([max_down isEqualToString:@"<null>"]){
             [self.maxdownloadSwitch setOn:NO animated:YES];
+            self.maxdownloadTextField.hidden = true;
         } else {
             [self.maxdownloadSwitch setOn:YES animated:YES];
+            self.maxdownloadTextField.text = max_down;
+            self.maxdownloadTextField.hidden = false;
         }
         
         if([max_time isEqualToString:@"<null>"]){
             [self.maxsessionSwitch setOn:NO animated:YES];
+            self.maxsessionTextField.hidden = true;
         } else {
             [self.maxsessionSwitch setOn:YES animated:YES];
+            self.maxsessionTextField.text = max_time;
+            self.maxsessionTextField.hidden = false;
             
         }
         
         if([ap_auth isEqualToString:@"<null>"]){
             [self.passkeySwitch setOn:NO animated:YES];
             self.passkeyTextField.text = @"";
+            self.passkeyTextField.hidden = true;
         } else{
             [self.passkeySwitch setOn:YES animated:YES];
             self.passkeyTextField.text = ap_auth;
+            self.passkeyTextField.hidden = false;
         }
         
         
         if([ap_like_page isEqualToString: @"<null>"]){
             [self.fbpageSwitch setOn:NO animated:YES];
             self.fbpageTextField.text = @"";
+            self.fbpageTextField.hidden = true;
         } else{
             [self.fbpageSwitch setOn:YES animated:NO];
             self.fbpageTextField.text = ap_like_page;
+            self.fbpageTextField.hidden = false;
             
         }
         if([ssid_private isEqualToString: @"<null>"]){
@@ -264,4 +297,183 @@
     
 }
 
+- (IBAction)updateClicked:(id)sender {
+    
+    [settings setValue:[NSString stringWithFormat:@"%@", sID] forKey:@"id"];
+    [settings setValue:settingsArr forKey:@"settings"];
+    
+    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    [setting setValue:@"ssid" forKey:@"name"];
+    [setting setValue:self.ssidTextField.text forKey:@"value"];
+    [settingsArr addObject:setting];
+    
+    //PASSKEY
+    if([self.passkeySwitch isOn]){
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"ap_auth" forKey:@"name"];
+        [setting setValue:self.passkeyTextField.text forKey:@"value"];
+        [settingsArr addObject:setting];
+        
+    }else{
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"ap_auth" forKey:@"name"];
+        [setting setValue:@"" forKey:@"value"];
+        [settingsArr addObject:setting];
+    }
+    //FB PAGE
+    if([self.fbpageSwitch isOn]){
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"ap_like_page" forKey:@"name"];
+        [setting setValue:self.fbpageTextField.text forKey:@"value"];
+        [settingsArr addObject:setting];
+        
+    }else{
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"ap_like_page" forKey:@"name"];
+        [setting setValue:@"" forKey:@"value"];
+        [settingsArr addObject:setting];
+    }
+    //MAX DOWNLOAD
+    if([self.maxdownloadSwitch isOn]){
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"max_down" forKey:@"name"];
+        [setting setValue:self.maxdownloadTextField.text forKey:@"value"];
+        [settingsArr addObject:setting];
+        
+    }else{
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"max_down" forKey:@"name"];
+        [setting setValue:@"" forKey:@"value"];
+        [settingsArr addObject:setting];
+    }
+    
+    //MAX SESSION
+    if([self.maxsessionSwitch isOn]){
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"max_time" forKey:@"name"];
+        [setting setValue:self.maxsessionTextField.text forKey:@"value"];
+        [settingsArr addObject:setting];
+        
+    }else{
+        NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+        [setting setValue:@"max_time" forKey:@"name"];
+        [setting setValue:@"" forKey:@"value"];
+        [settingsArr addObject:setting];
+    }
+
+
+    NSLog(@"SETTINGS: %@", settings);
+    
+    [reqUtil postControlPanelUpdate:settings completion:^(NSString *statusCode){
+        NSLog(@"STATUS CODE FOR CONTROL PANEL UPDATE: %@", statusCode);
+        if([statusCode isEqualToString:@"200"]){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertSuccess];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertError];
+            });
+        }
+    }];
+     
+}
+- (void)alertError{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Error"
+                                  message:@"Could not update."
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"Dismiss"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)alertSuccess{
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Success"
+                                  message:@"Settings Updated"
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"OK"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    [alert addAction:ok];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (IBAction)max_download:(id)sender {
+    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    if([self.maxdownloadSwitch isOn]){
+        self.maxdownloadTextField.hidden = false;
+        
+    }else{
+        self.maxdownloadTextField.hidden = true;
+    }
+    
+}
+
+- (IBAction)max_time:(id)sender {
+    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    if([self.maxsessionSwitch isOn]){
+        self.maxsessionTextField.hidden = false;
+    }else{
+        self.maxsessionTextField.hidden = true;
+    }
+}
+
+- (IBAction)passkey:(id)sender {
+    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    if([self.passkeySwitch isOn]){
+        self.passkeyTextField.hidden = false;
+        
+    }else{
+        self.passkeyTextField.hidden = true;
+    }
+}
+
+- (IBAction)ap_page:(id)sender {
+    
+    if([self.fbpageSwitch isOn]){
+        self.fbpageTextField.hidden = false;
+
+    }else{
+        self.fbpageTextField.hidden = true;
+    }
+}
+
+- (IBAction)private_ssid:(id)sender {
+}
+
+- (IBAction)passkey_changed:(id)sender {
+
+}
+
+- (IBAction)ssid_changed:(id)sender {
+   
+}
+
+- (IBAction)ap_page_changed:(id)sender {
+    
+}
+- (IBAction)max_download_changed:(id)sender {
+    
+}
+
+- (IBAction)max_session_changed:(id)sender {
+    }
 @end
