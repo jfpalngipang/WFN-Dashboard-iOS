@@ -372,6 +372,7 @@
         [self.view addGestureRecognizer:tap];
         self.view.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
+        NSLog(@"MENU OPEN!");
     }
 }
 

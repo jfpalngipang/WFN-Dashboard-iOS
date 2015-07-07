@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C607D1F51B2839E300467F86 /* actualize.png in Resources */ = {isa = PBXBuildFile; fileRef = C607D1F41B2839E300467F86 /* actualize.png */; };
-		C607D1FA1B283DB700467F86 /* analytics1_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = C607D1F61B283DB700467F86 /* analytics1_orange.png */; };
-		C607D1FB1B283DB700467F86 /* analytics1.png in Resources */ = {isa = PBXBuildFile; fileRef = C607D1F71B283DB700467F86 /* analytics1.png */; };
-		C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = C607D1F81B283DB700467F86 /* analytics2_orange.png */; };
-		C607D1FD1B283DB700467F86 /* analytics2.png in Resources */ = {isa = PBXBuildFile; fileRef = C607D1F91B283DB700467F86 /* analytics2.png */; };
+		C6162E711B4BDC570078790B /* Reply-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C6162E701B4BDC560078790B /* Reply-32.png */; };
+		C6162E731B4BDC5B0078790B /* unk.png in Resources */ = {isa = PBXBuildFile; fileRef = C6162E721B4BDC5B0078790B /* unk.png */; };
+		C6162E751B4BDEE50078790B /* Reply-60.png in Resources */ = {isa = PBXBuildFile; fileRef = C6162E741B4BDEE50078790B /* Reply-60.png */; };
 		C62417771B29570A00F1E623 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C62417761B2956F100F1E623 /* Charts.framework */; };
 		C62417781B29570A00F1E623 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C62417761B2956F100F1E623 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C624177F1B2967B200F1E623 /* AgeGenderController.m in Sources */ = {isa = PBXBuildFile; fileRef = C624177E1B2967B200F1E623 /* AgeGenderController.m */; };
@@ -165,11 +163,9 @@
 		30370FD6F7D86C20882CB8ED /* Pods-WNDashboard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WNDashboard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WNDashboard/Pods-WNDashboard.debug.xcconfig"; sourceTree = "<group>"; };
 		98876FBC58D162055C6C4843 /* libPods-WNDashboard.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WNDashboard.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CCAD7646CD3BF04A4F1B07 /* Pods-WNDashboard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WNDashboard.release.xcconfig"; path = "Pods/Target Support Files/Pods-WNDashboard/Pods-WNDashboard.release.xcconfig"; sourceTree = "<group>"; };
-		C607D1F41B2839E300467F86 /* actualize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = actualize.png; path = ../../../../Downloads/drawable/actualize.png; sourceTree = "<group>"; };
-		C607D1F61B283DB700467F86 /* analytics1_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = analytics1_orange.png; path = "../../../../Downloads/IOS-icons/analytics1_orange.png"; sourceTree = "<group>"; };
-		C607D1F71B283DB700467F86 /* analytics1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = analytics1.png; path = "../../../../Downloads/IOS-icons/analytics1.png"; sourceTree = "<group>"; };
-		C607D1F81B283DB700467F86 /* analytics2_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = analytics2_orange.png; path = "../../../../Downloads/IOS-icons/analytics2_orange.png"; sourceTree = "<group>"; };
-		C607D1F91B283DB700467F86 /* analytics2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = analytics2.png; path = "../../../../Downloads/IOS-icons/analytics2.png"; sourceTree = "<group>"; };
+		C6162E701B4BDC560078790B /* Reply-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reply-32.png"; sourceTree = "<group>"; };
+		C6162E721B4BDC5B0078790B /* unk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unk.png; sourceTree = "<group>"; };
+		C6162E741B4BDEE50078790B /* Reply-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Reply-60.png"; sourceTree = "<group>"; };
 		C62417421B29516B00F1E623 /* WNDashboard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WNDashboard-Bridging-Header.h"; sourceTree = "<group>"; };
 		C62417711B2956F100F1E623 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/ios-charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		C624177D1B2967B200F1E623 /* AgeGenderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeGenderController.h; sourceTree = "<group>"; };
@@ -764,6 +760,9 @@
 		C6B4F7A81B273E42007E22EB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C6162E741B4BDEE50078790B /* Reply-60.png */,
+				C6162E721B4BDC5B0078790B /* unk.png */,
+				C6162E701B4BDC560078790B /* Reply-32.png */,
 				C6B7EEAD1B3FC7A700D96961 /* Cancel-60.png */,
 				C6B7EEAB1B3FC76A00D96961 /* Ok-60.png */,
 				C6B7EE961B3C365D00D96961 /* newsfeed_activeusers.png */,
@@ -785,11 +784,6 @@
 				C67906221B2D69DD00F4F098 /* menu.png */,
 				C67906231B2D69DD00F4F098 /* refresh.png */,
 				C62417981B29ACF900F1E623 /* login_logo.png */,
-				C607D1F61B283DB700467F86 /* analytics1_orange.png */,
-				C607D1F71B283DB700467F86 /* analytics1.png */,
-				C607D1F81B283DB700467F86 /* analytics2_orange.png */,
-				C607D1F91B283DB700467F86 /* analytics2.png */,
-				C607D1F41B2839E300467F86 /* actualize.png */,
 				C6B4F7AD1B27481C007E22EB /* grey_analytics.png */,
 				C6B4F7AE1B27481C007E22EB /* grey_controlpanel.png */,
 				C6B4F7AF1B27481C007E22EB /* grey_rpm.png */,
@@ -979,14 +973,15 @@
 				C67906291B2D6BD700F4F098 /* news.png in Resources */,
 				C67906251B2D69DD00F4F098 /* menu.png in Resources */,
 				C67906BE1B34292300F4F098 /* ios.png in Resources */,
+				C6162E731B4BDC5B0078790B /* unk.png in Resources */,
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
 				C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */,
-				C607D1F51B2839E300467F86 /* actualize.png in Resources */,
 				C67906B41B33FDC100F4F098 /* Twitter-80.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
 				C6C249CC1B2ACF8900981C73 /* OnlineUsersCell.xib in Resources */,
 				C67906521B301D8B00F4F098 /* calendar.png in Resources */,
+				C6162E711B4BDC570078790B /* Reply-32.png in Resources */,
 				C6C249C71B2ABB3500981C73 /* FrequentUsersCell.xib in Resources */,
 				C67906BD1B34292300F4F098 /* and.png in Resources */,
 				C6C249D21B2AD01100981C73 /* SurveyCell.xib in Resources */,
@@ -995,24 +990,21 @@
 				C6B4F7B41B27481C007E22EB /* grey_rpm.png in Resources */,
 				C67D97331B25719D0063FB84 /* Images.xcassets in Resources */,
 				C67906371B2EA11300F4F098 /* SurveysViewCell.xib in Resources */,
-				C607D1FA1B283DB700467F86 /* analytics1_orange.png in Resources */,
 				C679063C1B2EADC400F4F098 /* next.png in Resources */,
 				C6B7EE8A1B3BD1BB00D96961 /* SurveyAPCell.xib in Resources */,
 				C6B7EE9A1B3C365D00D96961 /* newsfeed_newuser.png in Resources */,
 				C679062C1B2D700800F4F098 /* Arrow-50.png in Resources */,
 				C67906BF1B34292300F4F098 /* win.png in Resources */,
 				C6B7EE991B3C365D00D96961 /* newsfeed_activeusers.png in Resources */,
-				C607D1FC1B283DB700467F86 /* analytics2_orange.png in Resources */,
 				C6B4F7B61B27481C007E22EB /* grey_userlogs.png in Resources */,
 				C6B7EE9B1B3C365D00D96961 /* newsfeed_survey.png in Resources */,
 				C67906571B31351600F4F098 /* icon_survey.png in Resources */,
+				C6162E751B4BDEE50078790B /* Reply-60.png in Resources */,
 				C67906261B2D69DD00F4F098 /* refresh.png in Resources */,
 				C6C72FEE1B2871BA003940DA /* downArrow.png in Resources */,
 				C6B4F7B51B27481C007E22EB /* grey_survey.png in Resources */,
-				C607D1FD1B283DB700467F86 /* analytics2.png in Resources */,
 				C67906241B2D69DD00F4F098 /* exit.png in Resources */,
 				C67906B21B33FDAD00F4F098 /* Facebook-80.png in Resources */,
-				C607D1FB1B283DB700467F86 /* analytics1.png in Resources */,
 				C67906591B31378400F4F098 /* icon_user.png in Resources */,
 				C6B7EEAC1B3FC76A00D96961 /* Ok-60.png in Resources */,
 				C67906B61B3408CE00F4F098 /* ProfileCell.xib in Resources */,

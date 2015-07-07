@@ -61,7 +61,9 @@
             [news_array addObject:entry];
         }
         if(news_array.count == 0){
-            [self alertEmptyData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertEmptyData];
+            });
         }
         newsfeedsStore = news_array;
         self.tableView.estimatedRowHeight = 150.0;
@@ -117,22 +119,38 @@
     return news_array.count;
 }
 - (void)alertEmptyData{
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Empty Data"
-                                  message:@"No data available."
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+
+    if ([UIAlertController class]) {
+        // use UIAlertController
+        
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Empty Data"
+                                      message:@"No data available."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        // use UIAlertView
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Empty Data"
+                                                          message:@"No data available."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        
+    }
 }
 
 // table view of the items in the feed

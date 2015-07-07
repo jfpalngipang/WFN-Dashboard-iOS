@@ -161,6 +161,8 @@
                 cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
             } else if([firstLetter isEqualToString:@"W"]){
                 cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+            } else if([firstLetter isEqualToString:@"o"]){
+                cell.deviceImage.image = [UIImage imageNamed:@"unk.png"];
             }
 
             cell.nameLabel.text = [searchResults objectAtIndex:indexPath.row][@"user"];
@@ -177,7 +179,10 @@
                 cell.deviceImage.image = [UIImage imageNamed:@"ios.png"];
             } else if([firstLetter isEqualToString:@"W"]){
                 cell.deviceImage.image = [UIImage imageNamed:@"win.png"];
+            } else if([firstLetter isEqualToString:@"o"]){
+                cell.deviceImage.image = [UIImage imageNamed:@"unk.png"];
             }
+            
         
 
             cell.nameLabel.text = [logs objectAtIndex:indexPath.row][@"user"];

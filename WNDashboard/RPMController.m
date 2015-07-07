@@ -110,7 +110,7 @@
     requestUtility *reqUtil = [[requestUtility alloc] init];
     NSLog(@"%@ : %@", selected_apId, value);
 
-    [reqUtil GETRequestSender:@"getRPM" withParams:selected_apId completion:^(NSDictionary* responseDict){
+    [reqUtil getData:@"rpm" withParams:selected_apId completion:^(NSDictionary * responseDict){
         NSLog(@"********%@", responseDict);
         sp = responseDict[@"speed"];
         hb = responseDict[@"heartbeats"];

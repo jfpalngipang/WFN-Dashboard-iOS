@@ -31,10 +31,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.textFieldUsername.delegate = self;
     self.textFieldPassword.delegate = self;
-    self.emailTextField.delegate = self;
-    self.emailTextField.hidden = true;
-    self.resetButton.hidden = true;
-    self.backButton.hidden = true;
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardDidShowNotification object:nil];
@@ -52,7 +49,7 @@
         self.textFieldUsername.hidden = true;
         self.textFieldPassword.hidden = true;
         self.loginButton.hidden = true;
-        self.forgotButton.hidden = true;
+        
         self.activityIndicatorContainer.hidden = false;
         [self reLogIn];
     }
@@ -77,42 +74,73 @@
 
 // Alert for Login Error Due to wrong credentials.
 - (void)alertLoginError{
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Login Error"
-                                  message:@"Check your username/password"
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    [alert addAction:ok];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    if ([UIAlertController class]) {
+        // use UIAlertController
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Login Error"
+                                      message:@"Check your username/password."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        // use UIAlertView
+        // use UIAlertView
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error"
+                                                          message:@"Check your username/password."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+    }
+
 }
 
 // Alert for Login Error Due to network issues
 - (void)alertLoginNetworkError{
-    UIAlertController * alert=   [UIAlertController
-                                  alertControllerWithTitle:@"Login Error"
-                                  message:@"Check your network connection."
-                                  preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
-                         actionWithTitle:@"OK"
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             
-                             [alert dismissViewControllerAnimated:YES completion:nil];
-                             
-                         }];
-    [alert addAction:ok];
     
-    [self presentViewController:alert animated:YES completion:nil];
+    if ([UIAlertController class]) {
+        // use UIAlertController
+        UIAlertController * alert=   [UIAlertController
+                                      alertControllerWithTitle:@"Login Error"
+                                      message:@"Check your network connection."
+                                      preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* ok = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    } else {
+        // use UIAlertView
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error"
+                                                          message:@"Check your network connection."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        
+    }
+
 }
 -(BOOL) textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -123,7 +151,7 @@
     self.textFieldUsername.hidden = true;
     self.textFieldPassword.hidden = true;
     self.loginButton.hidden = true;
-    self.forgotButton.hidden = true;
+
     self.activityIndicatorContainer.hidden = false;
     username = [NSString stringWithString:[self.textFieldUsername text]];
     password = [NSString stringWithString:[self.textFieldPassword text]];
@@ -133,14 +161,38 @@
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil logIn:username password:password completion:^(NSString *status){
         NSLog(@"STATUS OF LOGIN: %@",status);
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
-            [Data fillAPArrays];
-            [Data getAgeGenderData];
-            [Data getUserInfo];
-            [Data getDateToday];
-        });
-        [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        if([status isEqualToString:@"OK"]){
+            [[NSUserDefaults standardUserDefaults] setValue:username forKey:@"username"];
+            NSString *devToken = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [reqUtil postDeviceToken:devToken forDevice:[[NSUserDefaults standardUserDefaults] objectForKey:@"machine"] withTag:@"iOS"];
+                NSLog(@"DEVICE TOKEN: %@", devToken);
+                [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
+                [Data fillAPArrays];
+                [Data getAgeGenderData];
+                [Data getUserInfo];
+                [Data getDateToday];
+            });
+            [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        }else if([status isEqualToString:@"error"]){
+            [self alertLoginError];
+            self.textFieldUsername.hidden = false;
+            self.textFieldPassword.hidden = false;
+            self.loginButton.hidden = false;
+            
+            self.activityIndicatorContainer.hidden = true;
+        } else {
+            [self alertLoginNetworkError];
+            self.textFieldUsername.hidden = false;
+            self.textFieldPassword.hidden = false;
+            self.loginButton.hidden = false;
+            
+            self.activityIndicatorContainer.hidden = true;
+        }
+
     }];
     
     
@@ -200,7 +252,6 @@
                  self.textFieldPassword.hidden = false;
                  self.loginButton.hidden = false;
                  self.activityIndicatorContainer.hidden = true;
-                 self.forgotButton.hidden = false;
                  [self alertLoginNetworkError];
              }];
             
@@ -251,49 +302,6 @@
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
 }
-- (IBAction)forgotClicked:(id)sender {
-    self.textFieldPassword.hidden = true;
-    self.textFieldUsername.hidden = true;
-    self.loginButton.hidden = true;
-    self.forgotButton.hidden = true;
-    self.resetButton.hidden = false;
-    self.emailTextField.hidden = false;
-    self.backButton.hidden = false;
-}
-- (IBAction)backButton:(id)sender {
-    self.textFieldPassword.hidden = false;
-    self.textFieldUsername.hidden = false;
-    self.loginButton.hidden = false;
-    self.forgotButton.hidden = false;
-    self.resetButton.hidden = true;
-    self.emailTextField.hidden = true;
-    self.backButton.hidden = true;
-}
-// code for password reset
-- (IBAction)resetClicked:(id)sender {
-    requestUtility *reqUtil = [[requestUtility alloc] init];
-    email = [[NSString alloc] init];
-    cookie = [[NSString alloc] init];
-    [reqUtil GETRequestSender:@"resetPassword" completion:^(NSDictionary *responseDict){
 
-        /*
-        NSMutableArray *cookies;
-        for(id coo in responseDict){
-            [cookies addObject:coo];
-        }
-         */
-        cookie = (NSString *)responseDict;
-        NSLog(@"RESET: %@", cookie);
-        if([self.emailTextField.text length] == 0){
-            NSLog(@"empty email field!");
-        } else {
-            email = self.emailTextField.text;
-        }
-    }];
-    [reqUtil resetPasswordWithToken:cookie andEmail:email completion:^(NSDictionary *responseDict){
-        NSLog(@"%@", responseDict);
-    }];
-    
-}
 
 @end

@@ -9,6 +9,9 @@
 
 #import "AppDelegate.h"
 #import "FeedsController.h"
+#import "requestUtility.h"
+#import "AFNetworking.h"
+#import <sys/utsname.h>
 
 @interface AppDelegate ()
 
@@ -37,6 +40,15 @@
     // it from running if it doesn't exist (such as running under iOS 7 or earlier).
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+       // UIUserNotificationSettings *settings =
+       // [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+       //  UIUserNotificationTypeBadge |
+       //  UIUserNotificationTypeSound
+       //                                   categories:nil];
+      //  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else{
+        [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
     }
 #endif
 
@@ -184,5 +196,27 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
+{
+    // Store the deviceToken.
+    NSLog(@"%@", newDeviceToken);
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *machine = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    NSLog(@"MACHINE: %@", machine);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:newDeviceToken forKey:@"deviceToken"];
+    [[NSUserDefaults standardUserDefaults] setObject:machine forKey:@"machine"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"Failed To Register For Remote Notifications With Error: %@", error);
 }
 @end

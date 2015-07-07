@@ -17,21 +17,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldUsername;
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassword;
-@property (weak, nonatomic) IBOutlet UIButton *forgotButton;
-- (IBAction)forgotClicked:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-
-- (IBAction)backButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 - (IBAction)buttonLogInClicked:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UIButton *resetButton;
-- (IBAction)resetClicked:(id)sender;
+
 
 
 @end

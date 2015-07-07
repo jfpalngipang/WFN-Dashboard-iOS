@@ -13,7 +13,7 @@
 #import "SWTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
-@interface TestimonialsController ()
+@interface TestimonialsController () <SWRevealViewControllerDelegate, SWTableViewCellDelegate>
 
 @end
 
@@ -40,7 +40,7 @@
     }
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
-    [reqUtil GETRequestSender:@"getMessages" completion:^(NSDictionary *responseDict){
+    [reqUtil getData:@"messages" completion:^(NSDictionary *responseDict){
         //NSLog(@"Messages: %@", responseDict);
         for (id message in responseDict){
             [messages addObject:message];
@@ -52,6 +52,7 @@
         NSLog(@"%@", messages);
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
     }];
+    self.revealViewController.delegate = self;
     
     // Do any additional setup after loading the view.
 }
@@ -100,30 +101,42 @@
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;
     cell.testimonialLabel.text = testimonial;
+    
+    cell.rightUtilityButtons = [self rightButtons];
+
     return cell;
     
 }
-
+- (NSArray *)rightButtons
+{
+    NSMutableArray *rightUtilityButtons = [NSMutableArray new];
+    [rightUtilityButtons sw_addUtilityButtonWithColor: [UIColor orangeColor] title:@"Reply"];
+    
+    return rightUtilityButtons;
+}
 
 - (void)revealController:(SWRevealViewController *)revealController willMoveToPosition:(FrontViewPosition)position
 {
+    
     if(position == FrontViewPositionLeft) {
-        self.view.userInteractionEnabled = YES;
+        self.tableView.userInteractionEnabled = YES;
         sidebarMenuOpen = NO;
     } else {
-        self.view.userInteractionEnabled = NO;
+        self.tableView.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
+        NSLog(@"MENU OPEN!");
     }
 }
 
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
 {
     if(position == FrontViewPositionLeft) {
-        self.view.userInteractionEnabled = YES;
+        self.tableView.userInteractionEnabled = YES;
         sidebarMenuOpen = NO;
     } else {
-        self.view.userInteractionEnabled = NO;
+        self.tableView.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
+         NSLog(@"MENU OPEN!");
     }
 }
 
