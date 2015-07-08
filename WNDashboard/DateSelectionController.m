@@ -112,7 +112,7 @@
         NSLog(@"CHOSEN DATE: %@", formatedDate);
     } else if([selectMode isEqualToString:@"ap"]){
         if([selectedAP length] == 0){
-            selectedAP = apNames[1];
+            selectedAP = apNames[0];
         }
         [self.myDelegate modalViewDismissed:selectedAP withSelectMode:@"ap"];
     }else if([selectMode isEqualToString:@"range"]){
