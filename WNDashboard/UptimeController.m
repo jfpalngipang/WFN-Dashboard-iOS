@@ -171,7 +171,7 @@
             [hbArray removeAllObjects];
             [chartData removeAllObjects];
             beats = [NSString stringWithFormat:@"%@", self.beatsData[6]];
-            NSLog(@"BEATS: %@", beats);
+            //NSLog(@"BEATS: %@", beats);
             
             NSString *dayHeartbeats;
             for(int i = 0; i < 288; i+=12){
@@ -181,7 +181,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+            //NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -202,7 +202,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+            //NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -223,7 +223,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+            //NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -244,7 +244,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+            //NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -265,7 +265,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+           // NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -286,7 +286,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+           // NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -307,7 +307,7 @@
                 
                 
             }
-            NSLog(@"********** %@", hbArray);
+            //NSLog(@"********** %@", hbArray);
             for (NSString *heart in hbArray){
                 int ones = [[heart componentsSeparatedByString:@"1"] count] - 1;
                 [chartData addObject:[NSString stringWithFormat:@"%d", ones]];
@@ -317,7 +317,7 @@
     }
 }
 - (void)beginCharting{
-    NSLog(@"CHARTING..........");
+    //NSLog(@"CHARTING..........");
     
     beats = [NSString stringWithFormat:@"%@", self.beatsData[6]];
     [chartData removeAllObjects];
@@ -344,11 +344,11 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+    //NSLog(@"chartValueSelected");
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
-    NSLog(@"chartValueNothingSelected");
+    //NSLog(@"chartValueNothingSelected");
 }
 @end

@@ -44,7 +44,7 @@
     requestUtility *reqUtil = [[requestUtility alloc] init];
     
     [reqUtil getData:@"userprofile" completion:^(NSDictionary *profile){
-        NSLog(@"USER PROFILE: %@", profile);
+        //NSLog(@"USER PROFILE: %@", profile);
         for(id data in profile){
             [profileData addObject:data];
         }

@@ -119,12 +119,12 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
     // Store the deviceToken.
-    NSLog(@"%@", newDeviceToken);
+    //NSLog(@"%@", newDeviceToken);
     struct utsname systemInfo;
     uname(&systemInfo);
     UIDevice *device = [UIDevice currentDevice];
     NSString *machine = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    NSLog(@"MACHINE: %@", machine);
+    //NSLog(@"MACHINE: %@", machine);
     
     [[NSUserDefaults standardUserDefaults] setObject:newDeviceToken forKey:@"deviceToken"];
     [[NSUserDefaults standardUserDefaults] setObject:machine forKey:@"machine"];
@@ -135,6 +135,6 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    NSLog(@"Failed To Register For Remote Notifications With Error: %@", error);
+    //NSLog(@"Failed To Register For Remote Notifications With Error: %@", error);
 }
 @end

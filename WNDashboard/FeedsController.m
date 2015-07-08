@@ -449,7 +449,7 @@
     NSString *notifURLStr = @"https://wifination.ph/mobile/feed/?feed=";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:notifURLStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"FETCH RESULT**********: %@", responseObject);
+        //NSLog(@"FETCH RESULT**********: %@", responseObject);
         for(id entry in responseObject){
             if([entry[@"type"] isEqualToString:@"new_users"]){
                 if(![entry[@"hash"] isEqualToString:nHash]){
@@ -537,7 +537,7 @@
             }
             
         }
-        NSLog(@"%@", news_array);
+        //NSLog(@"%@", news_array);
         self.tableView.rowHeight = 100;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         

@@ -29,9 +29,28 @@
     
     self.connectedusersContainer.hidden = false;
     self.agegenderContainer.hidden = true;
-    
+    self.dateTextField.text = @"Today";
+    self.apTextField.text = apNames[0];
     self.dateTextField.delegate = self;
     self.apTextField.delegate = self;
+    rangeDate = [NSString stringWithFormat:@"%@-%@",today,today];
+    NSUInteger selected_index = [apNames indexOfObject:self.apTextField.text];
+    selected_apId = [Data getIdForAPAtIndex:selected_index];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil getAnalyticsFor:selected_apId withRange:rangeDate completion:^(NSDictionary *responseDict){
+        ConnectedUsersController *cuC = [self.childViewControllers objectAtIndex:0];
+        AgeGenderController *agC = [self.childViewControllers objectAtIndex:1];
+        
+        cuC.a = responseDict[@"active"];
+        agC.f = responseDict[@"agegender"][@"f"];
+        agC.m = responseDict[@"agegender"][@"m"];
+        agC.o = responseDict[@"agegender"][@"o"];
+        
+        //NSLog(@"RESPONSE: %@", responseDict);
+        [cuC beginCharting];
+        [agC beginCharting];
+    }];
+
     
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){

@@ -109,7 +109,7 @@
             formatedDate = today;
         }
         [self.myDelegate modalViewDismissed:self.formatedDate withSelectMode:@"date"];
-        NSLog(@"CHOSEN DATE: %@", formatedDate);
+        //NSLog(@"CHOSEN DATE: %@", formatedDate);
     } else if([selectMode isEqualToString:@"ap"]){
         if([selectedAP length] == 0){
             selectedAP = apNames[0];
@@ -129,7 +129,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yy"];
     self.formatedDate = [dateFormatter stringFromDate:self.datePicker.date];
-    NSLog(@"%@", formatedDate);
+    //NSLog(@"%@", formatedDate);
     
 }
 @end

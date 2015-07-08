@@ -47,6 +47,34 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
+    self.apTextField.text = apNames[0];
+    NSUInteger selected_index = [apNames indexOfObject:apNames[0]];
+    NSString *selected_apId = [Data getIdForAPAtIndex:selected_index];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil getData:@"rpm" withParams:selected_apId completion:^(NSDictionary * responseDict){
+
+        sp = responseDict[@"speed"];
+        hb = responseDict[@"heartbeats"];
+
+        SpeedTestController *spC = [self.childViewControllers objectAtIndex:2];
+        UptimeController *hbC = [self.childViewControllers objectAtIndex:0];
+
+        
+        [hbC.beatsData removeAllObjects];
+        [spC.speedData removeAllObjects];
+        
+        for(id beat in hb){
+            [hbC.beatsData addObject:beat[1]];
+        }
+        
+        for(id speed in sp){
+            [spC.speedData addObject:speed[1]];
+        }
+        
+        [spC beginCharting];
+        [hbC beginCharting];
+    }];
+
     self.activityIndicatorContainer.hidden = true;
     self.speedtestContainer.hidden = false;
     self.uptimeContainer.hidden = true;
@@ -128,7 +156,7 @@
         for(id speed in sp){
             [spC.speedData addObject:speed[1]];
         }
-        NSLog(@"3. copy to heartbeats of hbC %@", hbC.beatsData);
+    
         [spC beginCharting];
         [hbC beginCharting];
         dispatch_async(dispatch_get_main_queue(), ^{

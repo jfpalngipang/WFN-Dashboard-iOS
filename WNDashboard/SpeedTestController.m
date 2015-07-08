@@ -41,6 +41,7 @@
     _lineChartView.leftAxis.enabled = YES;
     _lineChartView.rightAxis.enabled = NO;
     _lineChartView.legend.enabled = YES;
+    _lineChartView.leftAxis.startAtZeroEnabled = YES;
 
     
 
@@ -68,7 +69,7 @@
         [dateFormatter setDateFormat:@"MMM dd"];
         NSString *stringDaysAgo = [dateFormatter stringFromDate:DaysAgo];
         [xVals addObject:stringDaysAgo];
-        NSLog(@"LABELS: %@", xVals);
+        //NSLog(@"LABELS: %@", xVals);
         
     }
     //xVals = labels;
@@ -118,8 +119,16 @@
 }
 
 - (void)beginCharting{
-    NSLog(@"CHARTING..........");
+    //NSLog(@"CHARTING..........");
     chartData = self.speedData;
+    
+    if(chartData.count < 7){
+        for(int i = 0; i <= (7 - chartData.count); i++){
+            [chartData addObject:@"0"];
+        }
+    }
+    NSLog(@"%@", chartData);
+    
     [self setDataCount:chartData.count range:1];
     
     
@@ -128,12 +137,12 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+    //NSLog(@"chartValueSelected");
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
-    NSLog(@"chartValueNothingSelected");
+    //NSLog(@"chartValueNothingSelected");
 }
 /*
 #pragma mark - Navigation

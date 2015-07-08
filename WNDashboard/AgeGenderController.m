@@ -148,18 +148,18 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+    //NSLog(@"chartValueSelected");
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
-    NSLog(@"chartValueNothingSelected");
+    //NSLog(@"chartValueNothingSelected");
 }
 
 - (void)beginCharting{
-    NSLog(@"CHARTING..........");
+    //NSLog(@"CHARTING..........");
     [self setDataCount:self.m.count range:1];
-    NSLog(@"MALES: %@", self.m);
+    //NSLog(@"MALES: %@", self.m);
     
     
 }

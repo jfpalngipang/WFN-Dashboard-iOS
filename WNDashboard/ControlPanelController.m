@@ -42,7 +42,7 @@
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];
     reqUtil = [[requestUtility alloc] init];
-    NSLog(@"APDATA: %@", apNames);
+    //NSLog(@"APDATA: %@", apNames);
     //ap_list = [[NSMutableArray alloc] init];
     //apId_list = [[NSMutableArray alloc] init];
     apSettings = [[NSMutableArray alloc] init];
@@ -105,7 +105,7 @@
     self.apTextField.text = value;
     NSString *selectedAP = self.apTextField.text;
     NSUInteger selected_index = [apNames indexOfObject:selectedAP];
-    NSLog(@"%@", apSettings[selected_index]);
+    //NSLog(@"%@", apSettings[selected_index]);
     dispatch_async(dispatch_get_main_queue(), ^{
         NSString *max_down = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_down"]];
         NSString *max_time = [NSString stringWithFormat:@"%@", apSettings[selected_index][@"max_time"]];
@@ -362,10 +362,10 @@
     }
 
 
-    NSLog(@"SETTINGS: %@", settings);
+    //NSLog(@"SETTINGS: %@", settings);
     
     [reqUtil postControlPanelUpdate:settings completion:^(NSString *statusCode){
-        NSLog(@"STATUS CODE FOR CONTROL PANEL UPDATE: %@", statusCode);
+        //NSLog(@"STATUS CODE FOR CONTROL PANEL UPDATE: %@", statusCode);
         if([statusCode isEqualToString:@"200"]){
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self alertSuccess];

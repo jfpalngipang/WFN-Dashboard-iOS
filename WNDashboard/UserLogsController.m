@@ -269,20 +269,20 @@
     } else if([mode isEqualToString:@"ap"]){
         [logs removeAllObjects];
         [logs addObjectsFromArray:logsCopy];
-        NSLog(@"LOGS COPY: %@", logsCopy);
+        //NSLog(@"LOGS COPY: %@", logsCopy);
         [filteredLogs removeAllObjects];
         self.APListTextField.text = value;
         for(id log in logs){
             if([log[@"ap"] isEqualToString:self.APListTextField.text]){
                 [filteredLogs addObject:log];
-                NSLog(@"HELLO. %@", log);
+                //NSLog(@"HELLO. %@", log);
             }
 
         }
         [logs removeAllObjects];
         [logs addObjectsFromArray:filteredLogs];
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-        NSLog(@"HELLO.");
+        //NSLog(@"HELLO.");
 
     }
     

@@ -40,7 +40,7 @@
     _lineChartView.drawGridBackgroundEnabled = YES;
     
     leftAxis = _lineChartView.leftAxis;
-    leftAxis.customAxisMax = 20;
+    leftAxis.customAxisMax = 10;
     leftAxis.customAxisMin = 0;
     leftAxis.startAtZeroEnabled = YES;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
@@ -110,12 +110,12 @@
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+    //NSLog(@"chartValueSelected");
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
-    NSLog(@"chartValueNothingSelected");
+    //NSLog(@"chartValueNothingSelected");
 }
 
 /*
@@ -131,7 +131,7 @@
 
 
 - (void)beginCharting{
-    NSLog(@"CHARTING..........");
+    //NSLog(@"CHARTING..........");
     [self setDataCount:self.a.count range:1];
     
     
