@@ -12,6 +12,7 @@
 #import "MessageCell.h"
 #import "SWTableViewCell.h"
 #import <FBSDKCoreKit/FBSDKProfilePictureView.h>
+static NSString * const MessageCellIdentifier = @"MessageCell";
 
 @interface TestimonialsController () <SWRevealViewControllerDelegate, SWTableViewCellDelegate>
 
@@ -62,45 +63,27 @@
     // Do any additional setup after loading the view.
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 80;
-    /*
-    //Calculate height based on cell
-    if(!self.messageCell){
-        self.messageCell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
-    }
-    
-    //Configure the cell
-    NSString *name = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:1]];
-    NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
-    NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
-    NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
-    NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self heightForMessageCellAtIndexPath:indexPath];
+}
 
-    //self.messageCell.delegate = self;
-    FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:self.messageCell.userImage.frame];
+- (CGFloat)heightForMessageCellAtIndexPath:(NSIndexPath *)indexPath {
+    static MessageCell *sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:MessageCellIdentifier];
+    });
     
-    [profilePicture setProfileID:fbId];
-    profilePicture.layer.borderWidth = 0;
-    [self.messageCell addSubview:profilePicture];
-    self.messageCell.nameLabel.text = name;
-    self.messageCell.estabLabel.text = estab;
-    self.messageCell.timeLabel.text = time;
-    self.messageCell.testimonialLabel.text = testimonial;
-    
-    //self.messageCell.rightUtilityButtons = [self rightButtons];
-    
-    //Layout the cell
-    [self.messageCell layoutIfNeeded];
-    
-    //Get height
-    CGFloat height = [self.messageCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-    
-    return height;
-    
-    */
+    [self configureMessageCellForHeight:sizingCell atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell];
+}
 
+- (CGFloat)calculateHeightForConfiguredSizingCell:(UITableViewCell *)sizingCell {
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1.0f; // Add 1.0f for the cell separator height
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,20 +96,22 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self messageCellAtIndexPath:indexPath];
+    
+}
+
+- (MessageCell *)messageCellAtIndexPath:(NSIndexPath *)indexPath{
+    MessageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MessageCellIdentifier forIndexPath:indexPath];
+    [self configureMessageCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureMessageCell:(MessageCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     NSString *name = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:1]];
     NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
     NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
     NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
     NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
-    static NSString *identifier = @"Cell";
-    MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    if(cell == nil)
-    {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    //cell.delegate = self;
     FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.userImage.frame];
     
     [profilePicture setProfileID:fbId];
@@ -137,12 +122,21 @@
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;
     cell.testimonialLabel.text = testimonial;
-    
-    //cell.rightUtilityButtons = [self rightButtons];
-
-    return cell;
-    
+    cell.rightUtilityButtons = [self rightButtons];
 }
+- (void)configureMessageCellForHeight:(MessageCell *)cell atIndexPath:(NSIndexPath *)indexPath{
+    NSString *name = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:1]];
+    NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
+    NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
+    NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
+    NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
+    cell.nameLabel.text = name;
+    cell.estabLabel.text = estab;
+    cell.timeLabel.text = time;
+    cell.testimonialLabel.text = testimonial;
+    //cell.rightUtilityButtons = [self rightButtons];
+}
+
 - (NSArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];

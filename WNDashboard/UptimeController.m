@@ -31,10 +31,8 @@
     chartData = [[NSMutableArray alloc] init];
     self.beatsData = [[NSMutableArray alloc] init];
     hbArray = [[NSMutableArray alloc] init];
-    requestUtility *reqUtil = [[requestUtility alloc] init];
-    [reqUtil GETRequestSender:@"getRPM" completion:^(NSDictionary *responseDict){
-        NSLog(@"%@", responseDict);
-    }];
+
+
 
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:11.0f]};
     [self.segmentedControl setTitleTextAttributes:attributes

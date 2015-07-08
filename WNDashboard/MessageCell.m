@@ -7,6 +7,8 @@
 //
 
 #import "MessageCell.h"
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
+
 
 @implementation MessageCell
 @synthesize userImage = _userImage;

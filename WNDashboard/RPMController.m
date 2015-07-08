@@ -10,7 +10,6 @@
 #import "SWRevealViewController.h"
 #import "requestUtility.h"
 #import "Data.h"
-#import "DownPicker.h"
 #import "UptimeController.h"
 #import "SpeedTestController.h"
 
@@ -108,16 +107,16 @@
     NSUInteger selected_index = [apNames indexOfObject:value];
     NSString *selected_apId = [Data getIdForAPAtIndex:selected_index];
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    NSLog(@"%@ : %@", selected_apId, value);
+    //NSLog(@"%@ : %@", selected_apId, value);
 
     [reqUtil getData:@"rpm" withParams:selected_apId completion:^(NSDictionary * responseDict){
-        NSLog(@"********%@", responseDict);
+        //NSLog(@"********%@", responseDict);
         sp = responseDict[@"speed"];
         hb = responseDict[@"heartbeats"];
-        NSLog(@"1. put data in hb array : %@", hb);
+        //NSLog(@"1. put data in hb array : %@", hb);
         SpeedTestController *spC = [self.childViewControllers objectAtIndex:2];
         UptimeController *hbC = [self.childViewControllers objectAtIndex:0];
-        NSLog(@"2. make instance oh Uptime Controller");
+        //NSLog(@"2. make instance oh Uptime Controller");
         
         [hbC.beatsData removeAllObjects];
         [spC.speedData removeAllObjects];
@@ -208,11 +207,12 @@
     }else if([type isEqualToString:@"uptime"]){
         alertFor = @"No Uptime Data Available";
     }
-    UIAlertController * alert=   [UIAlertController
+    if ([UIAlertController class]){
+        UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:alertFor
                                   message:@"No data available."
                                   preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
+        UIAlertAction* ok = [UIAlertAction
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
@@ -221,8 +221,17 @@
                              [alert dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
-    [alert addAction:ok];
+        [alert addAction:ok];
     
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:alertFor
+                                                          message:@"No Data Available"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+    }
 }
 @end

@@ -11,14 +11,14 @@
 
 @interface FrequentUsersCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *mainFBImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeDateLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *usageLabel;
 
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *profilePicture;
 
 
 

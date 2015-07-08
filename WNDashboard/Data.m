@@ -88,7 +88,7 @@ NSMutableArray *newsfeedsStore;
         for (id info in responseDict){
             [userInfo addObject:info];
         }
-        NSLog(@"USER ACCOUNT: %@", userInfo);
+        //NSLog(@"USER ACCOUNT: %@", userInfo);
     }];
 }
 

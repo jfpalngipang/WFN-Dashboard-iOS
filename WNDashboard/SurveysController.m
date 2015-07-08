@@ -21,7 +21,6 @@
 {
     NSMutableArray *surveys;
     NSMutableArray *temp;
-    NSMutableArray *surveyPage;
     NSArray *page;
     NSArray *searchResults;
     NSArray *searchInitial;
@@ -50,7 +49,8 @@
     revealController = [self revealViewController];
     tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
-    
+    surveys = [[NSMutableArray alloc] init];
+    //searchResults = [[NSMutableArray alloc] init];
     temp = [[NSMutableArray alloc] init];
     questionsMutable = [[NSMutableArray alloc] init];
     self.spinner.center = CGPointMake( [UIScreen mainScreen].bounds.size.width/2,[UIScreen mainScreen].bounds.size.height/2);
@@ -58,37 +58,26 @@
     [appDelegate.window addSubview:self.spinner];
     [self.spinner startAnimating];
     
-    totalPages = 0;
-    pageContentCount = 50;
-    currentPage = 1;
-    surveyPage = [[NSMutableArray alloc] init];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     responseCounts = [[NSMutableArray alloc] init];
     responses = [[NSMutableArray alloc] init];
     [reqUtil getData:@"surveys" completion:^(NSDictionary *responseDict){
-        //NSLog(@"SURVEYS: %@", responseDict);
         for (id survey in responseDict){
             [surveys addObject:survey];
         }
-        page = surveys;
-        
-        NSLog(@"SURVEYS!!! : %@", page);
+
         if(surveys.count == 0){
             [self alertEmptyData];
+        }else{
+            self.tableView.rowHeight = 150;
+            [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         }
-        //questions = questionsMutable;
-        totalPages = (surveys.count / pageContentCount);
-        self.totalPageLabel.text = [NSString stringWithFormat:@"%ld", (long)totalPages];
-        
-        [self setPageTableContent:1];
+
+    
         self.disableView.hidden = true;
         [self.spinner stopAnimating];
     }];
-    self.totalPageLabel.text = @"14";
-    
-    self.currentPageLabel.text = @"1";
 
-    surveys = [[NSMutableArray alloc] init];
     self.revealViewController.delegate = self;
     
 
@@ -122,35 +111,11 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
-
-- (void)setPageTableContent:(NSInteger)page{
-    [surveyPage removeAllObjects];
-    
-    //NSLog(@"%@", surveys);
-    if(page == 1){
-        
-        for (NSInteger i = 0; i < pageContentCount; i++){
-            [surveyPage addObject:surveys[i]];
-        }
-        //NSLog(@"%@", surveyPage);
-    } else {
-        
-        for(NSInteger i = (page-1) * pageContentCount; i < (page * pageContentCount); i++) {
-            [surveyPage addObject:surveys[i]];
-        }
-    }
-    
-    
-    self.tableView.rowHeight = 150;
-    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-    
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == self.searchDisplayController.searchResultsTableView){
         return searchResults.count;
     } else {
-        return surveyPage.count;
+        return surveys.count;
     }
     
 }
@@ -176,7 +141,7 @@
         tableView.rowHeight = 150;
         return cell;
     }else{
-        NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:2]];
+        NSString *responseCount = [NSString stringWithFormat:@"%@", [[surveys objectAtIndex:indexPath.row] objectAtIndex:2]];
         static NSString *identifier = @"Cell";
         SurveysViewCell *cell = (SurveysViewCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
         if (cell == nil){
@@ -184,9 +149,9 @@
             cell = [nib objectAtIndex:0];
         }
         [cell contentView].backgroundColor= [UIColor whiteColor];
-        cell.questionLabel.text = [[surveyPage objectAtIndex:indexPath.row] objectAtIndex:1];
+        cell.questionLabel.text = [[surveys objectAtIndex:indexPath.row] objectAtIndex:1];
         cell.respLabel.text = responseCount;
-        if([[[surveyPage objectAtIndex:indexPath.row] objectAtIndex:3] isEqualToString:@"Yes"]){
+        if([[[surveys objectAtIndex:indexPath.row] objectAtIndex:3] isEqualToString:@"Yes"]){
             cell.statusImage.image = [UIImage imageNamed:@"Ok-60.png"];
         } else {
             cell.statusImage.image = [UIImage imageNamed:@"Cancel-60.png"];
@@ -203,9 +168,10 @@
     [responses removeAllObjects];
     [responseCounts removeAllObjects];
 
-        indexPath = [self.tableView indexPathForSelectedRow];
+        indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         sIndex = indexPath.row;
         NSString *surveyId = [[searchResults objectAtIndex:indexPath.row] objectAtIndex:0];
+        NSLog(@"%@", surveyId);
         requestUtility *reqUtil = [[requestUtility alloc] init];
         ap = [searchResults objectAtIndex:indexPath.row][4];
         if(surveyClicked == NO){
@@ -285,11 +251,12 @@
     
 }
 - (void)alertBusy{
-    UIAlertController * alert=   [UIAlertController
+    if([UIAlertController class]){
+        UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Charting..."
                                   message:@"Please Wait."
                                   preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
+        UIAlertAction* ok = [UIAlertAction
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
@@ -298,15 +265,25 @@
                              [alert dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
-    [alert addAction:ok];
+        [alert addAction:ok];
     
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Charting..."
+                                                          message:@"Please Wait."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+
+    }
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showSurveyDetail"]){
         if(self.searchDisplayController.active){
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSLog(@"%ld", (long)indexPath.row);
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            //NSLog(@"%ld", (long)indexPath.row);
             SurveyDetailsController *destViewController = [segue.destinationViewController topViewController];
             destViewController.surveyQuestion = [[searchResults objectAtIndex:sIndex] objectAtIndex:1];
             destViewController.responses = responses;
@@ -315,7 +292,7 @@
             destViewController.responseAPList = responseAPList;
         }else{
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSLog(@"%ld", (long)indexPath.row);
+            //NSLog(@"%ld", (long)indexPath.row);
             SurveyDetailsController *destViewController = [segue.destinationViewController topViewController];
             destViewController.surveyQuestion = [[surveys objectAtIndex:sIndex] objectAtIndex:1];
             destViewController.responses = responses;
@@ -329,28 +306,13 @@
 
 
 
-
-- (IBAction)nextClicked:(id)sender {
-    currentPage++;
-    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", (long)currentPage];
- 
-    [self setPageTableContent:currentPage];
-}
-
-- (IBAction)prevClicked:(id)sender {
-    currentPage--;
-    self.currentPageLabel.text = [NSString stringWithFormat:@"%ld", (long)currentPage];
-    [self setPageTableContent:currentPage];
-}
-
-
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope{
     
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF[4] contains[c] %@", searchText];
   
    
     searchResults = [surveys filteredArrayUsingPredicate:resultPredicate];
-    NSLog(@"RESULTS:%@", searchResults);
+
 
     
 }
@@ -374,7 +336,7 @@
         [self.view addGestureRecognizer:tap];
         self.view.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
-        NSLog(@"MENU OPEN!");
+  
     }
 }
 

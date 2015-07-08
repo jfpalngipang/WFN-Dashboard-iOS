@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
+
+
 
 @interface MessageCell : SWTableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;

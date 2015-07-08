@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @interface NewUserCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *newuserImage;
 
-@property (weak, nonatomic) IBOutlet UIImageView *minorImage1;
-@property (weak, nonatomic) IBOutlet UIImageView *minorImage2;
-@property (weak, nonatomic) IBOutlet UIImageView *minorImage3;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *minorImage4;
+
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *minorImage5;
+
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *minorImage1;
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *minorImage2;
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *minorImage3;
+
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *minorImage4;
+@property (weak, nonatomic) IBOutlet FBSDKProfilePictureView *minorImage5;
 
 @end

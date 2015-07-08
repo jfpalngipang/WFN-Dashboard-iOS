@@ -112,7 +112,7 @@
     if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]){
         return 260;
     } else {
-        return 100;
+        return 150;
     }
     
 }
@@ -182,17 +182,21 @@
             NSString *count = [news_array objectAtIndex:indexPath.row][@"count"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
             FrequentUsersCell *cell = (FrequentUsersCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-            cell.profilePicture.image = nil;
+            //cell.profilePicture.image = nil;
             if (cell == nil)
             {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FrequentUsersCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
             }
-            FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.profilePicture.frame];
+            //FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.profilePicture.frame];
             
-            [profilePicture setProfileID:fbId];
-            profilePicture.layer.borderWidth = 0;
-            [cell addSubview:profilePicture];
+            cell.profilePicture.profileID = fbId;
+            cell.profilePicture.layer.borderWidth = 0;
+            cell.profilePicture.layer.cornerRadius = 10;
+            cell.profilePicture.clipsToBounds = YES;
+            cell.profilePicture.layer.borderWidth = 2;
+            cell.profilePicture.layer.borderColor = [[UIColor orangeColor] CGColor];
+            //[cell addSubview:profilePicture];
             cell.nameLabel.text = [news_array objectAtIndex:indexPath.row][@"user"];
             cell.usageLabel.text = [NSString stringWithFormat:@"is one of your %@ users for the last 30 days", count];
             cell.timeDateLabel.text = time;
@@ -325,70 +329,106 @@
                 cell = [nib objectAtIndex:0];
             }
             if(uids.count == 1){
-                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
-                
-                [profilePicture1 setProfileID:uids[0]];
-                profilePicture1.layer.borderWidth = 0;
-                [cell addSubview:profilePicture1];
+                cell.minorImage1.profileID = uids[0];
+                cell.minorImage1.layer.borderWidth = 1;
+ 
             } else if(uids.count == 2){
-                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                cell.minorImage1.profileID = uids[0];
+                cell.minorImage1.layer.borderWidth = 1;
+                cell.minorImage1.layer.cornerRadius = 10;
+                cell.minorImage1.clipsToBounds = YES;
+                cell.minorImage1.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
-                [profilePicture1 setProfileID:uids[0]];
-                profilePicture1.layer.borderWidth = 0;
-                [cell addSubview:profilePicture1];
-                
-                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
-                
-                [profilePicture2 setProfileID:uids[1]];
-                profilePicture2.layer.borderWidth = 0;
-                [cell addSubview:profilePicture2];
+                cell.minorImage2.profileID = uids[1];
+                cell.minorImage2.layer.borderWidth = 1;
+                cell.minorImage2.layer.cornerRadius = 10;
+                cell.minorImage2.clipsToBounds = YES;
+                cell.minorImage2.layer.borderColor = [[UIColor orangeColor] CGColor];
             } else if(uids.count == 3){
-                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
+                cell.minorImage1.profileID = uids[0];
+                cell.minorImage1.layer.borderWidth = 1;
+                cell.minorImage2.profileID = uids[1];
+                cell.minorImage2.layer.borderWidth = 1;
+                cell.minorImage3.profileID = uids[2];
+                cell.minorImage3.layer.borderWidth = 1;
                 
-                [profilePicture1 setProfileID:uids[0]];
-                profilePicture1.layer.borderWidth = 0;
-                [cell addSubview:profilePicture1];
+                cell.minorImage1.layer.cornerRadius = 10;
+                cell.minorImage1.clipsToBounds = YES;
+                cell.minorImage1.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
-                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
+  
+                cell.minorImage2.layer.cornerRadius = 10;
+                cell.minorImage2.clipsToBounds = YES;
+                cell.minorImage2.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
-                [profilePicture2 setProfileID:uids[1]];
-                profilePicture2.layer.borderWidth = 0;
-                [cell addSubview:profilePicture2];
+                cell.minorImage3.layer.cornerRadius = 10;
+                cell.minorImage3.clipsToBounds = YES;
+                cell.minorImage3.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
-                FBSDKProfilePictureView *profilePicture3 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage3.frame];
+            } else if (uids.count == 4) {
+                cell.minorImage1.profileID = uids[0];
+                cell.minorImage1.layer.borderWidth = 1;
+                cell.minorImage2.profileID = uids[1];
+                cell.minorImage2.layer.borderWidth = 1;
+                cell.minorImage3.profileID = uids[2];
+                cell.minorImage3.layer.borderWidth = 1;
+                cell.minorImage4.profileID = uids[3];
+                cell.minorImage4.layer.borderWidth = 1;
                 
-                [profilePicture3 setProfileID:uids[2]];
-                profilePicture3.layer.borderWidth = 0;
-                [cell addSubview:profilePicture3];
-            } else if (uids.count >= 4) {
-                FBSDKProfilePictureView *profilePicture1 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage1.frame];
-                
-                [profilePicture1 setProfileID:uids[0]];
-                profilePicture1.layer.borderWidth = 0;
-                [cell addSubview:profilePicture1];
-                
-                FBSDKProfilePictureView *profilePicture2 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage2.frame];
-                
-                [profilePicture2 setProfileID:uids[1]];
-                profilePicture2.layer.borderWidth = 0;
-                [cell addSubview:profilePicture2];
-                
-                FBSDKProfilePictureView *profilePicture3 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage3.frame];
-                
-                [profilePicture3 setProfileID:uids[2]];
-                profilePicture3.layer.borderWidth = 0;
-                [cell addSubview:profilePicture3];
+                cell.minorImage1.layer.cornerRadius = 10;
+                cell.minorImage1.clipsToBounds = YES;
+                cell.minorImage1.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
                 
-                FBSDKProfilePictureView *profilePicture4 = [[FBSDKProfilePictureView alloc] initWithFrame:cell.minorImage4.frame];
+                cell.minorImage2.layer.cornerRadius = 10;
+                cell.minorImage2.clipsToBounds = YES;
+                cell.minorImage2.layer.borderColor = [[UIColor orangeColor] CGColor];
                 
-                [profilePicture4 setProfileID:uids[3]];
-                profilePicture4.layer.borderWidth = 0;
-                [cell addSubview:profilePicture4];
+                cell.minorImage3.layer.cornerRadius = 10;
+                cell.minorImage3.clipsToBounds = YES;
+                cell.minorImage3.layer.borderColor = [[UIColor orangeColor] CGColor];
+                
+                cell.minorImage4.layer.cornerRadius = 10;
+                cell.minorImage4.clipsToBounds = YES;
+                cell.minorImage4.layer.borderColor = [[UIColor orangeColor] CGColor];
+
+            } else if (uids.count >= 5) {
+                cell.minorImage1.profileID = uids[0];
+                cell.minorImage1.layer.borderWidth = 1;
+                cell.minorImage2.profileID = uids[1];
+                cell.minorImage2.layer.borderWidth = 1;
+                cell.minorImage3.profileID = uids[2];
+                cell.minorImage3.layer.borderWidth = 1;
+                cell.minorImage4.profileID = uids[3];
+                cell.minorImage4.layer.borderWidth = 1;
+                cell.minorImage5.profileID = uids[4];
+                cell.minorImage5.layer.borderWidth = 1;
+                
+                cell.minorImage1.layer.cornerRadius = 10;
+                cell.minorImage1.clipsToBounds = YES;
+                cell.minorImage1.layer.borderColor = [[UIColor orangeColor] CGColor];
+                
+                
+                cell.minorImage2.layer.cornerRadius = 10;
+                cell.minorImage2.clipsToBounds = YES;
+                cell.minorImage2.layer.borderColor = [[UIColor orangeColor] CGColor];
+                
+                cell.minorImage3.layer.cornerRadius = 10;
+                cell.minorImage3.clipsToBounds = YES;
+                cell.minorImage3.layer.borderColor = [[UIColor orangeColor] CGColor];
+                
+                cell.minorImage4.layer.cornerRadius = 10;
+                cell.minorImage4.clipsToBounds = YES;
+                cell.minorImage4.layer.borderColor = [[UIColor orangeColor] CGColor];
+                
+                cell.minorImage5.layer.cornerRadius = 10;
+                cell.minorImage5.clipsToBounds = YES;
+                cell.minorImage5.layer.borderColor = [[UIColor orangeColor] CGColor];
+
             }
             
             cell.newuserImage.image = [UIImage imageNamed:@"newsfeed_newuser"];
-            cell.countLabel.text = count;
+            cell.countLabel.text = [NSString stringWithFormat:@"You have %@ new users.", count];
             cell.timeLabel.text = time;
             return cell;
 
@@ -443,7 +483,7 @@
 
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        //NSLog(@"Error: %@", error);
     }];
 
 }
@@ -531,7 +571,7 @@
             }
             
         }
-        NSLog(@"%@", news_array);
+        //NSLog(@"%@", news_array);
         self.tableView.rowHeight = 100;
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
@@ -541,18 +581,18 @@
 
 -(void)configurePieChart{
 
-    NSLog(@"TOTAL: %@", chartData);
+    //NSLog(@"TOTAL: %@", chartData);
 
 }
 
 - (void)chartValueSelected:(ChartViewBase * __nonnull)chartView entry:(ChartDataEntry * __nonnull)entry dataSetIndex:(NSInteger)dataSetIndex highlight:(ChartHighlight * __nonnull)highlight
 {
-    NSLog(@"chartValueSelected");
+    //NSLog(@"chartValueSelected");
 }
 
 - (void)chartValueNothingSelected:(ChartViewBase * __nonnull)chartView
 {
-    NSLog(@"chartValueNothingSelected");
+    //NSLog(@"chartValueNothingSelected");
 }
 
 

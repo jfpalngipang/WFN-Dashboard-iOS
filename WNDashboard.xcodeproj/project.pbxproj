@@ -30,7 +30,6 @@
 		C679063A1B2EA21600F4F098 /* SurveysViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906391B2EA21600F4F098 /* SurveysViewCell.m */; };
 		C679063C1B2EADC400F4F098 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C679063B1B2EADC400F4F098 /* next.png */; };
 		C679063F1B2EB53A00F4F098 /* TestimonialsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679063E1B2EB53A00F4F098 /* TestimonialsController.m */; };
-		C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67906401B2EB60D00F4F098 /* MessageCell.xib */; };
 		C67906441B2EB63300F4F098 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C67906431B2EB63300F4F098 /* MessageCell.m */; };
 		C679064C1B2FE70B00F4F098 /* SurveyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064B1B2FE70B00F4F098 /* SurveyDetailsViewController.m */; };
 		C67906501B2FF94C00F4F098 /* SurveyDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C679064F1B2FF94C00F4F098 /* SurveyDetailsController.m */; };
@@ -194,7 +193,6 @@
 		C679063B1B2EADC400F4F098 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = assets/next.png; sourceTree = SOURCE_ROOT; };
 		C679063D1B2EB53A00F4F098 /* TestimonialsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestimonialsController.h; sourceTree = "<group>"; };
 		C679063E1B2EB53A00F4F098 /* TestimonialsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestimonialsController.m; sourceTree = "<group>"; };
-		C67906401B2EB60D00F4F098 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		C67906421B2EB63300F4F098 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		C67906431B2EB63300F4F098 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		C679064A1B2FE70B00F4F098 /* SurveyDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyDetailsViewController.h; sourceTree = "<group>"; };
@@ -812,7 +810,6 @@
 				C67906361B2EA11300F4F098 /* SurveysViewCell.xib */,
 				C67906381B2EA21600F4F098 /* SurveysViewCell.h */,
 				C67906391B2EA21600F4F098 /* SurveysViewCell.m */,
-				C67906401B2EB60D00F4F098 /* MessageCell.xib */,
 				C67906421B2EB63300F4F098 /* MessageCell.h */,
 				C67906431B2EB63300F4F098 /* MessageCell.m */,
 				C679065C1B31A11900F4F098 /* NewUserCell.xib */,
@@ -975,7 +972,6 @@
 				C67906BE1B34292300F4F098 /* ios.png in Resources */,
 				C6162E731B4BDC5B0078790B /* unk.png in Resources */,
 				C6C72FEF1B2871BA003940DA /* downArrow@2x.png in Resources */,
-				C67906411B2EB60D00F4F098 /* MessageCell.xib in Resources */,
 				C67906B41B33FDC100F4F098 /* Twitter-80.png in Resources */,
 				C67D97361B25719D0063FB84 /* LaunchScreen.xib in Resources */,
 				C62417991B29ACF900F1E623 /* login_logo.png in Resources */,
@@ -1249,6 +1245,7 @@
 			baseConfigurationReference = 30370FD6F7D86C20882CB8ED /* Pods-WNDashboard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -1276,6 +1273,7 @@
 			baseConfigurationReference = B6CCAD7646CD3BF04A4F1B07 /* Pods-WNDashboard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;

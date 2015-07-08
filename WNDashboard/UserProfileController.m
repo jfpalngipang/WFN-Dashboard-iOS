@@ -61,10 +61,7 @@
         self.activityIndicatorContainer.hidden = true;
     }];
     
-    //NSLog(@"HERE! %@", userInfo);
-    /*
 
-     */
 }
 
 - (void)didReceiveMemoryWarning {

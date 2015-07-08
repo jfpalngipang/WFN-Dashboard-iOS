@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DownPicker.h"
 #import "DateSelectionController.h"
 
 @interface UserLogsController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, modalDelegate, UIGestureRecognizerDelegate>

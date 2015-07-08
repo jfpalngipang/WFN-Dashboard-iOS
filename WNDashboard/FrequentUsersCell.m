@@ -10,7 +10,7 @@
 
 @implementation FrequentUsersCell
 
-@synthesize mainFBImage = _mainFBImage;
+@synthesize profilePicture = _profilePicture;
 @synthesize nameLabel = _nameLabel;
 @synthesize usageLabel = _usageLabel;
 @synthesize timeDateLabel = _timeDateLabel;

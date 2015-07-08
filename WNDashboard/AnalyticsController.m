@@ -110,7 +110,7 @@
 }
 - (IBAction)goClicked:(id)sender {
     requestUtility *reqUtil = [[requestUtility alloc] init];
-    [reqUtil GETAnalyticsFor:selected_apId withRange:rangeDate completion:^(NSDictionary *responseDict){
+    [reqUtil getAnalyticsFor:selected_apId withRange:rangeDate completion:^(NSDictionary *responseDict){
         ConnectedUsersController *cuC = [self.childViewControllers objectAtIndex:0];
         AgeGenderController *agC = [self.childViewControllers objectAtIndex:1];
         

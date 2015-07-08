@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SWTableViewCell.h"
+#import <FBSDKCoreKit/FBSDKProfilePictureView.h>
 
 @interface TestimonialsController : UIViewController <UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

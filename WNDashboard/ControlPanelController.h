@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DownPicker.h"
+
 #import "DateSelectionController.h"
 
 @interface ControlPanelController : UIViewController <UITextFieldDelegate, modalDelegate, UIGestureRecognizerDelegate>
@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *fbpageTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *privatessidSwitch;
 @property (weak, nonatomic) IBOutlet UIButton *updateButton;
-@property (strong, nonatomic) DownPicker *downPicker;
+
 - (IBAction)updateClicked:(id)sender;
 - (IBAction)max_download:(id)sender;
 - (IBAction)max_time:(id)sender;

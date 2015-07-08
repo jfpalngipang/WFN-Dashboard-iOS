@@ -44,7 +44,7 @@
     {
         // Don't display username, password textfields and login button
         // First time login
-        NSLog(@"FIRST TIME!");
+        //NSLog(@"FIRST TIME!");
     } else{
         self.textFieldUsername.hidden = true;
         self.textFieldPassword.hidden = true;
@@ -156,20 +156,22 @@
     username = [NSString stringWithString:[self.textFieldUsername text]];
     password = [NSString stringWithString:[self.textFieldPassword text]];
     //loginURL = [NSURL URLWithString:@"http://dev.wifination.ph:3000/login_app/"];
-    NSLog(@"%@", [self.textFieldPassword text]);
+    //NSLog(@"%@", [self.textFieldPassword text]);
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil logIn:username password:password completion:^(NSString *status){
-        NSLog(@"STATUS OF LOGIN: %@",status);
+        //NSLog(@"STATUS OF LOGIN: %@",status);
         if([status isEqualToString:@"OK"]){
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasSuccessfullySignedInBefore"];
             [[NSUserDefaults standardUserDefaults] setValue:username forKey:@"username"];
+            [[NSUserDefaults standardUserDefaults] setValue:password forKey:@"password"];
             NSString *devToken = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]];
             devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
             devToken = [devToken stringByReplacingOccurrencesOfString:@">" withString:@""];
             devToken = [devToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                // [reqUtil postDeviceToken:devToken forDevice:[[NSUserDefaults standardUserDefaults] objectForKey:@"machine"] withTag:@"iOS"];
-                NSLog(@"DEVICE TOKEN: %@", devToken);
+                //NSLog(@"DEVICE TOKEN: %@", devToken);
                 [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
                 [Data fillAPArrays];
                 [Data getAgeGenderData];
@@ -203,65 +205,32 @@
 
 // called when user has successfull logged in before
 - (void)reLogIn{
-    loginURL = [NSURL URLWithString:@"https://wifination.ph/login_app/"];
-    NSString *boundary = @"WebKitFormBoundary";
-    NSMutableData *body = [NSMutableData data];
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"username"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [[NSUserDefaults standardUserDefaults] stringForKey:@"username"]] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", @"password"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"%@\r\n", [[NSUserDefaults standardUserDefaults] stringForKey:@"password"]] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-
-    NSURLSession *session = [NSURLSession sessionWithConfiguration: sessionConfiguration delegate: self delegateQueue: [NSOperationQueue mainQueue]];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: loginURL];
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request setValue:contentType forHTTPHeaderField: @"Content-Type"];
-    
-    request.HTTPMethod = @"POST";
-    request.HTTPBody = body;
-    
-    
-    NSURLSessionDataTask *loginDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        if([result[@"status"] isEqualToString:@"OK"]){
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^
-             {
-                 
-                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                     [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
-                     [Data fillAPArrays];
-                     [Data getAgeGenderData];
-                     [Data getUserInfo];
-                     [Data getDateToday];
-                 });
-                 
-                 [self performSegueWithIdentifier:@"loginSuccess" sender:self];
-             }];
-            
-        } else {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^
-             {
-                 self.textFieldUsername.hidden = false;
-                 self.textFieldPassword.hidden = false;
-                 self.loginButton.hidden = false;
-                 self.activityIndicatorContainer.hidden = true;
-                 [self alertLoginNetworkError];
-             }];
-            
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    NSString *usernameForReLogIn = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"username"]];
+    NSString *passwordForReLogIn = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"password"]];
+    [reqUtil logIn:usernameForReLogIn password:passwordForReLogIn completion:^(NSString *status){
+        //NSLog(@"STATUS OF LOGIN: %@",status);
+        if([status isEqualToString:@"OK"]){
+            NSString *devToken = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"]];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+            devToken = [devToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                // [reqUtil postDeviceToken:devToken forDevice:[[NSUserDefaults standardUserDefaults] objectForKey:@"machine"] withTag:@"iOS"];
+                //NSLog(@"DEVICE TOKEN: %@", devToken);
+                [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
+                [Data fillAPArrays];
+                [Data getAgeGenderData];
+                [Data getUserInfo];
+                [Data getDateToday];
+            });
+            [self performSegueWithIdentifier:@"loginSuccess" sender:self];
+        }else{
+            //NSLog(@"EXPIRED!!!!!");
         }
-        
-        NSLog(@"%@",result);
     }];
-    
-    [loginDataTask resume];
-        
+
+     
 }
 
 // Methods for moving the input fields on the log in screen so as not to be blocked by the keyboard
@@ -296,7 +265,7 @@
 }
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification
 {
-    NSLog(@"hidden");
+ 
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;

@@ -28,11 +28,6 @@
     self.speedData = [[NSMutableArray alloc] init];
 
     
-    requestUtility *reqUtil = [[requestUtility alloc] init];
-    [reqUtil GETRequestSender:@"getRPM" completion:^(NSDictionary *responseDict){
-        NSLog(@"%@", responseDict);
-    }];
-    
 
  
     _lineChartView.delegate = self;

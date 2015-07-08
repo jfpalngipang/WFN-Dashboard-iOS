@@ -9,7 +9,6 @@
 #import "UserLogsController.h"
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
-#import "DownPicker.h"
 #import "UserLogsCell.h"
 #import "Data.h"
 #import "DateSelectionController.h"
@@ -19,6 +18,7 @@
 {
     NSMutableArray *_ap_list;
     NSMutableArray *logs;
+    NSMutableArray *logsCopy;
     NSMutableArray *filteredLogs;
     UIDatePicker *datePickerView;
     NSArray *searchResults;
@@ -41,6 +41,7 @@
     searches = [[NSMutableArray alloc] init];
     accessoryMode = [[NSString alloc] init];
     logs = [[NSMutableArray alloc] init];
+    logsCopy = [[NSMutableArray alloc] init];
     _ap_list = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     requestUtility *reqUtil = [[requestUtility alloc] init];
@@ -49,7 +50,7 @@
     self.APListTextField.delegate = self;
     
     self.dateTextField.text = today;
-    self.APListTextField.text = @"All";
+    self.APListTextField.text = apNames[0];
     
     self.tableView.hidden = true;
     self.activityIndicatorContainer.hidden = false;
@@ -57,7 +58,8 @@
     [reqUtil getData:@"userlogs" completion:^(NSDictionary *logsDict){
         
         for (id log in logsDict){
-           [logs addObject:log];
+            [logs addObject:log];
+            [logsCopy addObject:log];
         }
         self.tableView.hidden = false;
         self.disableView.hidden = true;
@@ -122,7 +124,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    tableView.rowHeight = 60;
     static NSString *identifier = @"Cell";
     
     if (indexPath.row == 0){
@@ -245,7 +247,7 @@
         self.tableView.hidden = true;
         self.activityIndicatorContainer.hidden = false;
         requestUtility *reqUtil = [[requestUtility alloc] init];
-        [reqUtil GETRequestSender:@"getUserLogs" withParams:self.dateTextField.text completion:^(NSDictionary *responseDict){
+        [reqUtil getData:@"userlogs" withParams:self.dateTextField.text completion:^(NSDictionary *responseDict){
             [logs removeAllObjects];
             for (id log in responseDict){
                 [logs addObject:log];
@@ -265,14 +267,22 @@
             
         }];
     } else if([mode isEqualToString:@"ap"]){
+        [logs removeAllObjects];
+        [logs addObjectsFromArray:logsCopy];
+        NSLog(@"LOGS COPY: %@", logsCopy);
+        [filteredLogs removeAllObjects];
         self.APListTextField.text = value;
         for(id log in logs){
             if([log[@"ap"] isEqualToString:self.APListTextField.text]){
                 [filteredLogs addObject:log];
-                NSLog(@"HELLO.");
+                NSLog(@"HELLO. %@", log);
             }
-            NSLog(@"HELLO.");
+
         }
+        [logs removeAllObjects];
+        [logs addObjectsFromArray:filteredLogs];
+        [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        NSLog(@"HELLO.");
 
     }
     

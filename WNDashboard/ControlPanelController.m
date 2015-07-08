@@ -9,7 +9,7 @@
 #import "ControlPanelController.h"
 #import "requestUtility.h"
 #import "SWRevealViewController.h"
-#import "DownPicker.h"
+
 #import "Data.h"
 #import "DateSelectionController.h"
 
@@ -230,7 +230,7 @@
     });
     
 }
-
+/*
 -(void)apSelected:(id)ap{
     NSString *selectedAP = [self.downPicker text];
     sAP = selectedAP;
@@ -296,7 +296,7 @@
     });
     
 }
-
+*/
 - (IBAction)updateClicked:(id)sender {
     
     [settings setValue:[NSString stringWithFormat:@"%@", sID] forKey:@"id"];

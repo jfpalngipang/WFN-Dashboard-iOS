@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view.
     
     _lineChartView.delegate = self;
-    
+    _lineChartView.descriptionText = @"Connected Users";
     _lineChartView.highlightEnabled = YES;
     _lineChartView.dragEnabled = NO;
     _lineChartView.pinchZoomEnabled = NO;
