@@ -44,6 +44,7 @@
 
 -(void)viewDidLoad {
     [super viewDidLoad];
+    self.disableView.hidden = false;
     sidebarMenuOpen = NO;
     
     revealController = [self revealViewController];
@@ -80,6 +81,7 @@
         self.totalPageLabel.text = [NSString stringWithFormat:@"%ld", (long)totalPages];
         
         [self setPageTableContent:1];
+        self.disableView.hidden = true;
         [self.spinner stopAnimating];
     }];
     self.totalPageLabel.text = @"14";

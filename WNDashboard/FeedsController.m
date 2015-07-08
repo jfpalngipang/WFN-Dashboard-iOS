@@ -108,11 +108,13 @@
 }
 // different cell height for survey custom cell
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"survey"]){
         return 260;
     } else {
         return 100;
     }
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -392,6 +394,7 @@
 
         }
 }
+
 /*
 #pragma mark - Navigation
 

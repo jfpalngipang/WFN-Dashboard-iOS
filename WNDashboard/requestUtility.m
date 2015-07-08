@@ -115,13 +115,12 @@
 - (void) postDeviceToken:(NSString *)deviceToken forDevice:(NSString *)device withTag:(NSString *)tag{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    NSDictionary *parameters = @{@"device": device, @"token": deviceToken, @"tag": tag};
-    [manager POST:@"http://dev.wifination.ph:3000/mobile/oauth" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = @{@"device": device, @"deviceID": @"", @"token": deviceToken, @"tag": tag};
+    [manager POST:@"http://dev.wifination.ph:3000/mobile/oauth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSString *status = [responseObject valueForKeyPath:@"status"];
         NSLog(@"RESPONSE OF DEVICE TOKEN POST: %@", status);

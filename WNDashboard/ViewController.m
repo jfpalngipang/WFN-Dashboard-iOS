@@ -168,7 +168,7 @@
             devToken = [devToken stringByReplacingOccurrencesOfString:@">" withString:@""];
             devToken = [devToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [reqUtil postDeviceToken:devToken forDevice:[[NSUserDefaults standardUserDefaults] objectForKey:@"machine"] withTag:@"iOS"];
+               // [reqUtil postDeviceToken:devToken forDevice:[[NSUserDefaults standardUserDefaults] objectForKey:@"machine"] withTag:@"iOS"];
                 NSLog(@"DEVICE TOKEN: %@", devToken);
                 [Data setUser:[[NSUserDefaults standardUserDefaults] stringForKey:@"username"]];
                 [Data fillAPArrays];

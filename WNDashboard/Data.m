@@ -86,8 +86,9 @@ NSMutableArray *newsfeedsStore;
     requestUtility *reqUtil = [[requestUtility alloc] init];
     [reqUtil getData:@"userprofile" completion:^(NSDictionary* responseDict){
         for (id info in responseDict){
-            userInfo = info;
+            [userInfo addObject:info];
         }
+        NSLog(@"USER ACCOUNT: %@", userInfo);
     }];
 }
 

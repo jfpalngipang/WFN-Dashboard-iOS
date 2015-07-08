@@ -10,16 +10,18 @@
 
 @interface UserProfileController : UIViewController <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *locationTextView;
+
 - (IBAction)backgroundTap:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *firstTextField;
-
 @property (weak, nonatomic) IBOutlet UITextField *lastTextField;
+@property (weak, nonatomic) IBOutlet UITextField *contactTextField;
+@property (weak, nonatomic) IBOutlet UITextField *locationTextField;
+- (IBAction)updateClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *disableView;
+@property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 
-@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (weak, nonatomic) IBOutlet UIButton *updateButton;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 

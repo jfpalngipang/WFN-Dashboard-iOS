@@ -21,6 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 
+@property (weak, nonatomic) IBOutlet UIView *disableView;
 
 @property (weak, nonatomic) IBOutlet UITextField *APListTextField;
 

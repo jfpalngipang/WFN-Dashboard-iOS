@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.disableView.hidden = false;
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
@@ -59,6 +60,7 @@
            [logs addObject:log];
         }
         self.tableView.hidden = false;
+        self.disableView.hidden = true;
         self.activityIndicatorContainer.hidden = true;
         if(logs.count == 0){
             dispatch_async(dispatch_get_main_queue(), ^{

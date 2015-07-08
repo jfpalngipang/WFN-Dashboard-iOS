@@ -15,16 +15,20 @@
 
 @interface TestimonialsController () <SWRevealViewControllerDelegate, SWTableViewCellDelegate>
 
-@end
 
+@property (strong, nonatomic) MessageCell *messageCell;
+@end
 @implementation TestimonialsController
 {
     NSMutableArray *messages;
     BOOL sidebarMenuOpen;
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.disableView.hidden = false;
+    self.activityIndicatorContainer.hidden = false;
     sidebarMenuOpen = NO;
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
@@ -45,12 +49,13 @@
         for (id message in responseDict){
             [messages addObject:message];
         }
-        //self.tableView.rowHeight = 300;
-        //[setSelectionStyle:UITableViewCellSelectionStyleNone];
-        //[cell setUserInteractionEnabled:NO];
+
         self.tableView.allowsSelection = NO;
         NSLog(@"%@", messages);
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+        
+        self.disableView.hidden = true;
+        self.activityIndicatorContainer.hidden = true;
     }];
     self.revealViewController.delegate = self;
     
@@ -59,11 +64,42 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == 4){
-        return 300;
-    } else {
-        return 150;
+    return 80;
+    /*
+    //Calculate height based on cell
+    if(!self.messageCell){
+        self.messageCell = [tableView dequeueReusableCellWithIdentifier:@"MessageCell"];
     }
+    
+    //Configure the cell
+    NSString *name = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:1]];
+    NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
+    NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
+    NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
+    NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
+
+    //self.messageCell.delegate = self;
+    FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:self.messageCell.userImage.frame];
+    
+    [profilePicture setProfileID:fbId];
+    profilePicture.layer.borderWidth = 0;
+    [self.messageCell addSubview:profilePicture];
+    self.messageCell.nameLabel.text = name;
+    self.messageCell.estabLabel.text = estab;
+    self.messageCell.timeLabel.text = time;
+    self.messageCell.testimonialLabel.text = testimonial;
+    
+    //self.messageCell.rightUtilityButtons = [self rightButtons];
+    
+    //Layout the cell
+    [self.messageCell layoutIfNeeded];
+    
+    //Get height
+    CGFloat height = [self.messageCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    
+    return height;
+    
+    */
 
 }
 
@@ -84,25 +120,25 @@
     NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
     static NSString *identifier = @"Cell";
     MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
-
     
     if(cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MessageCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    cell.delegate = self;
+    //cell.delegate = self;
     FBSDKProfilePictureView *profilePicture = [[FBSDKProfilePictureView alloc] initWithFrame:cell.userImage.frame];
     
     [profilePicture setProfileID:fbId];
     profilePicture.layer.borderWidth = 0;
     [cell addSubview:profilePicture];
+    
     cell.nameLabel.text = name;
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;
     cell.testimonialLabel.text = testimonial;
     
-    cell.rightUtilityButtons = [self rightButtons];
+    //cell.rightUtilityButtons = [self rightButtons];
 
     return cell;
     

@@ -9,6 +9,7 @@
 #import "UserProfileController.h"
 #import "SWRevealViewController.h"
 #import "Data.h"
+#import "requestUtility.h"
 
 
 @interface UserProfileController ()
@@ -16,15 +17,22 @@
 @end
 
 @implementation UserProfileController
+{
+    NSMutableArray *profileData;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.disableView.hidden = false;
+    self.activityIndicatorContainer.hidden = false;
+    
+    profileData = [[NSMutableArray alloc] init];
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
     [self.view addGestureRecognizer:tap];
-    self.locationTextView.layer.borderWidth = 1.0f;
-    self.locationTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    //self.locationTextView.layer.borderWidth = 1.0f;
+    //self.locationTextView.layer.borderColor = [[UIColor grayColor] CGColor];
     // Do any additional setup after loading the view.
     SWRevealViewController *revealViewController = self.revealViewController;
     if(revealViewController){
@@ -33,14 +41,30 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
         
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.emailTextField.text = userInfo[0];
-        self.firstTextField.text = userInfo[1];
-        self.lastTextField.text = userInfo[2];
-        self.phoneTextField.text = userInfo[3];
-        self.locationTextView.text = userInfo[4];
+    requestUtility *reqUtil = [[requestUtility alloc] init];
     
-    });
+    [reqUtil getData:@"userprofile" completion:^(NSDictionary *profile){
+        NSLog(@"USER PROFILE: %@", profile);
+        for(id data in profile){
+            [profileData addObject:data];
+        }
+        //dispatch_async(dispatch_get_main_queue(), ^{
+
+            self.emailTextField.text = profileData[0];
+            self.firstTextField.text = profileData[1];
+            self.lastTextField.text = [NSString stringWithFormat:@"%@", profileData[2]];
+            self.contactTextField.text = profileData[3];
+            self.locationTextField.text = profileData[4];
+            
+        //});
+        self.disableView.hidden = true;
+        self.activityIndicatorContainer.hidden = true;
+    }];
+    
+    //NSLog(@"HERE! %@", userInfo);
+    /*
+
+     */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,5 +84,7 @@
 
 - (IBAction)backgroundTap:(id)sender {
     [self.view endEditing:YES];
+}
+- (IBAction)updateClicked:(id)sender {
 }
 @end
