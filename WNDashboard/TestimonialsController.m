@@ -52,7 +52,7 @@ static NSString * const MessageCellIdentifier = @"MessageCell";
         }
 
         self.tableView.allowsSelection = NO;
-        NSLog(@"%@", messages);
+        //NSLog(@"%@", messages);
         [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
         
         self.disableView.hidden = true;
@@ -122,14 +122,14 @@ static NSString * const MessageCellIdentifier = @"MessageCell";
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;
     cell.testimonialLabel.text = testimonial;
-    cell.rightUtilityButtons = [self rightButtons];
+    //cell.rightUtilityButtons = [self rightButtons];
 }
 - (void)configureMessageCellForHeight:(MessageCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     NSString *name = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:1]];
     NSString *estab = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:0]];
     NSString *time = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:3]];
     NSString *testimonial = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:4]];
-    NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
+   // NSString *fbId = [NSString stringWithFormat:@"%@", [[messages objectAtIndex:indexPath.row] objectAtIndex:2]];
     cell.nameLabel.text = name;
     cell.estabLabel.text = estab;
     cell.timeLabel.text = time;
@@ -154,8 +154,12 @@ static NSString * const MessageCellIdentifier = @"MessageCell";
     } else {
         self.tableView.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
-        NSLog(@"MENU OPEN!");
+        //NSLog(@"MENU OPEN!");
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
 - (void)revealController:(SWRevealViewController *)revealController didMoveToPosition:(FrontViewPosition)position
@@ -166,7 +170,7 @@ static NSString * const MessageCellIdentifier = @"MessageCell";
     } else {
         self.tableView.userInteractionEnabled = NO;
         sidebarMenuOpen = YES;
-         NSLog(@"MENU OPEN!");
+         //NSLog(@"MENU OPEN!");
     }
 }
 
@@ -186,5 +190,6 @@ static NSString * const MessageCellIdentifier = @"MessageCell";
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end

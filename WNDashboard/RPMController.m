@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     SWRevealViewController *revealController = [self revealViewController];
     UITapGestureRecognizer *tap = [revealController tapGestureRecognizer];
     tap.delegate = self;
@@ -136,7 +137,7 @@
     NSString *selected_apId = [Data getIdForAPAtIndex:selected_index];
     requestUtility *reqUtil = [[requestUtility alloc] init];
     //NSLog(@"%@ : %@", selected_apId, value);
-
+    self.segmentedControl.selectedSegmentIndex = 0;
     [reqUtil getData:@"rpm" withParams:selected_apId completion:^(NSDictionary * responseDict){
         //NSLog(@"********%@", responseDict);
         sp = responseDict[@"speed"];

@@ -28,11 +28,11 @@
     surveyClicked = NO;
     self.pieChartContainer.hidden = false;
     self.apListContainer.hidden = true;
-    
+    /*
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
     item.title = @"Title";
     self.navigationItem.backBarButtonItem = item;
-    
+    */
     self.surveyLabel.text = surveyQuestion;
     self.pieChartContainer.hidden = false;
     self.apListContainer.hidden = true;

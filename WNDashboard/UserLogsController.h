@@ -13,10 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
-- (IBAction)dateTextFieldEditing:(UITextField *)sender;
-- (IBAction)apTextFieldEditing:(UITextField *)sender;
 
-- (IBAction)test:(UITextField *)sender;
+
+- (IBAction)refreshBarButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *activityIndicatorContainer;
 

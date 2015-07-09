@@ -53,10 +53,9 @@
     //searchResults = [[NSMutableArray alloc] init];
     temp = [[NSMutableArray alloc] init];
     questionsMutable = [[NSMutableArray alloc] init];
-    self.spinner.center = CGPointMake( [UIScreen mainScreen].bounds.size.width/2,[UIScreen mainScreen].bounds.size.height/2);
-    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [appDelegate.window addSubview:self.spinner];
-    [self.spinner startAnimating];
+
+    //AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
     
     requestUtility *reqUtil = [[requestUtility alloc] init];
     responseCounts = [[NSMutableArray alloc] init];
@@ -75,7 +74,6 @@
 
     
         self.disableView.hidden = true;
-        [self.spinner stopAnimating];
     }];
 
     self.revealViewController.delegate = self;
@@ -169,7 +167,7 @@
     [responseCounts removeAllObjects];
 
         indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-        sIndex = indexPath.row;
+        sIndex = (int)indexPath.row;
         NSString *surveyId = [[searchResults objectAtIndex:indexPath.row] objectAtIndex:0];
         NSLog(@"%@", surveyId);
         requestUtility *reqUtil = [[requestUtility alloc] init];
@@ -209,7 +207,7 @@
         [responseCounts removeAllObjects];
         
         indexPath = [self.tableView indexPathForSelectedRow];
-        sIndex = indexPath.row;
+        sIndex = (int)indexPath.row;
         NSString *surveyId = [[surveys objectAtIndex:indexPath.row] objectAtIndex:0];
         requestUtility *reqUtil = [[requestUtility alloc] init];
         ap = [surveys objectAtIndex:indexPath.row][4];
@@ -225,6 +223,7 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self performSegueWithIdentifier:@"showSurveyDetail" sender:self];
+                    //[self viewDetails];
                 });
             }];
         } else {
@@ -239,6 +238,7 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self performSegueWithIdentifier:@"showSurveyDetail" sender:self];
+                    //[self viewDetails];
                 });
             }];
             
@@ -282,26 +282,59 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"showSurveyDetail"]){
         if(self.searchDisplayController.active){
-            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            //NSLog(@"%ld", (long)indexPath.row);
-            SurveyDetailsController *destViewController = [segue.destinationViewController topViewController];
+           // NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+ 
+            SurveyDetailsController *destViewController = (SurveyDetailsController*)segue.destinationViewController;
+            //[self.storyboardinstantiateViewControllerWithIdentifier:@"SurveyDetails"];
+            //[segue.destinationViewController topViewController];
             destViewController.surveyQuestion = [[searchResults objectAtIndex:sIndex] objectAtIndex:1];
             destViewController.responses = responses;
             destViewController.responseCounts = responseCounts;
             responseAPList = [ap componentsSeparatedByString:@","];
             destViewController.responseAPList = responseAPList;
+            //[self.navigationController pushViewController:destViewController animated:YES];
         }else{
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            //NSLog(@"%ld", (long)indexPath.row);
-            SurveyDetailsController *destViewController = [segue.destinationViewController topViewController];
+            //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            SurveyDetailsController *destViewController = (SurveyDetailsController*)segue.destinationViewController;
+            //[self.storyboard instantiateViewControllerWithIdentifier:@"SurveyDetails"];
+            //[segue.destinationViewController topViewController];
             destViewController.surveyQuestion = [[surveys objectAtIndex:sIndex] objectAtIndex:1];
             destViewController.responses = responses;
             destViewController.responseCounts = responseCounts;
             responseAPList = [ap componentsSeparatedByString:@","];
             destViewController.responseAPList = responseAPList;
+            //[self.navigationController pushViewController:destViewController animated:YES];
         }
 
     }
+}
+
+- (void)viewDetails{
+    //if([segue.identifier isEqualToString:@"showSurveyDetail"]){
+        if(self.searchDisplayController.active){
+            // NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            
+            SurveyDetailsController *destViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SurveyDetails"];
+            //[segue.destinationViewController topViewController];
+            destViewController.surveyQuestion = [[searchResults objectAtIndex:sIndex] objectAtIndex:1];
+            destViewController.responses = responses;
+            destViewController.responseCounts = responseCounts;
+            responseAPList = [ap componentsSeparatedByString:@","];
+            destViewController.responseAPList = responseAPList;
+            [self.navigationController pushViewController:destViewController animated:YES];
+        }else{
+            //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            SurveyDetailsController *destViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SurveyDetails"];
+            //[segue.destinationViewController topViewController];
+            destViewController.surveyQuestion = [[surveys objectAtIndex:sIndex] objectAtIndex:1];
+            destViewController.responses = responses;
+            destViewController.responseCounts = responseCounts;
+            responseAPList = [ap componentsSeparatedByString:@","];
+            destViewController.responseAPList = responseAPList;
+            [self.navigationController pushViewController:destViewController animated:YES];
+        }
+        
+   // }
 }
 
 

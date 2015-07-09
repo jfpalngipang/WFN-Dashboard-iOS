@@ -127,9 +127,9 @@
             [chartData addObject:@"0"];
         }
     }
-    NSLog(@"%@", chartData);
+    //NSLog(@"%@", chartData);
     
-    [self setDataCount:chartData.count range:1];
+    [self setDataCount:(int)chartData.count range:1];
     
     
     

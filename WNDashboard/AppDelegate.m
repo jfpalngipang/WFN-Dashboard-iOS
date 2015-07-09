@@ -19,9 +19,6 @@
 
 @implementation AppDelegate
 
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -44,6 +41,7 @@
     // it from running if it doesn't exist (such as running under iOS 7 or earlier).
     if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+        //[application registerForRemoteNotifications];
         //NSLog(@"PERMISSION!");
     }else{
         [application registerForRemoteNotificationTypes: (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
@@ -78,14 +76,14 @@
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
 
     completionHandler(UIBackgroundFetchResultNewData);
-    //NSLog(@"BG!");
+
     FeedsController *feedsController = [[FeedsController alloc] init];
     [feedsController fetchFeedUpdateWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
-        //NSLog(@"RESULT of FETCH: %lu", (unsigned long)result);
+
     }];
     application.applicationIconBadgeNumber++;
-    //FeedsController *feedsController = (FeedsController *)self.window.rootViewController;
+
     
 
     
@@ -115,11 +113,11 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
+/*
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
     // Store the deviceToken.
-    //NSLog(@"%@", newDeviceToken);
+    NSLog(@"%@", newDeviceToken);
     struct utsname systemInfo;
     uname(&systemInfo);
     UIDevice *device = [UIDevice currentDevice];
@@ -137,4 +135,5 @@
 {
     //NSLog(@"Failed To Register For Remote Notifications With Error: %@", error);
 }
+*/
 @end

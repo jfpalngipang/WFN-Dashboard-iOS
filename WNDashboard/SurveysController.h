@@ -15,15 +15,4 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *disableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *currentPageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalPageLabel;
-@property (weak, nonatomic) IBOutlet UIButton *prevButton;
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableViewHeader;
-
-- (IBAction)nextClicked:(id)sender;
-- (IBAction)prevClicked:(id)sender;
-
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
-
 @end

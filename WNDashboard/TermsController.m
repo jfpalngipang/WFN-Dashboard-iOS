@@ -44,7 +44,7 @@
         
     }
     self.webView.frame=self.view.bounds;
-    NSString *strURL = @"http://dev.wifination.ph:3000/mobile/terms/";
+    NSString *strURL = @"https://wifination.ph/mobile/terms/";
     NSURL *url = [NSURL URLWithString:strURL];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:urlRequest];

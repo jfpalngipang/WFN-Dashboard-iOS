@@ -71,10 +71,10 @@
     _barChartView.legend.formSize = 8.0;
     _barChartView.legend.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.f];
     _barChartView.legend.xEntrySpace = 4.0;
-    _barChartView.legend.textColor = [UIColor whiteColor];
+    _barChartView.legend.textColor = [UIColor blackColor];
     [_barChartView animateWithYAxisDuration:2.5];
     
-    [self setDataCount:self.m.count range:10];
+    [self setDataCount:(int)self.m.count range:10];
     
 }
 
@@ -158,7 +158,7 @@
 
 - (void)beginCharting{
     //NSLog(@"CHARTING..........");
-    [self setDataCount:self.m.count range:1];
+    [self setDataCount:(int)self.m.count range:1];
     //NSLog(@"MALES: %@", self.m);
     
     

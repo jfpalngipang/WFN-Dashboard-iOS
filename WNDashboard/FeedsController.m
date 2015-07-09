@@ -171,7 +171,7 @@
             }
 
             cell.onlineImage.image = [UIImage imageNamed:@"newsfeed_activeusers"];
-            cell.countLabel.text = [NSString stringWithFormat:@"%@", count];
+            cell.countLabel.text = [NSString stringWithFormat:@"You have %@ online users", count];
             cell.timeLabel.text = [news_array objectAtIndex:indexPath.row][@"time"];
             return cell;
         } else if ([[news_array objectAtIndex:indexPath.row][@"type"] isEqualToString:@"frequent_users"]) {
@@ -229,7 +229,7 @@
             
             // charting the survey results
             
-            [chartData addObject:[NSString stringWithFormat:@"%d", other_total]];
+            [chartData addObject:[NSString stringWithFormat:@"%ld", (long)other_total]];
 
             cell.pieChartView.delegate = self;
             cell.pieChartView.highlightEnabled = NO;
@@ -304,7 +304,7 @@
             NSString *name = [news_array objectAtIndex:indexPath.row][@"user"];
             NSString *message = [news_array objectAtIndex:indexPath.row][@"msg"];
             NSString *time = [news_array objectAtIndex:indexPath.row][@"time"];
-            NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
+            //NSString *fbId = [news_array objectAtIndex:indexPath.row][@"main_uid"];
             MessageCell *cell = (MessageCell *)[tableView dequeueReusableCellWithIdentifier:identifier];
             if (cell == nil)
             {

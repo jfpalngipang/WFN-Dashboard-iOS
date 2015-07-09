@@ -103,7 +103,7 @@
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
-        NSString *statusCode = [NSString stringWithFormat:@"%d", [operation.response statusCode]];
+        NSString *statusCode = [NSString stringWithFormat:@"%ld", [operation.response statusCode]];
         completion(statusCode);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //NSLog(@"Error: %@", error);
@@ -114,18 +114,31 @@
 
 - (void) postDeviceToken:(NSString *)deviceToken forDevice:(NSString *)device withTag:(NSString *)tag{
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //[manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //[manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    NSDictionary *parameters = @{@"device": device, @"deviceID": @"", @"token": deviceToken, @"tag": tag};
-    [manager POST:@"http://dev.wifination.ph:3000/mobile/oauth" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *parameters = @{@"device": device, @"device_id": @" ", @"token": deviceToken, @"tag": tag};
+    [manager POST:@"http://dev.wifination.ph:3000/mobile/oauth/" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //NSString *status = [responseObject valueForKeyPath:@"status"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
+    
+    /*
+    
+    [manager POST:@"http://dev.wifination.ph:3000/mobile/oauth/" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSString *status = [responseObject valueForKeyPath:@"status"];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
     }];
+     */
 }
 
 

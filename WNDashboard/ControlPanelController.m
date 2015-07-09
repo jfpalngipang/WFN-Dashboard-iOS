@@ -187,6 +187,7 @@
             [self.maxdownloadSwitch setOn:YES animated:YES];
             self.maxdownloadTextField.text = max_down;
             self.maxdownloadTextField.hidden = false;
+            self.maxdownloadTextField.text = max_down;
         }
         
         if([max_time isEqualToString:@"<null>"]){
@@ -196,6 +197,7 @@
             [self.maxsessionSwitch setOn:YES animated:YES];
             self.maxsessionTextField.text = max_time;
             self.maxsessionTextField.hidden = false;
+            self.maxsessionTextField.text = max_time;
             
         }
         
@@ -207,6 +209,7 @@
             [self.passkeySwitch setOn:YES animated:YES];
             self.passkeyTextField.text = ap_auth;
             self.passkeyTextField.hidden = false;
+            self.passkeyTextField.text = ap_auth;
         }
         
         
@@ -218,6 +221,7 @@
             [self.fbpageSwitch setOn:YES animated:NO];
             self.fbpageTextField.text = ap_like_page;
             self.fbpageTextField.hidden = false;
+            self.fbpageTextField.text = ap_like_page;
             
         }
         if([ssid_private isEqualToString: @"<null>"]){
@@ -379,11 +383,12 @@
      
 }
 - (void)alertError{
-    UIAlertController * alert=   [UIAlertController
+    if([UIAlertController class]){
+        UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Error"
-                                  message:@"Could not update."
+                                  message:@"Could not update"
                                   preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
+        UIAlertAction* ok = [UIAlertAction
                          actionWithTitle:@"Dismiss"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
@@ -392,17 +397,28 @@
                              [alert dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
-    [alert addAction:ok];
+        [alert addAction:ok];
     
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Could not update"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+    }
+
 }
 
 - (void)alertSuccess{
-    UIAlertController * alert=   [UIAlertController
+    if([UIAlertController class]){
+        UIAlertController * alert=   [UIAlertController
                                   alertControllerWithTitle:@"Success"
                                   message:@"Settings Updated"
                                   preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* ok = [UIAlertAction
+        UIAlertAction* ok = [UIAlertAction
                          actionWithTitle:@"OK"
                          style:UIAlertActionStyleDefault
                          handler:^(UIAlertAction * action)
@@ -411,13 +427,24 @@
                              [alert dismissViewControllerAnimated:YES completion:nil];
                              
                          }];
-    [alert addAction:ok];
+        [alert addAction:ok];
     
-    [self presentViewController:alert animated:YES completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else {
+        
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                              message:@"Settings Updated"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            
+            [message show];
+    }
+
 }
 
 - (IBAction)max_download:(id)sender {
-    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    //NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
     if([self.maxdownloadSwitch isOn]){
         self.maxdownloadTextField.hidden = false;
         
@@ -428,7 +455,7 @@
 }
 
 - (IBAction)max_time:(id)sender {
-    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    //NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
     if([self.maxsessionSwitch isOn]){
         self.maxsessionTextField.hidden = false;
     }else{
@@ -437,7 +464,7 @@
 }
 
 - (IBAction)passkey:(id)sender {
-    NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
+    //NSMutableDictionary *setting = [[NSMutableDictionary alloc] init];
     if([self.passkeySwitch isOn]){
         self.passkeyTextField.hidden = false;
         

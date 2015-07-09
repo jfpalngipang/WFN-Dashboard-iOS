@@ -51,7 +51,7 @@
     
     [_lineChartView animateWithXAxisDuration:3.5 easingOption:ChartEasingOptionEaseInOutQuart];
     self.a = active;
-    [self setDataCount:self.a.count range:1];
+    [self setDataCount:(int)self.a.count range:1];
     
 }
 
@@ -132,7 +132,7 @@
 
 - (void)beginCharting{
     //NSLog(@"CHARTING..........");
-    [self setDataCount:self.a.count range:1];
+    [self setDataCount:(int)self.a.count range:1];
     
     
 }

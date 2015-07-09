@@ -22,10 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIViewController *parent = self.parentViewController;
+    //UIViewController *parent = self.parentViewController;
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-    NSLog(@"^^^^^^^^^PARENT^^^^^^^^^: %@", parent);
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +34,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     UIViewController *parent = self.parentViewController;
-    NSLog(@"FFFFFFFFFFFFFFFFF%d", ((SurveyDetailsController *)parent).responseAPList.count);
+
     return ((SurveyDetailsController *)parent).responseAPList.count;
     
 }
@@ -60,7 +58,7 @@
 
 - (void) refreshTable {
     
-    UIViewController *parent = self.parentViewController;
+    //UIViewController *parent = self.parentViewController;
     //NSLog(@"FFFFFFFFFFFFFFFFF%@", ((SurveyDetailsController *)parent).responseAPList);
 }
 

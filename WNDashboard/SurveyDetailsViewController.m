@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"R: %@", self.responses);
+    //NSLog(@"R: %@", self.responses);
     // Do any additional setup after loading the view.
     //requestUtility *reqUtil = [[requestUtility alloc] init];
     /*

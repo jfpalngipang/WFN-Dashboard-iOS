@@ -315,4 +315,37 @@
     [self.view endEditing:YES];
 }
 
+- (IBAction)refreshBarButton:(id)sender {
+    [logs removeAllObjects];
+    [logsCopy removeAllObjects];
+    
+    self.tableView.hidden = true;
+    self.disableView.hidden = false;
+    self.activityIndicatorContainer.hidden = false;
+    
+    requestUtility *reqUtil = [[requestUtility alloc] init];
+    [reqUtil getData:@"userlogs" completion:^(NSDictionary *logsDict){
+        
+        for (id log in logsDict){
+            [logs addObject:log];
+            [logsCopy addObject:log];
+        }
+        self.tableView.hidden = false;
+        self.disableView.hidden = true;
+        self.activityIndicatorContainer.hidden = true;
+        if(logs.count == 0){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self alertEmptyData];
+                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+            });
+            
+        }else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+            });
+        }
+        
+    }];
+
+}
 @end
